@@ -83,7 +83,7 @@
 		2AA8300D18A590D200FCC137 /* zerofillStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zerofillStar.png; path = Images.xcassets/zerofillStar.png; sourceTree = "<group>"; };
 		2AB1DCF618A3F97A00E5E08B /* PastQuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastQuizViewController.h; sourceTree = "<group>"; };
 		2AB1DCF718A3F97A00E5E08B /* PastQuizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastQuizViewController.m; sourceTree = "<group>"; };
-		2AD87A251897225B0069F479 /* QuizApp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AD87A251897225B0069F479 /* Quizm Learn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quizm Learn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD87A281897225B0069F479 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2AD87A2A1897225B0069F479 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2AD87A2C1897225B0069F479 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -177,7 +177,7 @@
 		2AD87A261897225B0069F479 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2AD87A251897225B0069F479 /* QuizApp2.app */,
+				2AD87A251897225B0069F479 /* Quizm Learn.app */,
 				2AD87A461897225B0069F479 /* QuizApp2Tests.xctest */,
 			);
 			name = Products;
@@ -321,7 +321,7 @@
 			);
 			name = QuizApp2;
 			productName = QuizApp2;
-			productReference = 2AD87A251897225B0069F479 /* QuizApp2.app */;
+			productReference = 2AD87A251897225B0069F479 /* Quizm Learn.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2AD87A451897225B0069F479 /* QuizApp2Tests */ = {
@@ -562,7 +562,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuizApp2/QuizApp2-Prefix.pch";
 				INFOPLIST_FILE = "QuizApp2/QuizApp2-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Quizm Learn";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -580,7 +580,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuizApp2/QuizApp2-Prefix.pch";
 				INFOPLIST_FILE = "QuizApp2/QuizApp2-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Quizm Learn";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

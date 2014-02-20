@@ -25,6 +25,8 @@
 - (NSUInteger *)giveQuizLength;
 //@property (nonatomic, assign) id<QuestionSelectionDelegate> delegate;
 
+-(void)prepareQuestionViewController:(QuestionViewController *)qvc toDisplayQuestionAtRow:(NSInteger)row;
+
 - (void)loadQuizData;
 
 @end

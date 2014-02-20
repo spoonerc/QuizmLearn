@@ -12,17 +12,14 @@
 
 @interface ImportViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
-@property (nonatomic, strong) IBOutlet UILabel *welcomeLabel;
-
-- (IBAction)logOutButtonTapAction:(id)sender;
-
 - (void) handleOpenURL: (NSURL *) url;
 
 @property (strong, nonatomic) NSArray *importedRows;
 @property (strong, nonatomic) NSArray * questions;
 - (NSArray *) getQuestions;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *startButton;
 @property (strong, nonatomic) NSString *quizIdentifier;
+
+@property NSString *groupName;
 
 @end

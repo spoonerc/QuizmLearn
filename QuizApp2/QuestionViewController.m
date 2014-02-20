@@ -13,6 +13,9 @@
 #import "Question.h"
 
 @interface QuestionViewController ()
+
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *qContentLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *answerALabel;
@@ -26,12 +29,7 @@
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
-//- (void)configureView;
 @property (weak, nonatomic) IBOutlet UIImageView *navBarColor;
-
-//@property NSUInteger attemptsLeft;
-
-//For the unwind segue
 
 @property (strong, nonatomic) NSArray * questions;
 
@@ -43,37 +41,22 @@
 {
     BOOL loggedIn;
     BOOL quizImported;
-    //BOOL questionFinished;
+    BOOL logOutFlag;
     BOOL startedQuiz;
     NSString *messagestring;
     NSString *groupName;
     NSUInteger *quizLength;
-    
+    NSArray *buttonArray;
+    NSArray *imageArray;
 }
 
-//@synthesize attempts;
-//@synthesize correctAnswer;
+@synthesize nextButton;
 @synthesize buttonA;
 @synthesize buttonB;
 @synthesize buttonC;
 @synthesize buttonD;
 @synthesize popoverController;
-//@synthesize attemptsLeft;
 
-
-//NSUInteger attemptsLeft;
-NSArray *buttonArray;
-//NSMutableString *messageString;
-NSArray *imageArray;
-
-
-//@synthesize attempts;
-
-- (IBAction)didTapNextButton:(id)sender {
-   
-    //++(long){self.currentRow.row};
-    
-}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -95,8 +78,8 @@ NSArray *imageArray;
     
     imageArray = [[NSArray alloc] initWithObjects:_aImage,_bImage,_cImage,_dImage, nil];
     
-    // DISABLE LOGIN
-    loggedIn = YES;
+   // DISABLE LOGIN
+    //loggedIn = YES;
 }
 
 
@@ -104,7 +87,7 @@ NSArray *imageArray;
     
     if (!loggedIn) {
         [super viewWillAppear:animated];
-        NSLog(@"Not logged in");
+        //NSLog(@"Not logged in");
         //self.welcomeLabel.text = NSLocalizedString(@"Not logged in", nil);
     }
 }
@@ -112,6 +95,8 @@ NSArray *imageArray;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     NSLog(@"View Appeared");
+    
+    //[self logInAndImport];
     
     if (!loggedIn){
         // Create the log in view controller
@@ -137,7 +122,45 @@ NSArray *imageArray;
         
     }
 }
-    
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue destinationViewController] isKindOfClass:[ImportViewController class]])
+    {
+        NSLog(@"Entered prepare for segue");
+        if (groupName){
+             NSLog(@"Groupname is not null");
+            ImportViewController *destView = [segue destinationViewController];
+            destView.groupName = groupName;
+        }
+    }
+}
+
+//- (void)logInAndImport{
+//    if (!loggedIn){
+//        // Create the log in view controller
+//        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+//        [logInViewController setDelegate:self]; // Set ourselves as the delegate
+//        
+//        logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsLogInButton;
+//        
+//        // Create the sign up view controller
+//        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+//        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+//        
+//        // Assign our sign up controller to be displayed from the login controller
+//        [logInViewController setSignUpController:signUpViewController];
+//        
+//        
+//        [self presentViewController:logInViewController animated:YES completion:NULL];
+//    }
+//    
+//    else if (!quizImported){
+//        [self performSegueWithIdentifier: @"goToWelcome" sender: self];
+//        quizImported = YES;
+//        
+//    }
+//}
+
 - (void)switchQuestion{
   
     NSLog(@"%@  %@", self.detailItem.questionNumber, self.detailItem.questionContent);
@@ -159,6 +182,9 @@ NSArray *imageArray;
         
         self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 4 - [self.detailItem.qAttempts integerValue]];
     }
+    
+    nextButton.enabled = NO;
+    
     [self EnableButtonsAccordingToButtonsPressed];
     [self SetImagesAccordingToButtonsPressed];
 }
@@ -171,6 +197,11 @@ NSArray *imageArray;
         {
             [QuestionViewController shouldDisableButton:[buttonArray objectAtIndex:index] should:YES];
         }
+        
+        if ([self.detailItem.questionNumber integerValue] != (int)quizLength-1){
+            nextButton.enabled = YES;
+        }
+       // [nextButton setTitle:@"Next Question" forState:UIControlStateNormal];
     }
     
     else {
@@ -267,8 +298,19 @@ NSArray *imageArray;
 #pragma mark - ()
 
 - (IBAction)logOutButtonTapAction:(id)sender {
-    [PFUser logOut];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure?", nil) message:NSLocalizedString(@"Logging out will finish your quiz", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Im Sure", nil) otherButtonTitles:NSLocalizedString(@"Go Back",nil), nil] show];
+    
+//    NSMutableArray *sneakyLogout = [[NSMutableArray alloc] initWithObjects:@[@0], nil];
+//    NSLog(@"%@", sneakyLogout[2]);
+
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0){
+        NSMutableArray *sneakyLogout = [[NSMutableArray alloc] initWithObjects:@[@0], nil];
+        NSLog(@"%@", sneakyLogout[2]);
+    }
 }
 
 - (IBAction)clicked:(UIButton *)sender {
@@ -287,6 +329,7 @@ NSArray *imageArray;
         [self sendAttemptsToParse];
         //self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, nil];
         [self.detailItem insertObjectInButtonsPressed:@2 AtLetterSpot:sender.titleLabel.text];
+        
     } else {
         [self.detailItem insertObjectInButtonsPressed:@1 AtLetterSpot:sender.titleLabel.text];
         self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 4 - [self.detailItem.qAttempts integerValue]];
@@ -302,6 +345,21 @@ NSArray *imageArray;
 
 +(void) shouldDisableButton:(UIButton *)sender should:(BOOL)state {
     sender.enabled = !state;
+}
+
+- (IBAction)nextQuestion:(UIButton *)sender {
+    
+    id masternav = self.splitViewController.viewControllers[0];
+    id master = [masternav topViewController];
+    
+    id detailnav = self.splitViewController.viewControllers[1];
+    id detail = [detailnav topViewController];
+    
+    if ([master isKindOfClass:[QuizTableViewController class]]){
+        NSInteger currentrow = [self.detailItem.questionNumber integerValue];
+        [master prepareQuestionViewController:detail toDisplayQuestionAtRow:currentrow+1];
+        [self switchQuestion];
+    }
 }
 
 

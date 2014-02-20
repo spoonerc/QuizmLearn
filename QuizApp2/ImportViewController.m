@@ -12,14 +12,9 @@
 #import "PastQuizViewController.h"
 
 @interface ImportViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *quizName;
-@property (weak, nonatomic) IBOutlet UITextField *instructor;
-@property (weak, nonatomic) IBOutlet UITextField *course;
-@property (weak, nonatomic) IBOutlet UITextField *section;
-@property (weak, nonatomic) IBOutlet UITextField *date;
-@property (weak, nonatomic) IBOutlet UITextField *timer;
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@property (weak, nonatomic) IBOutlet UILabel *groupNameWelcome;
 
 
 @end
@@ -46,15 +41,13 @@ NSArray * questions;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.groupNameWelcome.text = [NSString stringWithFormat:@"Welcome %@, please select a quiz", _groupName];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
-    //if (!loggedIn) {
-        [super viewWillAppear:animated];
-        NSLog(@"Not logged in");
-        //self.welcomeLabel.text = NSLocalizedString(@"Not logged in", nil);
-    //}
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -62,11 +55,6 @@ NSArray * questions;
 }
 
 #pragma mark - ()
-
-- (IBAction)logOutButtonTapAction:(id)sender {
-    [PFUser logOut];
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 
 - (void)didReceiveMemoryWarning

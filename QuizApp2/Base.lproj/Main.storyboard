@@ -256,21 +256,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAu-rd-4Dc">
-                                <rect key="frame" x="324" y="903" width="121" height="79"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAu-rd-4Dc">
+                                <rect key="frame" x="324" y="905" width="121" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Next Question">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="nextQuestion:" destination="BW5-QA-DVh" eventType="touchUpInside" id="flT-O2-E5D"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" title="Question" id="V4W-nC-XkI">
-                        <barButtonItem key="leftBarButtonItem" title="Swipe From Left Edge" id="dSO-ez-hmB"/>
-                        <barButtonItem key="rightBarButtonItem" title="Results By Group" id="VRH-Ws-9WI"/>
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="VRH-Ws-9WI">
+                            <connections>
+                                <action selector="logOutButtonTapAction:" destination="BW5-QA-DVh" id="KuI-1I-t7y"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="aImage" destination="hx3-Sx-kUl" id="C5r-Fe-LJN"/>
@@ -288,13 +294,14 @@
                         <outlet property="dImage" destination="kyB-Qd-Nte" id="Eb1-Na-oia"/>
                         <outlet property="fakeNavBar" destination="TgD-jp-Rxc" id="GWY-os-h7t"/>
                         <outlet property="navBarColor" destination="U8h-fP-8ip" id="kgD-iU-YHV"/>
+                        <outlet property="nextButton" destination="nAu-rd-4Dc" id="I3L-ZU-6gc"/>
                         <outlet property="qContentLabel" destination="N2P-Eg-g27" id="D03-tM-yRZ"/>
                         <segue destination="fON-3k-Mz4" kind="modal" identifier="goToWelcome" animates="NO" id="MbF-L0-2mI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uf-FZ-UXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272" y="-2696"/>
+            <point key="canvasLocation" x="1016" y="-2696"/>
         </scene>
         <!--Group Result View Controller - Group Results-->
         <scene sceneID="xJQ-FN-PN1">
@@ -344,7 +351,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="grj-vs-S17">
-                                <rect key="frame" x="0.0" y="570" width="495" height="454"/>
+                                <rect key="frame" x="0.0" y="582" width="768" height="442"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.76514797300000004" green="0.887894611" blue="0.86853680700000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -358,8 +365,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome Group __, please select a Quiz" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWF-gp-11e">
-                                <rect key="frame" x="46" y="483" width="402" height="57"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWF-gp-11e">
+                                <rect key="frame" x="20" y="483" width="728" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -376,6 +383,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="groupNameWelcome" destination="PWF-gp-11e" id="1UK-NI-NHE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PEu-OB-xu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -386,15 +396,15 @@
             <objects>
                 <tableViewController id="GCe-cf-aE0" customClass="PastQuizViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="r6i-AB-ADE">
-                        <rect key="frame" x="0.0" y="0.0" width="495" height="454"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="442"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="iGM-MP-CRk">
-                                <rect key="frame" x="0.0" y="22" width="495" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iGM-MP-CRk" id="e2X-Is-ZB1">
-                                    <rect key="frame" x="0.0" y="0.0" width="462" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="735" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.76514797300000004" green="0.887894611" blue="0.86853680700000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -454,7 +464,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Quiz View" id="FVP-cy-o4e">
-                        <barButtonItem key="leftBarButtonItem" title="-" id="DMf-rd-axc"/>
+                        <barButtonItem key="leftBarButtonItem" id="DMf-rd-axc"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EgA-4J-FaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -511,7 +521,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sa-7f-Oq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="323" y="-2696"/>
+            <point key="canvasLocation" x="326" y="-2696"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mqn-0N-laz">

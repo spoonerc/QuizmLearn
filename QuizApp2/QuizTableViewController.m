@@ -163,7 +163,7 @@ NSNumber *attemptsUsed;
     if (quiz){
         Question *q = [quiz objectAtIndex:indexPath.row+1];
     
-        cell.textLabel.text = [NSString stringWithFormat:@"Question %d ", indexPath.row+1];
+        cell.textLabel.text = [NSString stringWithFormat:@"Question %ld ", indexPath.row+1];
         
         
         if (!q.qAttempts) {
@@ -180,55 +180,10 @@ NSNumber *attemptsUsed;
 - (void)viewWillAppear:(BOOL)animated{
     
     [self.tableView reloadData];
-    
-//    if (displayQuestion){
-//        Question *q = [quiz objectAtIndex:displayQuestion];
-//        if (q.questionFinished){
-//            NSIndexPath* rowToReload = [NSIndexPath indexPathForRow:displayQuestion-1 inSection:1];
-//            NSArray* rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-//            [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
-//        }
-//        
-//    }
-    
+
 }
 
 
-//-(void)questionViewed:(NSNotification *)notification
-//{
-//    
-//    //unichar attemptString = [[notification object] characterAtIndex:0];
-//    
-//    //[attemptsArray replaceObjectAtIndex:indexPath2.row withObject:[notification object]];
-//    attemptsUsed = [notification object];
-//    
-//    NSLog(@"%@", attemptsArray);
-//    //NSLog(@"QuizTableView received msgstr %hu from QuestionView", attemptString);
-//    
-//    
-//    //[self.tableView reloadData];
-//}
-//
-//-(void)questionViewed2:(NSNotification *)notification
-//{
-//    
-//    unichar qNumberASCII = [[notification object] characterAtIndex:0];
-//    
-//    NSUInteger qNumber = [[notification object] integerValue];
-//    
-//    
-//    NSLog(@"QuizTableView received msgstr %hu from QuestionView", qNumberASCII);
-//    
-//    [attemptsArray replaceObjectAtIndex:qNumber withObject:attemptsUsed];
-//    
-//  
-//    
-//    NSLog(@"%@", attemptsArray);
-//    
-//    
-//    
-//    [self.tableView reloadData];
-//}
 
 
 
@@ -244,63 +199,12 @@ NSNumber *attemptsUsed;
 
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    // Get the new view controller using [segue destinationViewController].
-//    // Pass the selected object to the new view controller.
-//    NSLog(@"preparing to segue to the question!");
-//    //this function is used to pass data using the navigation segue
-//    if ([segue.identifier isEqual:@"goToQuestion"]) {
-//        
-//        NSLog(@"entered the quiz to question segue!");
-//        
-//        questionsViewed++;  //add one to the number of questions viewed
-//        
-//        NSArray *indexPaths = [self.tableView indexPathsForSelectedRows];
-//        QuestionViewController *destViewC = segue.destinationViewController;
-//        
-//        indexPath2 = [indexPaths objectAtIndex:0];
-//        
-//        //        destViewC.questionNumber = [NSString stringWithFormat:@"%ld", (long)indexPath2.row+1];
-//        
-//        Question *q = [[Question alloc] init];
-//        
-//        for (q in quiz) {
-//            for (int i = 1; i < ([quiz count]+1); i++) {
-//                
-//                if ([q.questionNumber isEqualToString:[NSString stringWithFormat:@"%ld",(long)indexPath2.row+1]]){
-//                    destViewC.questionNumber = q.questionNumber;
-//                    destViewC.questionContent = q.questionContent;
-//                    destViewC.answerA = q.answerA;
-//                    destViewC.answerB = q.answerB;
-//                    destViewC.answerC = q.answerC;
-//                    destViewC.answerD = q.answerD;
-//                    destViewC.correctAnswer = q.correctAnswer;
-//                    destViewC.navigationItem.title = [NSString stringWithFormat:@"Question %@", q.questionNumber];
-//                    //NSLog([NSString stringWithFormat: @"Question %@ data has all been successfully transfered", q.questionNumber]);
-//                    //destViewC.currentRow = self.currentSelection;
-//                    destViewC.quizIdentifier = self.quizIdentifier;
-//                    //destViewC.attemptsArray = attemptsArray;
-//                }
-//            }
-//        }
-//
-//        
-//        
-//        // destViewC.questionContent = [quiz objectAtIndex:indexPath2.row];
-//        
-//        //this is where the action happens; send info to the question view
-//        destViewC.attempts = [attemptsArray objectAtIndex:indexPath2.row+1];  //to decide if question should be available
-//        //destViewC.correct = [theList objectAtIndex:indexPath2.row];         //to determine correct ans
-//        
-//           [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(questionViewed:) name:@"attempted" object:nil];
-//        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(questionViewed2:) name:@"questionNumber" object:nil];
-//    }
-//}
 
--(void)prepareQuestionViewController:(QuestionViewController *)qvc toDisplayQuestion:(Question *)q
+
+-(void)prepareQuestionViewController:(QuestionViewController *)qvc toDisplayQuestionAtRow:(NSInteger)row
 {
+    Question *q = [quiz objectAtIndex:row];
+
     qvc.detailItem = q;
     qvc.navigationItem.title = [NSString stringWithFormat:@"Question %@", q.questionNumber];
     displayQuestion = [q.questionNumber integerValue];
@@ -316,7 +220,7 @@ NSNumber *attemptsUsed;
     
     if ([detail isKindOfClass:[QuestionViewController class]]){
         NSLog(@"about to prepare question %ld", (long)indexPath.row+1);
-        [self prepareQuestionViewController:detail toDisplayQuestion:[quiz objectAtIndex:indexPath.row+1]];
+        [self prepareQuestionViewController:detail toDisplayQuestionAtRow:indexPath.row+1];
         [detail switchQuestion];
     } else {
         NSLog(@"Didnt enter didselectrow");
