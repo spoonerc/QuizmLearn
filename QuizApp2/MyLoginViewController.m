@@ -25,6 +25,9 @@
     [self.logInView.passwordField setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.8]];
     [self.logInView.usernameField setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.8]];
     
+    [self.logInView.passwordField setTextColor:[UIColor blackColor]];
+    [self.logInView.usernameField setTextColor:[UIColor blackColor]];
+    
     [self.logInView.logInButton setBackgroundImage:[UIImage imageNamed:@"QuizmLearnLoginBG"] forState:UIControlStateNormal];
 }
 
