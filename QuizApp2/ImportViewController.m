@@ -20,9 +20,6 @@
 @end
 
 @implementation ImportViewController
-{
-   // BOOL loggedIn;
-}
 
 NSArray * questions;
 
@@ -42,7 +39,7 @@ NSArray * questions;
 {
     [super viewDidLoad];
     
-    self.groupNameWelcome.text = [NSString stringWithFormat:@"Welcome %@, please select a quiz", _groupName];
+    self.groupNameWelcome.text = [NSString stringWithFormat:@"Welcome to Quizm Learn %@", _groupName];
     
 }
 

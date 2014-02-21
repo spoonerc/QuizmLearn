@@ -11,6 +11,7 @@
 #import "ImportViewController.h"
 #import "PastQuizViewController.h"
 #import "Question.h"
+#import "MyLoginViewController.h"
 
 @interface QuestionViewController ()
 
@@ -100,7 +101,7 @@
     
     if (!loggedIn){
         // Create the log in view controller
-        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        MyLoginViewController *logInViewController = [[MyLoginViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
         
         logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsLogInButton;

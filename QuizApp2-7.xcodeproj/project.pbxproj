@@ -53,6 +53,9 @@
 		A720766618B2D21500EC4267 /* Quiz.m in Sources */ = {isa = PBXBuildFile; fileRef = A720766518B2D21500EC4267 /* Quiz.m */; };
 		A720766918B303A500EC4267 /* PastQuizTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A720766818B303A500EC4267 /* PastQuizTable.m */; };
 		A726B52B18AC46B4000AB0D7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A726B52A18AC46B4000AB0D7 /* Parse.framework */; };
+		A755332818B712D4001B9306 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755332718B712D4001B9306 /* MyLoginViewController.m */; };
+		A755332A18B71444001B9306 /* QuizmLearnLoginLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */; };
+		A755332C18B714F1001B9306 /* QuizmLearnLoginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +131,10 @@
 		A720766718B303A500EC4267 /* PastQuizTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastQuizTable.h; sourceTree = "<group>"; };
 		A720766818B303A500EC4267 /* PastQuizTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastQuizTable.m; sourceTree = "<group>"; };
 		A726B52A18AC46B4000AB0D7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
+		A755332618B712D4001B9306 /* MyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginViewController.h; sourceTree = "<group>"; };
+		A755332718B712D4001B9306 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginViewController.m; sourceTree = "<group>"; };
+		A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginLogo.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginLogo.png"; sourceTree = "<group>"; };
+		A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginBG.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginBG.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +277,8 @@
 				2AFF21B3189C7ACC00FE6F38 /* iosBlueStarIcon.png */,
 				2AFF21B4189C7ACC00FE6F38 /* ok-512.png */,
 				2AFF21B5189C7ACC00FE6F38 /* redX7.png */,
+				A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */,
+				A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */,
 			);
 			name = "UI Images";
 			sourceTree = "<group>";
@@ -285,6 +294,8 @@
 				2AF37675189AF53C004423BA /* ImportViewController.m */,
 				2AD87AB01898801D0069F479 /* QuestionViewController.h */,
 				2AD87AB11898801D0069F479 /* QuestionViewController.m */,
+				A755332618B712D4001B9306 /* MyLoginViewController.h */,
+				A755332718B712D4001B9306 /* MyLoginViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -391,8 +402,10 @@
 				2A99664218AAF2B800192BD7 /* navBarColor.png in Resources */,
 				2AA8300E18A590D200FCC137 /* 0.png in Resources */,
 				2AA8301318A590D200FCC137 /* quizappicon1-2.png in Resources */,
+				A755332C18B714F1001B9306 /* QuizmLearnLoginBG.png in Resources */,
 				2AA8301118A590D200FCC137 /* 3.png in Resources */,
 				2AA8301518A590D200FCC137 /* zeroattemptstar.png in Resources */,
+				A755332A18B71444001B9306 /* QuizmLearnLoginLogo.png in Resources */,
 				2AFF21B8189C7ACC00FE6F38 /* redX7.png in Resources */,
 				2AA8301018A590D200FCC137 /* 2.png in Resources */,
 				2AA8300F18A590D200FCC137 /* 1.png in Resources */,
@@ -417,6 +430,7 @@
 				2AD87A68189726E90069F479 /* NSString+ParsingExtensions.m in Sources */,
 				2AA82FE818A5879600FCC137 /* groupResultViewController.m in Sources */,
 				2AD87AB21898801D0069F479 /* QuestionViewController.m in Sources */,
+				A755332818B712D4001B9306 /* MyLoginViewController.m in Sources */,
 				2AD87AAF189867750069F479 /* QuizViewController.m in Sources */,
 				2AD87A6B1897271A0069F479 /* Question.m in Sources */,
 				A720766618B2D21500EC4267 /* Quiz.m in Sources */,
