@@ -48,6 +48,7 @@
     NSUInteger *quizLength;
     NSArray *buttonArray;
     NSArray *imageArray;
+    NSString *resultsArrayID;
 }
 
 @synthesize nextButton;
@@ -90,6 +91,10 @@
         //NSLog(@"Not logged in");
         //self.welcomeLabel.text = NSLocalizedString(@"Not logged in", nil);
     }
+}
+
++(void) shouldDisableButton:(UIButton *)sender should:(BOOL)state {
+    sender.enabled = !state;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -260,41 +265,106 @@
     NSLog(@"QuestionViewControlle thinks there are %d questions", (int)quizLength);
 }
 
+//- (void)sendAttemptsToParse
+//{
+//    if (!startedQuiz){
+//        startedQuiz = YES;
+//        
+//        PFUser *startQuiz = [PFUser currentUser];
+//        [startQuiz setObject:@"YES" forKey:@"startedQuiz"];
+//        [startQuiz saveInBackground];
+//        
+//        id masternav = self.splitViewController.viewControllers[0];
+//        id master = [masternav topViewController];
+//        if ([master isKindOfClass:[QuizTableViewController class]]){
+//            [self assignQuizLengthFromMaster:master];
+//        }
+//    }
+//    if (!self.attempts){  //if the attempts array hasnt been made
+//        self.attempts = [[NSMutableArray alloc] init];
+//        for (int i = 0; i < (int)quizLength; i++ ){
+//            [self.attempts insertObject:@0 atIndex:i];
+//        }
+//    }
+//    
+//    messagestring = self.detailItem.qAttempts;
+//    
+//    [self.attempts replaceObjectAtIndex:[self.detailItem.questionNumber integerValue] withObject:messagestring];
+//    
+//    PFObject *result = [PFObject objectWithClassName:[NSString stringWithFormat:@"%@_Results",self.quizIdentifier]];
+//   // NSLog(@"The group %@ is sending the array %@", groupName, self.attempts);
+//    result[[NSString stringWithFormat:@"%@", groupName]] = self.attempts;
+//    
+//    [result saveInBackground];
+//}
+
+//}
+
 - (void)sendAttemptsToParse
 {
-    if (!startedQuiz){
-        startedQuiz = YES;
-        
-        PFUser *startQuiz = [PFUser currentUser];
-        [startQuiz setObject:@"YES" forKey:@"startedQuiz"];
-        [startQuiz saveInBackground];
+    
+    if (!self.attempts){  //if the attempts array hasnt been made
         
         id masternav = self.splitViewController.viewControllers[0];
         id master = [masternav topViewController];
         if ([master isKindOfClass:[QuizTableViewController class]]){
             [self assignQuizLengthFromMaster:master];
         }
-    }
-    if (!self.attempts){  //if the attempts array hasnt been made
+        
         self.attempts = [[NSMutableArray alloc] init];
-        for (int i = 0; i < (int)quizLength; i++ ){
+        for (int i = 0; i <= (int)quizLength; i++ ){
             [self.attempts insertObject:@0 atIndex:i];
         }
+        
+        
+        if (!startedQuiz){
+            startedQuiz = YES;
+            
+            PFUser *startQuiz = [PFUser currentUser];
+            [startQuiz setObject:@"YES" forKey:@"startedQuiz"];
+            [startQuiz saveInBackground];
+            
+            PFObject *resultArray = [PFObject objectWithClassName:[NSString stringWithFormat:@"%@_Results",self.quizIdentifier]];
+            resultArray [[NSString stringWithFormat:@"%@", groupName]] = self.attempts;
+            
+            
+            
+            [resultArray save];
+            
+            
+            
+            resultsArrayID = [resultArray objectId];
+            NSLog(@"Result Array ID: %@", [resultArray objectId]);
+            
+            
+            //        id masternav = self.splitViewController.viewControllers[0];
+            //        id master = [masternav topViewController];
+            //        if ([master isKindOfClass:[QuizTableViewController class]]){
+            //            [self assignQuizLengthFromMaster:master];
+            //        }
+        }
+        
     }
     
     messagestring = self.detailItem.qAttempts;
     
     [self.attempts replaceObjectAtIndex:[self.detailItem.questionNumber integerValue] withObject:messagestring];
     
-    PFObject *result = [PFObject objectWithClassName:[NSString stringWithFormat:@"%@_Results",self.quizIdentifier]];
-   // NSLog(@"The group %@ is sending the array %@", groupName, self.attempts);
-    result[[NSString stringWithFormat:@"%@", groupName]] = self.attempts;
+    PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"%@_Results",self.quizIdentifier]];
     
-    [result saveInBackground];
+    // Retrieve the object by id
+    [query getObjectInBackgroundWithId:[NSString stringWithFormat:@"%@",resultsArrayID] block:^(PFObject *resultArrayUpdate, NSError *error) {
+        
+        
+        
+        // Now let's update it with some new data. In this case, only cheatMode and score
+        // will get sent to the cloud. playerName hasn't changed.
+        resultArrayUpdate [[NSString stringWithFormat:@"%@", groupName]] = self.attempts;
+        
+        [resultArrayUpdate saveInBackground];
+        
+    }];
 }
-
-//}
-
 #pragma mark - ()
 
 - (IBAction)logOutButtonTapAction:(id)sender {
@@ -343,9 +413,7 @@
     return (self.detailItem.questionFinished);
 }
 
-+(void) shouldDisableButton:(UIButton *)sender should:(BOOL)state {
-    sender.enabled = !state;
-}
+
 
 - (IBAction)nextQuestion:(UIButton *)sender {
     
