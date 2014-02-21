@@ -16,7 +16,7 @@
 
 @property (strong, nonatomic) NSArray *importedRows;
 @property (strong, nonatomic) NSArray * questions;
-- (NSArray *) getQuestions;
+//- (NSArray *) getQuestions;
 
 @property (strong, nonatomic) NSString *quizIdentifier;
 

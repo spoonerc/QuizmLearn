@@ -11,6 +11,7 @@
 #import "ImportViewController.h"
 #import "PastQuizViewController.h"
 #import "Question.h"
+#import "MyLoginViewController.h"
 
 @interface QuestionViewController ()
 
@@ -105,7 +106,7 @@
     
     if (!loggedIn){
         // Create the log in view controller
-        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        MyLoginViewController *logInViewController = [[MyLoginViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
         
         logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsLogInButton;
@@ -303,12 +304,17 @@
 - (void)sendAttemptsToParse
 {
     
+<<<<<<< HEAD
     if (!self.attempts){  //if the attempts array hasnt been made
+=======
+    if (!self.attempts){ //if the attempts array hasnt been made
+>>>>>>> febdd49df7df937d979c2a1afeb3ea873625b54a
         
         id masternav = self.splitViewController.viewControllers[0];
         id master = [masternav topViewController];
         if ([master isKindOfClass:[QuizTableViewController class]]){
             [self assignQuizLengthFromMaster:master];
+<<<<<<< HEAD
         }
         
         self.attempts = [[NSMutableArray alloc] init];
@@ -344,6 +350,32 @@
             //        }
         }
         
+=======
+    }
+        
+    self.attempts = [[NSMutableArray alloc] init];
+    for (int i = 0; i <= (int)quizLength; i++ ){
+        [self.attempts insertObject:@0 atIndex:i];
+    }
+        
+        
+    if (!startedQuiz){
+            startedQuiz = YES;
+            
+            PFUser *startQuiz = [PFUser currentUser];
+            [startQuiz setObject:@"YES" forKey:@"startedQuiz"];
+            [startQuiz saveInBackground];
+            
+            PFObject *resultArray = [PFObject objectWithClassName:[NSString stringWithFormat:@"%@_Results",self.quizIdentifier]];
+            resultArray [[NSString stringWithFormat:@"%@", groupName]] = self.attempts;
+            
+            [resultArray save];
+            
+            resultsArrayID = [resultArray objectId];
+            NSLog(@"Result Array ID: %@", [resultArray objectId]);
+        }
+        
+>>>>>>> febdd49df7df937d979c2a1afeb3ea873625b54a
     }
     
     messagestring = self.detailItem.qAttempts;
@@ -356,20 +388,64 @@
     [query getObjectInBackgroundWithId:[NSString stringWithFormat:@"%@",resultsArrayID] block:^(PFObject *resultArrayUpdate, NSError *error) {
         
         
+<<<<<<< HEAD
         
         // Now let's update it with some new data. In this case, only cheatMode and score
         // will get sent to the cloud. playerName hasn't changed.
+=======
+>>>>>>> febdd49df7df937d979c2a1afeb3ea873625b54a
         resultArrayUpdate [[NSString stringWithFormat:@"%@", groupName]] = self.attempts;
         
         [resultArrayUpdate saveInBackground];
         
+<<<<<<< HEAD
     }];
 }
+=======
+        }];
+}
+
+//- (void)sendAttemptsToParse
+//{
+//    if (!startedQuiz){
+//        startedQuiz = YES;
+//        
+//        PFUser *startQuiz = [PFUser currentUser];
+//        [startQuiz setObject:@"YES" forKey:@"startedQuiz"];
+//        [startQuiz saveInBackground];
+//        
+//        id masternav = self.splitViewController.viewControllers[0];
+//        id master = [masternav topViewController];
+//        if ([master isKindOfClass:[QuizTableViewController class]]){
+//            [self assignQuizLengthFromMaster:master];
+//        }
+//    }
+//    if (!self.attempts){  //if the attempts array hasnt been made
+//        self.attempts = [[NSMutableArray alloc] init];
+//        for (int i = 0; i < (int)quizLength; i++ ){
+//            [self.attempts insertObject:@0 atIndex:i];
+//        }
+//    }
+//    
+//    messagestring = self.detailItem.qAttempts;
+//    
+//    [self.attempts replaceObjectAtIndex:[self.detailItem.questionNumber integerValue] withObject:messagestring];
+//    
+//    PFObject *result = [PFObject objectWithClassName:[NSString stringWithFormat:@"%@_Results",self.quizIdentifier]];
+//   // NSLog(@"The group %@ is sending the array %@", groupName, self.attempts);
+//    result[[NSString stringWithFormat:@"%@", groupName]] = self.attempts;
+//    
+//    [result saveInBackground];
+//}
+
+//}
+
+>>>>>>> febdd49df7df937d979c2a1afeb3ea873625b54a
 #pragma mark - ()
 
 - (IBAction)logOutButtonTapAction:(id)sender {
     
-    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure?", nil) message:NSLocalizedString(@"Logging out will finish your quiz", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Im Sure", nil) otherButtonTitles:NSLocalizedString(@"Go Back",nil), nil] show];
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure?", nil) message:NSLocalizedString(@"Logging out will finish your quiz", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"I'm Sure", nil) otherButtonTitles:NSLocalizedString(@"Go Back",nil), nil] show];
     
 //    NSMutableArray *sneakyLogout = [[NSMutableArray alloc] initWithObjects:@[@0], nil];
 //    NSLog(@"%@", sneakyLogout[2]);
