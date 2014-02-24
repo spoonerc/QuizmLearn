@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2A0DACDC18A2F6DC00FF995D /* QuizTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DACDB18A2F6DC00FF995D /* QuizTableViewController.m */; };
+		2A85A10818B6D331002722E5 /* Quiz.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A85A10718B6D331002722E5 /* Quiz.m */; };
+		2A85A10A18B6D392002722E5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A85A10918B6D392002722E5 /* Parse.framework */; };
+		2A85A10D18B6D3CD002722E5 /* QuizmLearn.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A85A10B18B6D3CD002722E5 /* QuizmLearn.png */; };
+		2A85A10E18B6D3CD002722E5 /* QuizmLearnGQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A85A10C18B6D3CD002722E5 /* QuizmLearnGQ.png */; };
 		2A99664218AAF2B800192BD7 /* navBarColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A99664118AAF2B800192BD7 /* navBarColor.png */; };
 		2AA82FE818A5879600FCC137 /* groupResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA82FE718A5879600FCC137 /* groupResultViewController.m */; };
 		2AA8300E18A590D200FCC137 /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AA8300518A590D200FCC137 /* 0.png */; };
@@ -50,12 +54,14 @@
 		2AFF21B6189C7ACC00FE6F38 /* iosBlueStarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF21B3189C7ACC00FE6F38 /* iosBlueStarIcon.png */; };
 		2AFF21B7189C7ACC00FE6F38 /* ok-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF21B4189C7ACC00FE6F38 /* ok-512.png */; };
 		2AFF21B8189C7ACC00FE6F38 /* redX7.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF21B5189C7ACC00FE6F38 /* redX7.png */; };
-		A720766618B2D21500EC4267 /* Quiz.m in Sources */ = {isa = PBXBuildFile; fileRef = A720766518B2D21500EC4267 /* Quiz.m */; };
 		A720766918B303A500EC4267 /* PastQuizTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A720766818B303A500EC4267 /* PastQuizTable.m */; };
+<<<<<<< HEAD:Quizm Learn.xcodeproj/project.pbxproj
+=======
 		A726B52B18AC46B4000AB0D7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A726B52A18AC46B4000AB0D7 /* Parse.framework */; };
 		A755332818B712D4001B9306 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755332718B712D4001B9306 /* MyLoginViewController.m */; };
 		A755332A18B71444001B9306 /* QuizmLearnLoginLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */; };
 		A755332C18B714F1001B9306 /* QuizmLearnLoginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */; };
+<<<<<<< HEAD:QuizApp2-7.xcodeproj/project.pbxproj
 		A755333518B82AF6001B9306 /* QuizmLearnLoginLogo2.png in Resources */ = {isa = PBXBuildFile; fileRef = A755333418B82AF6001B9306 /* QuizmLearnLoginLogo2.png */; };
 		A755333718B96793001B9306 /* bigButtonImageA.png in Resources */ = {isa = PBXBuildFile; fileRef = A755333618B96793001B9306 /* bigButtonImageA.png */; };
 		A755333D18B97B14001B9306 /* BigButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755333C18B97B14001B9306 /* BigButtonViewController.m */; };
@@ -63,6 +69,9 @@
 		A755334318B98627001B9306 /* bigButtonImageD.png in Resources */ = {isa = PBXBuildFile; fileRef = A755334218B98627001B9306 /* bigButtonImageD.png */; };
 		A755334518B9B47F001B9306 /* bigButtonImageC.png in Resources */ = {isa = PBXBuildFile; fileRef = A755334418B9B47F001B9306 /* bigButtonImageC.png */; };
 		A755334818B9D13B001B9306 /* Tab-Bar-Icon---Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A755334718B9D13B001B9306 /* Tab-Bar-Icon---Settings.png */; };
+=======
+>>>>>>> febdd49df7df937d979c2a1afeb3ea873625b54a:QuizApp2-7.xcodeproj/project.pbxproj
+>>>>>>> 2dbc6ff7ff48011aefbd1a5d04e13f5f6e7d9b24:Quizm Learn.xcodeproj/project.pbxproj
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +88,11 @@
 		2A0DACD918A2F2E600FF995D /* QuestionSelectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuestionSelectionDelegate.h; sourceTree = "<group>"; };
 		2A0DACDA18A2F6DC00FF995D /* QuizTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizTableViewController.h; sourceTree = "<group>"; };
 		2A0DACDB18A2F6DC00FF995D /* QuizTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizTableViewController.m; sourceTree = "<group>"; };
+		2A85A10618B6D331002722E5 /* Quiz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quiz.h; sourceTree = "<group>"; };
+		2A85A10718B6D331002722E5 /* Quiz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quiz.m; sourceTree = "<group>"; };
+		2A85A10918B6D392002722E5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../../apsciOSDev/cisQuizApp2/Parse.framework; sourceTree = "<group>"; };
+		2A85A10B18B6D3CD002722E5 /* QuizmLearn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearn.png; path = Images.xcassets/QuizmLearn.png; sourceTree = "<group>"; };
+		2A85A10C18B6D3CD002722E5 /* QuizmLearnGQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnGQ.png; path = Images.xcassets/QuizmLearnGQ.png; sourceTree = "<group>"; };
 		2A99664118AAF2B800192BD7 /* navBarColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navBarColor.png; path = Images.xcassets/navBarColor.png; sourceTree = "<group>"; };
 		2AA82FE618A5879600FCC137 /* groupResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = groupResultViewController.h; sourceTree = "<group>"; };
 		2AA82FE718A5879600FCC137 /* groupResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = groupResultViewController.m; sourceTree = "<group>"; };
@@ -133,15 +147,16 @@
 		2AFF21B3189C7ACC00FE6F38 /* iosBlueStarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iosBlueStarIcon.png; path = Images.xcassets/iosBlueStarIcon.png; sourceTree = "<group>"; };
 		2AFF21B4189C7ACC00FE6F38 /* ok-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ok-512.png"; path = "Images.xcassets/ok-512.png"; sourceTree = "<group>"; };
 		2AFF21B5189C7ACC00FE6F38 /* redX7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redX7.png; path = Images.xcassets/redX7.png; sourceTree = "<group>"; };
-		A720766418B2D21500EC4267 /* Quiz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Quiz.h; path = ../../../Quizm/QuizApp2/Quiz.h; sourceTree = "<group>"; };
-		A720766518B2D21500EC4267 /* Quiz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Quiz.m; path = ../../../Quizm/QuizApp2/Quiz.m; sourceTree = "<group>"; };
 		A720766718B303A500EC4267 /* PastQuizTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastQuizTable.h; sourceTree = "<group>"; };
 		A720766818B303A500EC4267 /* PastQuizTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastQuizTable.m; sourceTree = "<group>"; };
+<<<<<<< HEAD:Quizm Learn.xcodeproj/project.pbxproj
+=======
 		A726B52A18AC46B4000AB0D7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
 		A755332618B712D4001B9306 /* MyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginViewController.h; sourceTree = "<group>"; };
 		A755332718B712D4001B9306 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginViewController.m; sourceTree = "<group>"; };
 		A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginLogo.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginLogo.png"; sourceTree = "<group>"; };
 		A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginBG.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginBG.png"; sourceTree = "<group>"; };
+<<<<<<< HEAD:QuizApp2-7.xcodeproj/project.pbxproj
 		A755333418B82AF6001B9306 /* QuizmLearnLoginLogo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginLogo2.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginLogo2.png"; sourceTree = "<group>"; };
 		A755333618B96793001B9306 /* bigButtonImageA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigButtonImageA.png; path = ../../../../Pictures/BigButtonImages/bigButtonImageA.png; sourceTree = "<group>"; };
 		A755333B18B97B14001B9306 /* BigButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigButtonViewController.h; sourceTree = "<group>"; };
@@ -150,6 +165,9 @@
 		A755334218B98627001B9306 /* bigButtonImageD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigButtonImageD.png; path = ../../../../Pictures/BigButtonImages/bigButtonImageD.png; sourceTree = "<group>"; };
 		A755334418B9B47F001B9306 /* bigButtonImageC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigButtonImageC.png; path = ../../../../Pictures/BigButtonImages/bigButtonImageC.png; sourceTree = "<group>"; };
 		A755334718B9D13B001B9306 /* Tab-Bar-Icon---Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Bar-Icon---Settings.png"; path = "../../../../Pictures/Tab Bar Icons/Tab-Bar-Icon---Settings.png"; sourceTree = "<group>"; };
+=======
+>>>>>>> febdd49df7df937d979c2a1afeb3ea873625b54a:QuizApp2-7.xcodeproj/project.pbxproj
+>>>>>>> 2dbc6ff7ff48011aefbd1a5d04e13f5f6e7d9b24:Quizm Learn.xcodeproj/project.pbxproj
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +181,7 @@
 				2AD87A8E189735C00069F479 /* libz.dylib in Frameworks */,
 				2AD87A8F189735C00069F479 /* MobileCoreServices.framework in Frameworks */,
 				2AD87A90189735C00069F479 /* QuartzCore.framework in Frameworks */,
-				A726B52B18AC46B4000AB0D7 /* Parse.framework in Frameworks */,
+				2A85A10A18B6D392002722E5 /* Parse.framework in Frameworks */,
 				2AD87A91189735C00069F479 /* Security.framework in Frameworks */,
 				2AD87A92189735C00069F479 /* StoreKit.framework in Frameworks */,
 				2AD87A93189735C00069F479 /* SystemConfiguration.framework in Frameworks */,
@@ -208,7 +226,7 @@
 		2AD87A271897225B0069F479 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A726B52A18AC46B4000AB0D7 /* Parse.framework */,
+				2A85A10918B6D392002722E5 /* Parse.framework */,
 				2AD87A94189735EF0069F479 /* AudioToolbox.framework */,
 				2AD87A82189735BF0069F479 /* AudioUnit.framework */,
 				2AD87A83189735BF0069F479 /* CFNetwork.framework */,
@@ -279,11 +297,16 @@
 		2AD87AAC189866020069F479 /* UI Images */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD:QuizApp2-7.xcodeproj/project.pbxproj
 				A755334718B9D13B001B9306 /* Tab-Bar-Icon---Settings.png */,
 				A755333618B96793001B9306 /* bigButtonImageA.png */,
 				A755333E18B98611001B9306 /* bigButtonImageB.png */,
 				A755334418B9B47F001B9306 /* bigButtonImageC.png */,
 				A755334218B98627001B9306 /* bigButtonImageD.png */,
+=======
+				2A85A10B18B6D3CD002722E5 /* QuizmLearn.png */,
+				2A85A10C18B6D3CD002722E5 /* QuizmLearnGQ.png */,
+>>>>>>> 2dbc6ff7ff48011aefbd1a5d04e13f5f6e7d9b24:Quizm Learn.xcodeproj/project.pbxproj
 				2A99664118AAF2B800192BD7 /* navBarColor.png */,
 				2AA8300518A590D200FCC137 /* 0.png */,
 				2AA8300618A590D200FCC137 /* 1.png */,
@@ -326,8 +349,8 @@
 		2AF3767E189C174F004423BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A720766418B2D21500EC4267 /* Quiz.h */,
-				A720766518B2D21500EC4267 /* Quiz.m */,
+				2A85A10618B6D331002722E5 /* Quiz.h */,
+				2A85A10718B6D331002722E5 /* Quiz.m */,
 				2AD87A691897271A0069F479 /* Question.h */,
 				2AD87A6A1897271A0069F479 /* Question.m */,
 				2AD87A66189726E90069F479 /* NSString+ParsingExtensions.h */,
@@ -393,7 +416,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2AD87A201897225B0069F479 /* Build configuration list for PBXProject "QuizApp2-7" */;
+			buildConfigurationList = 2AD87A201897225B0069F479 /* Build configuration list for PBXProject "Quizm Learn" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -424,8 +447,12 @@
 				2AFF21B6189C7ACC00FE6F38 /* iosBlueStarIcon.png in Resources */,
 				2AA8301618A590D200FCC137 /* zerofillStar.png in Resources */,
 				2AFF21B7189C7ACC00FE6F38 /* ok-512.png in Resources */,
+<<<<<<< HEAD:QuizApp2-7.xcodeproj/project.pbxproj
 				A755334518B9B47F001B9306 /* bigButtonImageC.png in Resources */,
 				A755333F18B98611001B9306 /* bigButtonImageB.png in Resources */,
+=======
+				2A85A10D18B6D3CD002722E5 /* QuizmLearn.png in Resources */,
+>>>>>>> 2dbc6ff7ff48011aefbd1a5d04e13f5f6e7d9b24:Quizm Learn.xcodeproj/project.pbxproj
 				2AD87A331897225B0069F479 /* InfoPlist.strings in Resources */,
 				2AD87A3C1897225B0069F479 /* Main.storyboard in Resources */,
 				2A99664218AAF2B800192BD7 /* navBarColor.png in Resources */,
@@ -441,6 +468,7 @@
 				A755334818B9D13B001B9306 /* Tab-Bar-Icon---Settings.png in Resources */,
 				2AA8301018A590D200FCC137 /* 2.png in Resources */,
 				2AA8300F18A590D200FCC137 /* 1.png in Resources */,
+				2A85A10E18B6D3CD002722E5 /* QuizmLearnGQ.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A85A10818B6D331002722E5 /* Quiz.m in Sources */,
 				2AD87A68189726E90069F479 /* NSString+ParsingExtensions.m in Sources */,
 				2AA82FE818A5879600FCC137 /* groupResultViewController.m in Sources */,
 				2AD87AB21898801D0069F479 /* QuestionViewController.m in Sources */,
@@ -466,7 +495,6 @@
 				2AD87AAF189867750069F479 /* QuizViewController.m in Sources */,
 				A755333D18B97B14001B9306 /* BigButtonViewController.m in Sources */,
 				2AD87A6B1897271A0069F479 /* Question.m in Sources */,
-				A720766618B2D21500EC4267 /* Quiz.m in Sources */,
 				2A0DACDC18A2F6DC00FF995D /* QuizTableViewController.m in Sources */,
 				2AB1DCF818A3F97A00E5E08B /* PastQuizViewController.m in Sources */,
 				2AF37676189AF53C004423BA /* ImportViewController.m in Sources */,
@@ -607,6 +635,7 @@
 					"$(inherited)",
 					/Users/bruce_li_94/Documents/apsciOSDev/QuizApp2,
 					/Users/cisdev2/Downloads,
+					/Users/bruce_li_94/Documents/apsciOSDev/cisQuizApp2,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuizApp2/QuizApp2-Prefix.pch";
@@ -628,6 +657,7 @@
 					"$(inherited)",
 					/Users/bruce_li_94/Documents/apsciOSDev/QuizApp2,
 					/Users/cisdev2/Downloads,
+					/Users/bruce_li_94/Documents/apsciOSDev/cisQuizApp2,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuizApp2/QuizApp2-Prefix.pch";
@@ -683,7 +713,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2AD87A201897225B0069F479 /* Build configuration list for PBXProject "QuizApp2-7" */ = {
+		2AD87A201897225B0069F479 /* Build configuration list for PBXProject "Quizm Learn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2AD87A551897225B0069F479 /* Debug */,
