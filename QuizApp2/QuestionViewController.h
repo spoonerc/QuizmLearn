@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "QuestionSelectionDelegate.h"
 #import <Parse/Parse.h>
+#import "RKiOS7Loading.h"
 
 @interface QuestionViewController : UIViewController <UISplitViewControllerDelegate,PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 {
@@ -28,6 +29,7 @@
 
 @property (strong, nonatomic) NSString * quizIdentifier;
 
+@property (weak, nonatomic) IBOutlet UIImageView *bigButtonImage;
 
 @property (weak, nonatomic) IBOutlet UIImageView *aImage;
 @property (weak, nonatomic) IBOutlet UIImageView *bImage;
@@ -37,8 +39,6 @@
 - (void)switchQuestion;
 
 - (BOOL *)shouldUpdatePhoto;
-
-+(void)disableButton:(UIButton *)sender;
 
 -(IBAction)clicked:(id)sender;
 

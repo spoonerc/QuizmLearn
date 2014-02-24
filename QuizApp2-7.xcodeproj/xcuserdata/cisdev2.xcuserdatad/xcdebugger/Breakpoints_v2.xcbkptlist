@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414814233.224067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "@implementation QuestionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414814233.224067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "@implementation QuestionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414814233.224067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414925812.627064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "542"
+            endingLineNumber = "542"
             landmarkName = "-unwindToQuestion:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414814233.224067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414814233.224067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "@implementation QuestionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -106,13 +106,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414925812.627064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "435"
-            endingLineNumber = "435"
-            landmarkName = "@implementation QuestionViewController"
-            landmarkType = "3">
+            startingLineNumber = "522"
+            endingLineNumber = "522"
+            landmarkName = "-sendQuizIDto:withidentifier:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414814233.224067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414619589.510978"
+            timestampString = "414955587.703029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "-prepareQuestionViewController:toDisplayQuestionAtRow:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414619589.510978"
+            timestampString = "414955587.703029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414925812.627064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "646"
+            endingLineNumber = "646"
             landmarkName = "@implementation QuestionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414925812.627064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "646"
+            endingLineNumber = "646"
             landmarkName = "@implementation QuestionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.h"
-            timestampString = "414525678.009554"
+            timestampString = "414907750.373841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "detailItem"
             landmarkType = "19">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414925812.627064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
+            startingLineNumber = "434"
+            endingLineNumber = "434"
             landmarkName = "-clicked:"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,28 +234,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414925812.627064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
-            landmarkName = "@implementation QuestionViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
-            landmarkName = "-clicked:"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
+            landmarkName = "+shouldDisableButton:should:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -282,27 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414814233.224067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "@implementation QuestionViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-switchQuestion"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +282,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414814233.224067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "-switchQuestion"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QuizApp2/QuestionViewController.m"
+            timestampString = "414814233.224067"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "-EnableButtonsAccordingToButtonsPressed"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,13 +314,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414814233.224067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "@implementation QuestionViewController"
-            landmarkType = "3">
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "-SetImagesAccordingToButtonsPressed"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -346,28 +330,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414925812.627064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
             landmarkName = "-alertView:clickedButtonAtIndex:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "-switchQuestion"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -394,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414925812.627064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
+            startingLineNumber = "524"
+            endingLineNumber = "524"
             landmarkName = "-sendQuizIDto:withidentifier:"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414813357.868088"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "316"
-            endingLineNumber = "316"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
             landmarkName = "@implementation QuestionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -426,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414571752.40583"
+            timestampString = "414955587.703029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,13 +410,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414814233.224067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
-            landmarkName = "@implementation QuestionViewController"
-            landmarkType = "3">
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "-assignQuizLengthFromMaster:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -458,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414571752.40583"
+            timestampString = "414955587.703029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -474,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414571752.40583"
+            timestampString = "414955375.374744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "-loadQuizData"
             landmarkType = "5">
          </BreakpointContent>
@@ -490,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414571752.40583"
+            timestampString = "414955587.703029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-initializeQuizArrayWithThisNumber:"
             landmarkType = "5">
          </BreakpointContent>
@@ -506,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414571752.40583"
+            timestampString = "414955587.703029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -522,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414571752.40583"
+            timestampString = "414955587.703029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "-numberOfSectionsInTableView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414571752.40583"
+            timestampString = "414955375.374744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-loadQuizData"
             landmarkType = "5">
          </BreakpointContent>
@@ -554,39 +522,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414571752.40583"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "-loadQuizData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414571752.40583"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "-loadQuizData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QuizApp2/QuizTableViewController.m"
-            timestampString = "414571752.40583"
+            timestampString = "414955375.374744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
@@ -601,14 +537,30 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            filePath = "QuizApp2/QuizTableViewController.m"
+            timestampString = "414955375.374744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "556"
-            endingLineNumber = "556"
-            landmarkName = "@implementation QuestionViewController"
-            landmarkType = "3">
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-loadQuizData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QuizApp2/QuizTableViewController.m"
+            timestampString = "414955375.374744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-loadQuizData"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -618,11 +570,25 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "414695328.597429"
+            timestampString = "414925812.627064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "647"
+            endingLineNumber = "647">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QuizApp2/QuestionViewController.m"
+            timestampString = "414814233.224067"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -656,6 +622,70 @@
             startingLineNumber = "36"
             endingLineNumber = "36"
             landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QuizApp2/QuestionViewController.m"
+            timestampString = "414814233.224067"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "-switchQuestion"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QuizApp2/QuestionViewController.m"
+            timestampString = "414925812.627064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
+            landmarkName = "-touchedDown:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QuizApp2/QuestionViewController.m"
+            timestampString = "414925812.627064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
+            landmarkName = "-clicked:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QuizApp2/QuestionViewController.m"
+            timestampString = "414925812.627064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
+            landmarkName = "-touchedDown:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

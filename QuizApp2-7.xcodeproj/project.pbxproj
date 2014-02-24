@@ -56,6 +56,13 @@
 		A755332818B712D4001B9306 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755332718B712D4001B9306 /* MyLoginViewController.m */; };
 		A755332A18B71444001B9306 /* QuizmLearnLoginLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */; };
 		A755332C18B714F1001B9306 /* QuizmLearnLoginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */; };
+		A755333518B82AF6001B9306 /* QuizmLearnLoginLogo2.png in Resources */ = {isa = PBXBuildFile; fileRef = A755333418B82AF6001B9306 /* QuizmLearnLoginLogo2.png */; };
+		A755333718B96793001B9306 /* bigButtonImageA.png in Resources */ = {isa = PBXBuildFile; fileRef = A755333618B96793001B9306 /* bigButtonImageA.png */; };
+		A755333D18B97B14001B9306 /* BigButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755333C18B97B14001B9306 /* BigButtonViewController.m */; };
+		A755333F18B98611001B9306 /* bigButtonImageB.png in Resources */ = {isa = PBXBuildFile; fileRef = A755333E18B98611001B9306 /* bigButtonImageB.png */; };
+		A755334318B98627001B9306 /* bigButtonImageD.png in Resources */ = {isa = PBXBuildFile; fileRef = A755334218B98627001B9306 /* bigButtonImageD.png */; };
+		A755334518B9B47F001B9306 /* bigButtonImageC.png in Resources */ = {isa = PBXBuildFile; fileRef = A755334418B9B47F001B9306 /* bigButtonImageC.png */; };
+		A755334818B9D13B001B9306 /* Tab-Bar-Icon---Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A755334718B9D13B001B9306 /* Tab-Bar-Icon---Settings.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +142,14 @@
 		A755332718B712D4001B9306 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginViewController.m; sourceTree = "<group>"; };
 		A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginLogo.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginLogo.png"; sourceTree = "<group>"; };
 		A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginBG.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginBG.png"; sourceTree = "<group>"; };
+		A755333418B82AF6001B9306 /* QuizmLearnLoginLogo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginLogo2.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginLogo2.png"; sourceTree = "<group>"; };
+		A755333618B96793001B9306 /* bigButtonImageA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigButtonImageA.png; path = ../../../../Pictures/BigButtonImages/bigButtonImageA.png; sourceTree = "<group>"; };
+		A755333B18B97B14001B9306 /* BigButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigButtonViewController.h; sourceTree = "<group>"; };
+		A755333C18B97B14001B9306 /* BigButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigButtonViewController.m; sourceTree = "<group>"; };
+		A755333E18B98611001B9306 /* bigButtonImageB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigButtonImageB.png; path = ../../../../Pictures/BigButtonImages/bigButtonImageB.png; sourceTree = "<group>"; };
+		A755334218B98627001B9306 /* bigButtonImageD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigButtonImageD.png; path = ../../../../Pictures/BigButtonImages/bigButtonImageD.png; sourceTree = "<group>"; };
+		A755334418B9B47F001B9306 /* bigButtonImageC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigButtonImageC.png; path = ../../../../Pictures/BigButtonImages/bigButtonImageC.png; sourceTree = "<group>"; };
+		A755334718B9D13B001B9306 /* Tab-Bar-Icon---Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Bar-Icon---Settings.png"; path = "../../../../Pictures/Tab Bar Icons/Tab-Bar-Icon---Settings.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +279,11 @@
 		2AD87AAC189866020069F479 /* UI Images */ = {
 			isa = PBXGroup;
 			children = (
+				A755334718B9D13B001B9306 /* Tab-Bar-Icon---Settings.png */,
+				A755333618B96793001B9306 /* bigButtonImageA.png */,
+				A755333E18B98611001B9306 /* bigButtonImageB.png */,
+				A755334418B9B47F001B9306 /* bigButtonImageC.png */,
+				A755334218B98627001B9306 /* bigButtonImageD.png */,
 				2A99664118AAF2B800192BD7 /* navBarColor.png */,
 				2AA8300518A590D200FCC137 /* 0.png */,
 				2AA8300618A590D200FCC137 /* 1.png */,
@@ -278,6 +298,7 @@
 				2AFF21B4189C7ACC00FE6F38 /* ok-512.png */,
 				2AFF21B5189C7ACC00FE6F38 /* redX7.png */,
 				A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */,
+				A755333418B82AF6001B9306 /* QuizmLearnLoginLogo2.png */,
 				A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */,
 			);
 			name = "UI Images";
@@ -296,6 +317,8 @@
 				2AD87AB11898801D0069F479 /* QuestionViewController.m */,
 				A755332618B712D4001B9306 /* MyLoginViewController.h */,
 				A755332718B712D4001B9306 /* MyLoginViewController.m */,
+				A755333B18B97B14001B9306 /* BigButtonViewController.h */,
+				A755333C18B97B14001B9306 /* BigButtonViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -396,20 +419,26 @@
 			files = (
 				2AA8301418A590D200FCC137 /* quizappicon1-2HQ.png in Resources */,
 				2AD87A411897225B0069F479 /* Images.xcassets in Resources */,
+				A755333518B82AF6001B9306 /* QuizmLearnLoginLogo2.png in Resources */,
 				2AA8301218A590D200FCC137 /* 4.png in Resources */,
 				2AFF21B6189C7ACC00FE6F38 /* iosBlueStarIcon.png in Resources */,
 				2AA8301618A590D200FCC137 /* zerofillStar.png in Resources */,
 				2AFF21B7189C7ACC00FE6F38 /* ok-512.png in Resources */,
+				A755334518B9B47F001B9306 /* bigButtonImageC.png in Resources */,
+				A755333F18B98611001B9306 /* bigButtonImageB.png in Resources */,
 				2AD87A331897225B0069F479 /* InfoPlist.strings in Resources */,
 				2AD87A3C1897225B0069F479 /* Main.storyboard in Resources */,
 				2A99664218AAF2B800192BD7 /* navBarColor.png in Resources */,
 				2AA8300E18A590D200FCC137 /* 0.png in Resources */,
 				2AA8301318A590D200FCC137 /* quizappicon1-2.png in Resources */,
+				A755333718B96793001B9306 /* bigButtonImageA.png in Resources */,
 				A755332C18B714F1001B9306 /* QuizmLearnLoginBG.png in Resources */,
 				2AA8301118A590D200FCC137 /* 3.png in Resources */,
 				2AA8301518A590D200FCC137 /* zeroattemptstar.png in Resources */,
 				A755332A18B71444001B9306 /* QuizmLearnLoginLogo.png in Resources */,
+				A755334318B98627001B9306 /* bigButtonImageD.png in Resources */,
 				2AFF21B8189C7ACC00FE6F38 /* redX7.png in Resources */,
+				A755334818B9D13B001B9306 /* Tab-Bar-Icon---Settings.png in Resources */,
 				2AA8301018A590D200FCC137 /* 2.png in Resources */,
 				2AA8300F18A590D200FCC137 /* 1.png in Resources */,
 			);
@@ -435,6 +464,7 @@
 				2AD87AB21898801D0069F479 /* QuestionViewController.m in Sources */,
 				A755332818B712D4001B9306 /* MyLoginViewController.m in Sources */,
 				2AD87AAF189867750069F479 /* QuizViewController.m in Sources */,
+				A755333D18B97B14001B9306 /* BigButtonViewController.m in Sources */,
 				2AD87A6B1897271A0069F479 /* Question.m in Sources */,
 				A720766618B2D21500EC4267 /* Quiz.m in Sources */,
 				2A0DACDC18A2F6DC00FF995D /* QuizTableViewController.m in Sources */,

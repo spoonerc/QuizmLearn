@@ -29,4 +29,6 @@
 
 - (void)loadQuizData;
 
+- (void)displayFirstQuestion;
+
 @end

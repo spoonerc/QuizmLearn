@@ -20,7 +20,7 @@
 	// Do any additional setup after loading the view.
     
     [self.logInView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"QuizmLearnLoginBG.png"]]];
-    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"QuizmLearnLoginLogo.png"]]];
+    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"QuizmLearnLoginLogo2.png"]]];
     
     [self.logInView.passwordField setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.8]];
     [self.logInView.usernameField setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.8]];

@@ -56,12 +56,13 @@ NSNumber *attemptsUsed;
     return self;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     NSLog(@"Quiz Table view loaded");
+    
+    [self.tableView setDelegate:self];
 
 }
 
@@ -119,6 +120,14 @@ NSNumber *attemptsUsed;
     }
 
 }
+
+
+- (void)displayFirstQuestion{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+}
+
 
 - (NSUInteger *)giveQuizLength{
     return [quiz count];

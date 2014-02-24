@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2AD87A241897225B0069F479"
-               BuildableName = "QuizApp2.app"
+               BuildableName = "Quizm Learn.app"
                BlueprintName = "QuizApp2"
                ReferencedContainer = "container:QuizApp2-7.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2AD87A241897225B0069F479"
-            BuildableName = "QuizApp2.app"
+            BuildableName = "Quizm Learn.app"
             BlueprintName = "QuizApp2"
             ReferencedContainer = "container:QuizApp2-7.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2AD87A241897225B0069F479"
-            BuildableName = "QuizApp2.app"
+            BuildableName = "Quizm Learn.app"
             BlueprintName = "QuizApp2"
             ReferencedContainer = "container:QuizApp2-7.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2AD87A241897225B0069F479"
-            BuildableName = "QuizApp2.app"
+            BuildableName = "Quizm Learn.app"
             BlueprintName = "QuizApp2"
             ReferencedContainer = "container:QuizApp2-7.xcodeproj">
          </BuildableReference>

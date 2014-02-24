@@ -39,7 +39,7 @@ NSArray * questions;
 {
     [super viewDidLoad];
     
-    self.groupNameWelcome.text = [NSString stringWithFormat:@"Welcome to Quizm Learn %@", _groupName];
+    self.groupNameWelcome.text = [NSString stringWithFormat:@"Welcome to Quizm Learn, %@", _groupName];
     
 }
 

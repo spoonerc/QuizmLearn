@@ -12,10 +12,12 @@
 #import "PastQuizViewController.h"
 #import "Question.h"
 #import "MyLoginViewController.h"
+#import "BigButtonViewController.h"
 
 @interface QuestionViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRightGesture;
 
 @property (weak, nonatomic) IBOutlet UILabel *qContentLabel;
 
@@ -44,15 +46,19 @@
     BOOL quizImported;
     BOOL logOutFlag;
     BOOL startedQuiz;
+    BOOL firstQuestionDisplayed;
     NSString *messagestring;
     NSString *groupName;
     NSUInteger *quizLength;
     NSArray *buttonArray;
     NSArray *imageArray;
     NSString *resultsArrayID;
+    NSTimer *buttonTimer;
+    NSString *currentButton;
 }
 
 @synthesize nextButton;
+@synthesize swipeRightGesture;
 @synthesize buttonA;
 @synthesize buttonB;
 @synthesize buttonC;
@@ -122,8 +128,18 @@
         [self performSegueWithIdentifier: @"goToWelcome" sender: self];
         quizImported = YES;
         
+        
+    } else if (!firstQuestionDisplayed){
+        firstQuestionDisplayed = YES;
+        id masternav = self.splitViewController.viewControllers[0];
+        id master = [masternav topViewController];
+        if ([master isKindOfClass:[QuizTableViewController class]]){
+            [master displayFirstQuestion];
+        }
+        
     }
 }
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue destinationViewController] isKindOfClass:[ImportViewController class]])
@@ -134,8 +150,14 @@
             ImportViewController *destView = [segue destinationViewController];
             destView.groupName = groupName;
         }
+    } else if ([segue.identifier isEqualToString: @"goToBigButton"]){
+        
+        BigButtonViewController *destViewC = [segue destinationViewController];
+        destViewC.currentButton = currentButton;
+        
     }
 }
+
 
 //- (void)logInAndImport{
 //    if (!loggedIn){
@@ -174,7 +196,14 @@
     self.answerDLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerD];
     
     
-    self.fakeNavBar.title = [NSString stringWithFormat:@"Question %@", self.detailItem.questionNumber];
+    NSLog(@"The question number is %d, quiz length is %d", [self.detailItem.questionNumber integerValue], (int)quizLength  );
+    
+    self.fakeNavBar.title = [NSString stringWithFormat:@"Question %@", self.detailItem.questionNumber ];
+    
+//    if ([self.detailItem.questionNumber integerValue] == (int)quizLength-2)
+//    {
+//        swipeRightGesture.enabled = NO;
+//    }
     
     if (!self.detailItem.qAttempts) {//If buttons pressed is still Null
         
@@ -264,7 +293,6 @@
 
 - (void)sendAttemptsToParse
 {
-    
     if (!self.attempts){ //if the attempts array hasnt been made
         
         id masternav = self.splitViewController.viewControllers[0];
@@ -367,8 +395,36 @@
     }
 }
 
+- (IBAction)touchedDown:(UIButton *)sender {
+    NSLog(@"entered touch down");
+    //buttonTimer =
+    if ( ![buttonTimer isValid]) {
+        currentButton = sender.titleLabel.text;
+        buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
+                                                       target:self
+                                                     selector:@selector(showBigLetter:)
+                                                     userInfo:nil
+                                                      repeats:NO];
+    } else {
+        NSLog(@"Timer already started!");
+    }
+    
+}
+
+- (void)showBigLetter: (UIButton *)sender{
+    NSLog(@"Timer worked");
+    [self performSegueWithIdentifier: @"goToBigButton" sender: self];
+}
+
 - (IBAction)clicked:(UIButton *)sender {
     
+    if ( ![buttonTimer isValid] ){
+        NSLog(@"Long click, dont execute normal button press tasks");
+    } else {
+        
+    [buttonTimer invalidate];
+    buttonTimer = nil;
+ 
     [QuestionViewController shouldDisableButton:sender should:YES];
     
     if (!self.detailItem.qAttempts) // if its null
@@ -380,7 +436,8 @@
     
     if ([sender.titleLabel.text isEqualToString:self.detailItem.correctAnswer]) {
         self.detailItem.questionFinished = YES;
-        [self sendAttemptsToParse];
+#warning disabled sending attempts to parse
+        //[self sendAttemptsToParse];
         //self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, nil];
         [self.detailItem insertObjectInButtonsPressed:@2 AtLetterSpot:sender.titleLabel.text];
         
@@ -391,8 +448,10 @@
     
     [self EnableButtonsAccordingToButtonsPressed];
     [self SetImagesAccordingToButtonsPressed];
-    
+    }
 }
+    
+    
 - (BOOL *)shouldUpdatePhoto{
     return (self.detailItem.questionFinished);
 }
@@ -401,8 +460,19 @@
     sender.enabled = !state;
 }
 
-- (IBAction)nextQuestion:(UIButton *)sender {
+- (IBAction)nextQuestion:(id)sender {
+    [self goToNextQuestion];
+}
+
+- (IBAction)swipedRight:(id)sender {
     
+    if ([self.detailItem.questionNumber integerValue] != (int)quizLength-1){
+        NSLog(@"The question number is %d", [self.detailItem.questionNumber integerValue]);
+        [self goToNextQuestion];
+    }
+}
+
+- (void)goToNextQuestion{
     id masternav = self.splitViewController.viewControllers[0];
     id master = [masternav topViewController];
     
@@ -416,6 +486,22 @@
     }
 }
 
+
+
+//- (IBAction)handleSingleTap:(id)sender
+//{
+//    // need to recognize the called object from here (sender)
+//    if ([sender isKindOfClass:[UIGestureRecognizer self]]) {
+//        // it's a gesture recognizer.  we can cast it and use it like this
+//        UITapGestureRecognizer *tapGR = (UITapGestureRecognizer *)sender;
+//        NSLog(@"the sending view is %@", tapGR.view);
+//    } else if ([sender isKindOfClass:[UIButton self]]) {
+//        // it's a button
+//        UIButton *button = (UIButton *)sender;
+//        button.selected = YES;
+//    }
+//    // and so on ...
+//}
 
 //-(void)viewWillDisappear:(BOOL)animated {
 //    [super viewWillDisappear:animated];
@@ -436,6 +522,7 @@
 - (void)sendQuizIDto:(QuizTableViewController *)qtvc withidentifier:(NSString *)identifier {
     qtvc.quizIdentifier = identifier;
     [qtvc loadQuizData];
+   // [qtvc displayFirstQuestion];
 }
 
 - (IBAction)unwindToQuestion:(UIStoryboardSegue *)segue
@@ -453,7 +540,10 @@
     
     if ([master isKindOfClass:[QuizTableViewController class]]){
         [self sendQuizIDto:master withidentifier:self.quizIdentifier];
+        
     }
+    
+    //[RKiOS7Loading showHUDAddedTo:self.view animated:YES];
 }
 
 
