@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bImage;
 @property (weak, nonatomic) IBOutlet UIImageView *cImage;
 @property (weak, nonatomic) IBOutlet UIImageView *dImage;
+@property (weak, nonatomic) IBOutlet UIImageView *resultImage;
 
 - (void)switchQuestion;
 

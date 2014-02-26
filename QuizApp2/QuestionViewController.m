@@ -26,6 +26,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *answerCLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answerDLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *bigButtonA;
+@property (weak, nonatomic) IBOutlet UIButton *bigButtonB;
+@property (weak, nonatomic) IBOutlet UIButton *bigButtonC;
+@property (weak, nonatomic) IBOutlet UIButton *bigButtonD;
+
 @property (weak, nonatomic) IBOutlet UINavigationItem *fakeNavBar;
 
 @property BOOL *questionFinished;
@@ -51,6 +56,7 @@
     NSString *groupName;
     NSUInteger *quizLength;
     NSArray *buttonArray;
+    NSArray *bigButtonArray;
     NSArray *imageArray;
     NSString *resultsArrayID;
     NSTimer *buttonTimer;
@@ -63,6 +69,10 @@
 @synthesize buttonB;
 @synthesize buttonC;
 @synthesize buttonD;
+@synthesize bigButtonA;
+@synthesize bigButtonB;
+@synthesize bigButtonC;
+@synthesize bigButtonD;
 @synthesize popoverController;
 
 
@@ -84,10 +94,12 @@
     
     buttonArray = [[NSArray alloc] initWithObjects:buttonA, buttonB, buttonC, buttonD,  nil];
     
+    bigButtonArray = [[NSArray alloc] initWithObjects:bigButtonA, bigButtonB, bigButtonC, bigButtonD, nil];
+    
     imageArray = [[NSArray alloc] initWithObjects:_aImage,_bImage,_cImage,_dImage, nil];
     
    // DISABLE LOGIN
-    //loggedIn = YES;
+   // loggedIn = YES;
 }
 
 
@@ -101,7 +113,15 @@
 }
 
 +(void) shouldDisableButton:(UIButton *)sender should:(BOOL)state {
+    NSSet *buttonStrings = [NSSet setWithObjects:@"A", @"B", @"C",@"D",
+                             nil];
     sender.enabled = !state;
+    
+    if (state && ![buttonStrings containsObject:sender.titleLabel.text] ){
+        [sender setTitle:@"" forState:UIControlStateNormal];
+    } else {
+        //[sender setTitle:@"Report%@"
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -134,14 +154,22 @@
         
         
     } else if (!firstQuestionDisplayed){
-        firstQuestionDisplayed = YES;
-        id masternav = self.splitViewController.viewControllers[0];
-        id master = [masternav topViewController];
-        if ([master isKindOfClass:[QuizTableViewController class]]){
-            [master displayFirstQuestion];
-        }
-        
+        // Because it was iffy whether the master table view finished indexing all the questions before the detail view loaded, have a small delay of 0.2 seconds before reloading the table view and displaying the first question.
+        [self performSelector:@selector(viewDidLoadDelayedLoading) withObject:self afterDelay:0.2];
     }
+}
+
+- (void)viewDidLoadDelayedLoading{
+    firstQuestionDisplayed = YES;
+    id masternav = self.splitViewController.viewControllers[0];
+    QuizTableViewController *master = [masternav topViewController];
+    if ([master isKindOfClass:[QuizTableViewController class]]){
+        [master displayFirstQuestion];
+        if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
+            [master.tableView reloadData];
+        }
+    }
+
 }
 
 
@@ -163,34 +191,16 @@
 }
 
 
-//- (void)logInAndImport{
-//    if (!loggedIn){
-//        // Create the log in view controller
-//        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
-//        [logInViewController setDelegate:self]; // Set ourselves as the delegate
-//        
-//        logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsLogInButton;
-//        
-//        // Create the sign up view controller
-//        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
-//        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
-//        
-//        // Assign our sign up controller to be displayed from the login controller
-//        [logInViewController setSignUpController:signUpViewController];
-//        
-//        
-//        [self presentViewController:logInViewController animated:YES completion:NULL];
-//    }
-//    
-//    else if (!quizImported){
-//        [self performSegueWithIdentifier: @"goToWelcome" sender: self];
-//        quizImported = YES;
-//        
-//    }
-//}
+-(BOOL)qIsTypeNormal{
+    if ([self.detailItem.qtype isEqualToString:@"Normal"]){
+        return YES;
+    } else {
+        return NO;
+    }
+}
 
 - (void)switchQuestion{
-  
+    
     NSLog(@"%@  %@", self.detailItem.questionNumber, self.detailItem.questionContent);
     
     self.qContentLabel.text = [NSString stringWithFormat:@"%@. %@", self.detailItem.questionNumber, self.detailItem.questionContent];
@@ -204,33 +214,51 @@
     
     self.fakeNavBar.title = [NSString stringWithFormat:@"Question %@", self.detailItem.questionNumber ];
     
-//    if ([self.detailItem.questionNumber integerValue] == (int)quizLength-2)
-//    {
-//        swipeRightGesture.enabled = NO;
-//    }
-    
-    if (!self.detailItem.qAttempts) {//If buttons pressed is still Null
+    // Uncomment when the property in Question "qtype" is shown
+    //if ([self qIsTypeNormal]){
         
-        self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, nil];
-        self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: 4"];
-    } else { //Question has been attempted, enable buttons according to Buttons Pressed
+        //disable all the bigButtons
+        for(int index = 0; index < 4; index++)
+        {
+            [QuestionViewController shouldDisableButton:[bigButtonArray objectAtIndex:index] should:YES];
+        }
         
-        self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 4 - [self.detailItem.qAttempts integerValue]];
+        if (!self.detailItem.qAttempts) { //If buttons pressed is still Null
+            self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, nil];
+            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: 4"];
+        } else { //Question has been attempted, enable buttons according to Buttons Pressed
+            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 4 - [self.detailItem.qAttempts integerValue]];
+        }
+        
+        nextButton.enabled = NO;
+        [self EnableButtonsAccordingToButtonsPressed];
+        [self SetImagesAccordingToButtonsPressed];
+    //} else { // else, it is a report question!
+    /*
+        // No images to set or change for a Report question
+        self.attemptsLabel.text = [NSString stringWithFormat:@"(Report Question)"];
+        [self EnableReportButtons];
+    }
+     */
+}
+
+- (void)EnableReportButtons{
+    for(int index = 0; index < 4; index++)
+    {
+        [QuestionViewController shouldDisableButton:[bigButtonArray objectAtIndex:index] should:NO];
     }
     
-    nextButton.enabled = NO;
-    
-    [self EnableButtonsAccordingToButtonsPressed];
-    [self SetImagesAccordingToButtonsPressed];
 }
 
 - (void)EnableButtonsAccordingToButtonsPressed{
     
     if(self.detailItem.questionFinished){
+        
         self.attemptsLabel.text = [NSString stringWithFormat:@"No more Attempts!"];
         for(int index = 0; index < 4; index++)
         {
             [QuestionViewController shouldDisableButton:[buttonArray objectAtIndex:index] should:YES];
+            // give each button the proper name (Report A, etc )
         }
         
         if ([self.detailItem.questionNumber integerValue] != (int)quizLength-1){
@@ -255,18 +283,32 @@
 - (void)SetImagesAccordingToButtonsPressed{
     
     bool flag = false;
-    //UIImage *tempimage;
+    
+    // Set the lower progress bar image for the first time
+    if (!self.detailItem.qAttempts){
+        _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
+        _resultImage.alpha = 0.5;
+    } else if (self.detailItem.questionFinished){ //question is finished, display qattempts-1 as progress bar
+        int tempint = [self.detailItem.qAttempts integerValue]-1;
+        NSString *tempstring = [NSString stringWithFormat:@"%d", tempint];
+        _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@bar.png", tempstring]];
+    } else { // question is not finished, display attempts qattempts as progress bar
+        _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@bar.png", self.detailItem.qAttempts]];
+    }
+    
 #warning This is sloppy, for through for loop and check index each time?
+    
+    // Set the check mark and x images
     for(int index = 0; index < 4; index++)
     {
         if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@1]){
             flag = true;
-
             if (index == 0){ _aImage.image = [UIImage imageNamed:@"redX7.png"]; }
             else if (index == 1){ _bImage.image = [UIImage imageNamed:@"redX7.png"]; }
             else if (index == 2){ _cImage.image = [UIImage imageNamed:@"redX7.png"]; }
             else if (index == 3){ _dImage.image = [UIImage imageNamed:@"redX7.png"]; }
         } else if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@2]){
+            // Dont change the progress bar pic
             flag = true;
             if (index == 0){ _aImage.image = [UIImage imageNamed:@"ok-512.png"]; }
             else if (index == 1){ _bImage.image = [UIImage imageNamed:@"ok-512.png"]; }
@@ -287,7 +329,19 @@
             _cImage.image = nil;
             _dImage.image = nil;
     }
+    
+    if (UIDeviceOrientationIsLandscape(self.interfaceOrientation) && flag){
+        // Device is in landscape, so we need to update the table image as soon as the button is pressed. Only do this if a button has been pressed (flag will be yes)
+        id masternav = self.splitViewController.viewControllers[0];
+        QuizTableViewController *master = [masternav topViewController];
+        
+        NSArray *indexPaths = [[NSArray alloc] initWithObjects:[NSIndexPath indexPathForRow:[self.detailItem.questionNumber integerValue]-1 inSection:0], nil];
 
+       [master.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        
+        NSLog(@"Reloading data for row %d", [self.detailItem.questionNumber integerValue]-1);
+    }
+    
 }
 
 - (void)assignQuizLengthFromMaster:(QuizTableViewController *)qtvc{
@@ -332,63 +386,19 @@
 
 - (void)sendAttemptsToParse
 {
-<<<<<<< HEAD
-=======
-    
-<<<<<<< HEAD
+
     if (!self.attempts){  //if the attempts array hasnt been made
-=======
->>>>>>> 2dbc6ff7ff48011aefbd1a5d04e13f5f6e7d9b24
-    if (!self.attempts){ //if the attempts array hasnt been made
->>>>>>> febdd49df7df937d979c2a1afeb3ea873625b54a
         
         id masternav = self.splitViewController.viewControllers[0];
         id master = [masternav topViewController];
         if ([master isKindOfClass:[QuizTableViewController class]]){
             [self assignQuizLengthFromMaster:master];
-<<<<<<< HEAD
         }
         
         self.attempts = [[NSMutableArray alloc] init];
         for (int i = 0; i <= (int)quizLength; i++ ){
             [self.attempts insertObject:@0 atIndex:i];
         }
-        
-        
-        if (!startedQuiz){
-            startedQuiz = YES;
-            
-            PFUser *startQuiz = [PFUser currentUser];
-            [startQuiz setObject:@"YES" forKey:@"startedQuiz"];
-            [startQuiz saveInBackground];
-            
-            PFObject *resultArray = [PFObject objectWithClassName:[NSString stringWithFormat:@"%@_Results",self.quizIdentifier]];
-            resultArray [[NSString stringWithFormat:@"%@", groupName]] = self.attempts;
-            
-            
-            
-            [resultArray save];
-            
-            
-            
-            resultsArrayID = [resultArray objectId];
-            NSLog(@"Result Array ID: %@", [resultArray objectId]);
-            
-            
-            //        id masternav = self.splitViewController.viewControllers[0];
-            //        id master = [masternav topViewController];
-            //        if ([master isKindOfClass:[QuizTableViewController class]]){
-            //            [self assignQuizLengthFromMaster:master];
-            //        }
-        }
-        
-=======
-    }
-        
-    self.attempts = [[NSMutableArray alloc] init];
-    for (int i = 0; i <= (int)quizLength; i++ ){
-        [self.attempts insertObject:@0 atIndex:i];
-    }
         
         
     if (!startedQuiz){
@@ -406,8 +416,6 @@
             resultsArrayID = [resultArray objectId];
             NSLog(@"Result Array ID: %@", [resultArray objectId]);
         }
-        
->>>>>>> febdd49df7df937d979c2a1afeb3ea873625b54a
     }
     
     messagestring = self.detailItem.qAttempts;
@@ -418,24 +426,15 @@
     
     // Retrieve the object by id
     [query getObjectInBackgroundWithId:[NSString stringWithFormat:@"%@",resultsArrayID] block:^(PFObject *resultArrayUpdate, NSError *error) {
-        
-        
-<<<<<<< HEAD
-        
-        // Now let's update it with some new data. In this case, only cheatMode and score
-        // will get sent to the cloud. playerName hasn't changed.
-=======
->>>>>>> febdd49df7df937d979c2a1afeb3ea873625b54a
+
         resultArrayUpdate [[NSString stringWithFormat:@"%@", groupName]] = self.attempts;
         
         [resultArrayUpdate saveInBackground];
         
-<<<<<<< HEAD
+
     }];
 }
-=======
-        }];
-}
+
 
 //- (void)sendAttemptsToParse
 //{
@@ -472,7 +471,6 @@
 
 //}
 
->>>>>>> febdd49df7df937d979c2a1afeb3ea873625b54a
 #pragma mark - ()
 
 - (IBAction)logOutButtonTapAction:(id)sender {
@@ -491,35 +489,42 @@
     }
 }
 
-- (IBAction)touchedDown:(UIButton *)sender {
-    NSLog(@"entered touch down");
-    //buttonTimer =
-    if ( ![buttonTimer isValid]) {
-        currentButton = sender.titleLabel.text;
-        buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
-                                                       target:self
-                                                     selector:@selector(showBigLetter:)
-                                                     userInfo:nil
-                                                      repeats:NO];
-    } else {
-        NSLog(@"Timer already started!");
-    }
-    
-}
+//- (IBAction)touchedDown:(UIButton *)sender {
+//    NSLog(@"entered touch down");
+//    //buttonTimer =
+//    if ( ![buttonTimer isValid]) {
+//        currentButton = sender.titleLabel.text;
+//        buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
+//                                                       target:self
+//                                                     selector:@selector(showBigLetter:)
+//                                                     userInfo:nil
+//                                                      repeats:NO];
+//    } else {
+//        NSLog(@"Timer already started!");
+//    }
+//    
+//}
 
-- (void)showBigLetter: (UIButton *)sender{
-    NSLog(@"Timer worked");
+//- (void)showBigLetter: (UIButton *)sender{
+//    //NSLog(@"Timer worked");
+//    [self performSegueWithIdentifier: @"goToBigButton" sender: self];
+//}
+
+- (IBAction)reportButtonSelected:(UIButton *)sender {
+    currentButton = sender.titleLabel.text;
     [self performSegueWithIdentifier: @"goToBigButton" sender: self];
 }
 
 - (IBAction)clicked:(UIButton *)sender {
     
-    if ( ![buttonTimer isValid] ){
-        NSLog(@"Long click, dont execute normal button press tasks");
-    } else {
-        
-    [buttonTimer invalidate];
-    buttonTimer = nil;
+    // The commented code is for the hold down feature
+    
+//    if ( ![buttonTimer isValid] ){
+//        NSLog(@"Long click, dont execute normal button press tasks");
+//    } else {
+//        
+//    [buttonTimer invalidate];
+//    buttonTimer = nil;
  
     [QuestionViewController shouldDisableButton:sender should:YES];
     
@@ -544,8 +549,8 @@
     
     [self EnableButtonsAccordingToButtonsPressed];
     [self SetImagesAccordingToButtonsPressed];
-    }
 }
+//}
     
     
 - (BOOL *)shouldUpdatePhoto{

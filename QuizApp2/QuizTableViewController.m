@@ -56,13 +56,19 @@ NSNumber *attemptsUsed;
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [self.tableView reloadData];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     NSLog(@"Quiz Table view loaded");
     
-    [self.tableView setDelegate:self];
+    //[self.tableView setDelegate:self];
 
 }
 
@@ -96,7 +102,7 @@ NSNumber *attemptsUsed;
                     _question.answerC = question[@"answerC"];
                     _question.answerD = question[@"answerD"];
                     _question.correctAnswer = question[@"correctAnswer"];
-                    
+                    //_question.qType = question[@"questionType"];
                     
                     
                     
@@ -173,26 +179,28 @@ NSNumber *attemptsUsed;
         Question *q = [quiz objectAtIndex:indexPath.row+1];
     
         cell.textLabel.text = [NSString stringWithFormat:@"Question %ld ", indexPath.row+1];
+        cell.detailTextLabel.text = q.questionContent;
         
-        
+       // [self updateTableImage:indexPath.row+1 withAttempts:q.qAttempts];
         if (!q.qAttempts) {
-            cell.imageView.image = [UIImage imageNamed:@"0.png"];
+                cell.imageView.image = [UIImage imageNamed:@"0.png"];
         }else{
             cell.imageView.image =[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", q.qAttempts]];
         }
     }
-  
-
+    
     return cell;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [self.tableView reloadData];
-
-}
-
-
+//- (void)updateTableImage:(NSInteger *)row withAttempts:(NSString)attempts{
+//    
+//    if (!q.qAttempts) {
+//        cell.imageView.image = [UIImage imageNamed:@"0.png"];
+//    }else{
+//        cell.imageView.image =[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", q.qAttempts]];
+//    }
+//
+//}
 
 
 
@@ -237,7 +245,7 @@ NSNumber *attemptsUsed;
    
 }
 
-//The below code was unnecesarry bc quiz is being manipulated directly from question view controller
+//The below code was unnecesarry bc questions in quiz are being manipulated directly from question view controller
 
 //- (void)updateImage:(QuestionViewController *)qvc forCell:(NSIndexPath *)indexPath{
 //    

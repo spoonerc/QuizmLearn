@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *answerC;
 @property (strong, nonatomic) NSString *answerD;
 @property (strong, nonatomic) NSString *correctAnswer;
+@property (strong, nonatomic) NSString *qtype;
 @property (strong, nonatomic) NSMutableArray *ButtonsPressed;
 - (void)insertObjectInButtonsPressed:(id)rightOrWrong AtLetterSpot:(NSString *)index;
 

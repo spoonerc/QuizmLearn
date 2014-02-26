@@ -45,7 +45,7 @@
             BlueprintIdentifier = "2AD87A241897225B0069F479"
             BuildableName = "Quizm Learn.app"
             BlueprintName = "QuizApp2"
-            ReferencedContainer = "container:QuizApp2-7.xcodeproj">
+            ReferencedContainer = "container:Quizm Learn.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "2AD87A241897225B0069F479"
             BuildableName = "Quizm Learn.app"
             BlueprintName = "QuizApp2"
-            ReferencedContainer = "container:QuizApp2-7.xcodeproj">
+            ReferencedContainer = "container:Quizm Learn.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
