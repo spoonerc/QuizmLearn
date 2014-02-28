@@ -14,6 +14,10 @@
 
 @implementation BigButtonViewController
 
+BOOL isPortrait;
+BOOL isLandscape;
+BOOL isValid;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,16 +31,43 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    isPortrait = UIDeviceOrientationIsPortrait(self.interfaceOrientation);
+    isLandscape = UIDeviceOrientationIsLandscape(self.interfaceOrientation);
+    isValid = UIDeviceOrientationIsValidInterfaceOrientation(self.interfaceOrientation);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    _bigButtonImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bigButtonImage%@", self.currentButton]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"big%@.png", self.currentButton]]]];
+    
+   // _bigButtonImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"big%@", self.currentButton]];
 }
 
 - (IBAction)didTapImage:(UITapGestureRecognizer *)sender {
     NSLog(@"Button was tapped");
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    if(isPortrait) {
+           [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"big%@.png", self.currentButton]]]];
+    } else if (isLandscape){
+          [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"bigP%@.png", self.currentButton]]]];
+    }
+}
+
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (toInterfaceOrientation == UIDeviceOrientationPortrait || toInterfaceOrientation == UIDeviceOrientationPortraitUpsideDown) {
+        isPortrait = YES;
+        isLandscape = NO;
+    }else{
+        isPortrait = NO;
+        isLandscape = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning

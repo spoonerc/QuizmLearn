@@ -15,6 +15,7 @@
 @interface QuizTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSIndexPath *currentSelection;
+@property (strong, nonatomic) NSString *currentButtonSelected;
 
 //@property (strong, nonatomic) NSArray * questions;
 @property (strong, nonatomic) NSString * quizIdentifier;

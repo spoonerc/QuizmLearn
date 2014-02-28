@@ -20,8 +20,8 @@
                                 <rect key="frame" x="-54" y="871" width="849" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2P-Eg-g27">
-                                <rect key="frame" x="138" y="68" width="492" height="158"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="492" translatesAutoresizingMaskIntoConstraints="NO" id="N2P-Eg-g27">
+                                <rect key="frame" x="138" y="64" width="492" height="158"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                                 <nil key="highlightedColor"/>
@@ -114,8 +114,8 @@
                                 <rect key="frame" x="594" y="755" width="72" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sample text blah blah" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1Q-ql-KVg">
-                                <rect key="frame" x="274" y="224" width="248" height="26"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1Q-ql-KVg">
+                                <rect key="frame" x="260" y="224" width="248" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
                                 <nil key="highlightedColor"/>
@@ -156,44 +156,15 @@
                                     <action selector="nextQuestion:" destination="BW5-QA-DVh" eventType="touchUpInside" id="flT-O2-E5D"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vo-x7-wyn">
-                                <rect key="frame" x="594" y="291" width="72" height="72"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="0vo-x7-wyn">
+                                <rect key="frame" x="565" y="507" width="130" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Report A">
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Report Choice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="reportButtonSelected:" destination="BW5-QA-DVh" eventType="touchUpInside" id="mhe-un-ChZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Db-rJ-2ky">
-                                <rect key="frame" x="594" y="603" width="72" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Report C">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="reportButtonSelected:" destination="BW5-QA-DVh" eventType="touchUpInside" id="89v-Jc-Ryi"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faq-ne-38l">
-                                <rect key="frame" x="594" y="755" width="72" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Report D">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="reportButtonSelected:" destination="BW5-QA-DVh" eventType="touchUpInside" id="yAh-J1-HKx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvQ-NG-LwV">
-                                <rect key="frame" x="594" y="451" width="72" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Report B">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="reportButtonSelected:" destination="BW5-QA-DVh" eventType="touchUpInside" id="XKW-c0-MH3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -218,10 +189,6 @@
                         <outlet property="answerDLabel" destination="3f8-Cy-HJo" id="uea-Y1-Ab1"/>
                         <outlet property="attemptsLabel" destination="H1Q-ql-KVg" id="nIL-47-hKm"/>
                         <outlet property="bImage" destination="zcB-UW-XNE" id="kB5-Eo-cUg"/>
-                        <outlet property="bigButtonA" destination="0vo-x7-wyn" id="QjT-SL-Y3a"/>
-                        <outlet property="bigButtonB" destination="uvQ-NG-LwV" id="LrV-Wm-0wV"/>
-                        <outlet property="bigButtonC" destination="7Db-rJ-2ky" id="94Z-Uq-xCS"/>
-                        <outlet property="bigButtonD" destination="faq-ne-38l" id="5m0-LU-MLS"/>
                         <outlet property="buttonA" destination="0lo-IC-wVB" id="QEu-1G-9Zm"/>
                         <outlet property="buttonB" destination="u5t-be-h5d" id="bvq-Lw-wjD"/>
                         <outlet property="buttonC" destination="fuQ-nK-72G" id="quk-OH-bRu"/>
@@ -232,6 +199,7 @@
                         <outlet property="navBarColor" destination="U8h-fP-8ip" id="kgD-iU-YHV"/>
                         <outlet property="nextButton" destination="nAu-rd-4Dc" id="I3L-ZU-6gc"/>
                         <outlet property="qContentLabel" destination="N2P-Eg-g27" id="D03-tM-yRZ"/>
+                        <outlet property="reportButton" destination="0vo-x7-wyn" id="Vli-B2-15U"/>
                         <outlet property="resultImage" destination="Vwc-93-Ywu" id="XaK-0d-0dP"/>
                         <outlet property="swipeRightGesture" destination="Q6B-PY-aRM" id="Lrl-u8-bYu"/>
                         <segue destination="fON-3k-Mz4" kind="modal" identifier="goToWelcome" animates="NO" id="MbF-L0-2mI"/>
@@ -294,35 +262,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="QuizmLearnLoginBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="pHu-ec-xOq">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="grj-vs-S17">
-                                <rect key="frame" x="20" y="582" width="728" height="394"/>
+                            <containerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="grj-vs-S17">
+                                <rect key="frame" x="20" y="588" width="728" height="394"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.76514797300000004" green="0.887894611" blue="0.86853680700000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <segue destination="GCe-cf-aE0" kind="embed" identifier="Embed Quiz List" id="H8B-97-CVA"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select a Quiz:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7Z-1H-6OR">
-                                <rect key="frame" x="66" y="488" width="636" height="48"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Please select a Quiz:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7Z-1H-6OR">
+                                <rect key="frame" x="66" y="495" width="636" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="xng-M6-3L5"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWF-gp-11e">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWF-gp-11e">
                                 <rect key="frame" x="20" y="95" width="728" height="132"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="132" id="QIu-Cn-7Oi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQl-st-F0Z">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQl-st-F0Z">
                                 <rect key="frame" x="283" y="984" width="202" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="202" id="p5H-es-H7X"/>
+                                </constraints>
                                 <state key="normal" title="Can't see your Quiz?">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -335,6 +308,18 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="U7Z-1H-6OR" firstAttribute="leading" secondItem="JVo-dn-kcj" secondAttribute="leading" constant="66" id="7px-Jh-utt"/>
+                            <constraint firstItem="fQl-st-F0Z" firstAttribute="top" secondItem="grj-vs-S17" secondAttribute="bottom" constant="8" symbolic="YES" id="9Ts-VG-7bY"/>
+                            <constraint firstItem="PWF-gp-11e" firstAttribute="leading" secondItem="JVo-dn-kcj" secondAttribute="leading" constant="20" symbolic="YES" id="FL5-Ls-GpD"/>
+                            <constraint firstItem="U7Z-1H-6OR" firstAttribute="centerX" secondItem="PWF-gp-11e" secondAttribute="centerX" id="Fgg-k8-Rbe"/>
+                            <constraint firstItem="PWF-gp-11e" firstAttribute="top" secondItem="k9G-4e-9EP" secondAttribute="bottom" constant="75" id="JhJ-dh-nBd"/>
+                            <constraint firstItem="grj-vs-S17" firstAttribute="top" secondItem="U7Z-1H-6OR" secondAttribute="bottom" constant="46" id="Scc-Ho-1Ow"/>
+                            <constraint firstItem="PWF-gp-11e" firstAttribute="leading" secondItem="grj-vs-S17" secondAttribute="leading" id="UOv-n4-Sl1"/>
+                            <constraint firstItem="jZk-rG-AdX" firstAttribute="top" secondItem="fQl-st-F0Z" secondAttribute="bottom" constant="10" id="iib-ec-cUL"/>
+                            <constraint firstItem="PWF-gp-11e" firstAttribute="trailing" secondItem="grj-vs-S17" secondAttribute="trailing" id="uHi-Qy-Ifb"/>
+                            <constraint firstItem="fQl-st-F0Z" firstAttribute="centerX" secondItem="grj-vs-S17" secondAttribute="centerX" id="zxL-eC-W18"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Quiz Information" id="s0r-FE-Y5M">
                         <barButtonItem key="rightBarButtonItem" title="Import Quiz" id="3HL-IO-aj8">
@@ -572,7 +557,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="QuizmLearnLoginBG.png" width="768" height="1024"/>
         <image name="Tab-Bar-Icon---Settings.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

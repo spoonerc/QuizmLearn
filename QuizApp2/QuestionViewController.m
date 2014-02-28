@@ -26,10 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *answerCLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answerDLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *bigButtonA;
-@property (weak, nonatomic) IBOutlet UIButton *bigButtonB;
-@property (weak, nonatomic) IBOutlet UIButton *bigButtonC;
-@property (weak, nonatomic) IBOutlet UIButton *bigButtonD;
+@property (weak, nonatomic) IBOutlet UIButton *reportButton;
+//@property (weak, nonatomic) IBOutlet UIButton *reportButton;
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *fakeNavBar;
 
@@ -56,7 +54,7 @@
     NSString *groupName;
     NSUInteger *quizLength;
     NSArray *buttonArray;
-    NSArray *bigButtonArray;
+   // NSArray *bigButtonArray;
     NSArray *imageArray;
     NSString *resultsArrayID;
     NSTimer *buttonTimer;
@@ -69,10 +67,7 @@
 @synthesize buttonB;
 @synthesize buttonC;
 @synthesize buttonD;
-@synthesize bigButtonA;
-@synthesize bigButtonB;
-@synthesize bigButtonC;
-@synthesize bigButtonD;
+@synthesize reportButton;
 @synthesize popoverController;
 
 
@@ -94,7 +89,7 @@
     
     buttonArray = [[NSArray alloc] initWithObjects:buttonA, buttonB, buttonC, buttonD,  nil];
     
-    bigButtonArray = [[NSArray alloc] initWithObjects:bigButtonA, bigButtonB, bigButtonC, bigButtonD, nil];
+   // bigButtonArray = [[NSArray alloc] initWithObjects:bigButtonA, bigButtonB, bigButtonC, bigButtonD, nil];
     
     imageArray = [[NSArray alloc] initWithObjects:_aImage,_bImage,_cImage,_dImage, nil];
     
@@ -117,8 +112,9 @@
                              nil];
     sender.enabled = !state;
     
-    if (state && ![buttonStrings containsObject:sender.titleLabel.text] ){
-        [sender setTitle:@"" forState:UIControlStateNormal];
+    if (![buttonStrings containsObject:sender.titleLabel.text] ){
+        [sender setTitle:@"" forState:UIControlStateDisabled];
+        [sender setTitle:@"Report Choice" forState:UIControlStateNormal];
     } else {
         //[sender setTitle:@"Report%@"
     }
@@ -214,14 +210,16 @@
     
     self.fakeNavBar.title = [NSString stringWithFormat:@"Question %@", self.detailItem.questionNumber ];
     
-    // Uncomment when the property in Question "qtype" is shown
-    //if ([self qIsTypeNormal]){
+    //Uncomment when the property in Question "qtype" is shown
+    if ([self qIsTypeNormal]){
         
         //disable all the bigButtons
-        for(int index = 0; index < 4; index++)
-        {
-            [QuestionViewController shouldDisableButton:[bigButtonArray objectAtIndex:index] should:YES];
-        }
+//        for(int index = 0; index < 4; index++)
+//        {
+//            [QuestionViewController shouldDisableButton:[bigButtonArray objectAtIndex:index] should:YES];
+//        }
+        
+        [QuestionViewController shouldDisableButton:reportButton should:YES];
         
         if (!self.detailItem.qAttempts) { //If buttons pressed is still Null
             self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, nil];
@@ -233,37 +231,45 @@
         nextButton.enabled = NO;
         [self EnableButtonsAccordingToButtonsPressed];
         [self SetImagesAccordingToButtonsPressed];
-    //} else { // else, it is a report question!
-    /*
+    } else { // else, it is a report question!
         // No images to set or change for a Report question
         self.attemptsLabel.text = [NSString stringWithFormat:@"(Report Question)"];
         [self EnableReportButtons];
     }
-     */
 }
 
 - (void)EnableReportButtons{
-    for(int index = 0; index < 4; index++)
+    // Make sure you disable all the check marks and x's
+    _aImage.image = nil;
+    _bImage.image = nil;
+    _cImage.image = nil;
+    _dImage.image = nil;
+    _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
+    
+    reportButton.enabled = NO;
+    
+    for(int index = 0; index < 4; index++) // enable AAAALLLL da buttons
     {
-        [QuestionViewController shouldDisableButton:[bigButtonArray objectAtIndex:index] should:NO];
+       // [QuestionViewController shouldDisableButton:[bigButtonArray objectAtIndex:index] should:NO];
+        [QuestionViewController shouldDisableButton:[buttonArray objectAtIndex:index] should:NO];
     }
     
 }
 
 - (void)EnableButtonsAccordingToButtonsPressed{
     
-    if(self.detailItem.questionFinished){
+    
+    if(self.detailItem.questionFinished ){
         
-        self.attemptsLabel.text = [NSString stringWithFormat:@"No more Attempts!"];
         for(int index = 0; index < 4; index++)
         {
             [QuestionViewController shouldDisableButton:[buttonArray objectAtIndex:index] should:YES];
-            // give each button the proper name (Report A, etc )
         }
         
-        if ([self.detailItem.questionNumber integerValue] != (int)quizLength-1){
+        if ([self.detailItem.questionNumber integerValue] != (int)quizLength-1 ){
             nextButton.enabled = YES;
         }
+        
        // [nextButton setTitle:@"Next Question" forState:UIControlStateNormal];
     }
     
@@ -284,54 +290,60 @@
     
     bool flag = false;
     
-    // Set the lower progress bar image for the first time
-    if (!self.detailItem.qAttempts){
-        _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
-        _resultImage.alpha = 0.5;
-    } else if (self.detailItem.questionFinished){ //question is finished, display qattempts-1 as progress bar
-        int tempint = [self.detailItem.qAttempts integerValue]-1;
-        NSString *tempstring = [NSString stringWithFormat:@"%d", tempint];
-        _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@bar.png", tempstring]];
-    } else { // question is not finished, display attempts qattempts as progress bar
-        _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@bar.png", self.detailItem.qAttempts]];
-    }
-    
-#warning This is sloppy, for through for loop and check index each time?
-    
-    // Set the check mark and x images
-    for(int index = 0; index < 4; index++)
-    {
-        if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@1]){
-            flag = true;
-            if (index == 0){ _aImage.image = [UIImage imageNamed:@"redX7.png"]; }
-            else if (index == 1){ _bImage.image = [UIImage imageNamed:@"redX7.png"]; }
-            else if (index == 2){ _cImage.image = [UIImage imageNamed:@"redX7.png"]; }
-            else if (index == 3){ _dImage.image = [UIImage imageNamed:@"redX7.png"]; }
-        } else if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@2]){
-            // Dont change the progress bar pic
-            flag = true;
-            if (index == 0){ _aImage.image = [UIImage imageNamed:@"ok-512.png"]; }
-            else if (index == 1){ _bImage.image = [UIImage imageNamed:@"ok-512.png"]; }
-            else if (index == 2){ _cImage.image = [UIImage imageNamed:@"ok-512.png"]; }
-            else if (index == 3){ _dImage.image = [UIImage imageNamed:@"ok-512.png"]; }
-        } else if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@0]){
-            if (index == 0){ _aImage.image = nil; }
-            else if (index == 1){ _bImage.image = nil; }
-            else if (index == 2){ _cImage.image = nil; }
-            else if (index == 3){ _dImage.image = nil; }
-            
+    if ([self qIsTypeNormal]){
+        
+        // Set the lower progress bar image for the first time
+        if (!self.detailItem.qAttempts){
+            _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
+            _resultImage.alpha = 0.5;
+        } else if (self.detailItem.questionFinished){ //question is finished, display qattempts-1 as progress bar
+            int tempint = [self.detailItem.qAttempts integerValue]-1;
+            NSString *tempstring = [NSString stringWithFormat:@"%d", tempint];
+            _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@bar.png", tempstring]];
+        } else { // question is not finished, display attempts qattempts as progress bar
+            _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@bar.png", self.detailItem.qAttempts]];
+        }
+        
+    #warning This is sloppy, for through for loop and check index each time?
+        
+        // Set the check mark and x images
+        for(int index = 0; index < 4; index++)
+        {
+            if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@1]){
+                flag = true;
+                if (index == 0){ _aImage.image = [UIImage imageNamed:@"redX7.png"]; }
+                else if (index == 1){ _bImage.image = [UIImage imageNamed:@"redX7.png"]; }
+                else if (index == 2){ _cImage.image = [UIImage imageNamed:@"redX7.png"]; }
+                else if (index == 3){ _dImage.image = [UIImage imageNamed:@"redX7.png"]; }
+            } else if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@2]){
+                // Dont change the progress bar pic
+                flag = true;
+                if (index == 0){ _aImage.image = [UIImage imageNamed:@"ok-512.png"]; }
+                else if (index == 1){ _bImage.image = [UIImage imageNamed:@"ok-512.png"]; }
+                else if (index == 2){ _cImage.image = [UIImage imageNamed:@"ok-512.png"]; }
+                else if (index == 3){ _dImage.image = [UIImage imageNamed:@"ok-512.png"]; }
+            } else if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@0]){
+                if (index == 0){ _aImage.image = nil; }
+                else if (index == 1){ _bImage.image = nil; }
+                else if (index == 2){ _cImage.image = nil; }
+                else if (index == 3){ _dImage.image = nil; }
+                
+            }
+        }
+        
+        if(!flag){
+                _aImage.image = nil;
+                _bImage.image = nil;
+                _cImage.image = nil;
+                _dImage.image = nil;
         }
     }
     
-    if(!flag){
-            _aImage.image = nil;
-            _bImage.image = nil;
-            _cImage.image = nil;
-            _dImage.image = nil;
-    }
     
-    if (UIDeviceOrientationIsLandscape(self.interfaceOrientation) && flag){
+    // stuff below here applies to both types of questions
+    if (( UIDeviceOrientationIsLandscape(self.interfaceOrientation) && flag ) || ![self qIsTypeNormal]){
         // Device is in landscape, so we need to update the table image as soon as the button is pressed. Only do this if a button has been pressed (flag will be yes)
+        // If it is a report question, this will only be called once, so update it everytime
         id masternav = self.splitViewController.viewControllers[0];
         QuizTableViewController *master = [masternav topViewController];
         
@@ -418,7 +430,12 @@
         }
     }
     
-    messagestring = self.detailItem.qAttempts;
+    if ([self qIsTypeNormal]){
+        messagestring = self.detailItem.qAttempts;
+    } else {
+        messagestring = currentButton;
+    }
+    
     
     [self.attempts replaceObjectAtIndex:[self.detailItem.questionNumber integerValue] withObject:messagestring];
     
@@ -511,7 +528,7 @@
 //}
 
 - (IBAction)reportButtonSelected:(UIButton *)sender {
-    currentButton = sender.titleLabel.text;
+    //currentButton = sender.titleLabel.text;
     [self performSegueWithIdentifier: @"goToBigButton" sender: self];
 }
 
@@ -525,8 +542,10 @@
 //        
 //    [buttonTimer invalidate];
 //    buttonTimer = nil;
- 
-    [QuestionViewController shouldDisableButton:sender should:YES];
+
+    currentButton = sender.titleLabel.text; // This is to send to BigButtonController and to use in the message string to parse
+    
+    
     
     if (!self.detailItem.qAttempts) // if its null
     {
@@ -535,21 +554,45 @@
         self.detailItem.qAttempts = [NSString stringWithFormat:@"%d", [self.detailItem.qAttempts integerValue] +1];
     }
     
-    if ([sender.titleLabel.text isEqualToString:self.detailItem.correctAnswer]) {
-        self.detailItem.questionFinished = YES;
-#warning disabled sending attempts to parse
-        //[self sendAttemptsToParse];
-        //self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, nil];
-        [self.detailItem insertObjectInButtonsPressed:@2 AtLetterSpot:sender.titleLabel.text];
+    if ([self qIsTypeNormal]){
+        
+        [QuestionViewController shouldDisableButton:sender should:YES];
+        
+        if ([sender.titleLabel.text isEqualToString:self.detailItem.correctAnswer]) {
+            self.detailItem.questionFinished = YES;
+            self.attemptsLabel.text = [NSString stringWithFormat:@"No more Attempts!"];
+            //#warning disabled sending attempts to parse
+            [self sendAttemptsToParse];
+            [self.detailItem insertObjectInButtonsPressed:@2 AtLetterSpot:sender.titleLabel.text];
+            
+        } else {
+            [self.detailItem insertObjectInButtonsPressed:@1 AtLetterSpot:sender.titleLabel.text];
+            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 4 - [self.detailItem.qAttempts integerValue]];
+        }
+        
+        //[self EnableButtonsAccordingToButtonsPressed];
+        
+        //[self SetImagesAccordingToButtonsPressed];
         
     } else {
-        [self.detailItem insertObjectInButtonsPressed:@1 AtLetterSpot:sender.titleLabel.text];
-        self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 4 - [self.detailItem.qAttempts integerValue]];
+        [self sendAttemptsToParse]; // This will send the button selected to parse
+        self.detailItem.questionFinished = YES; // This will turn off all the buttons when calling EnableButtonsAccordingToButtonsPressed
+        reportButton.enabled = YES;
+        
+        // This is to send to current button to the master for when it updates the picture
+//        id masternav = self.splitViewController.viewControllers[0];
+//        QuizTableViewController *master = [masternav topViewController];
+//        master.currentButtonSelected = currentButton;
+        
+        self.detailItem.reportButtonChoice = currentButton;
     }
     
-    [self EnableButtonsAccordingToButtonsPressed];
+    [self EnableButtonsAccordingToButtonsPressed]; // Both types of questions use EnableButtons  Method
     [self SetImagesAccordingToButtonsPressed];
+        
+
 }
+
 //}
     
     
@@ -621,7 +664,6 @@
 - (void)sendQuizIDto:(QuizTableViewController *)qtvc withidentifier:(NSString *)identifier {
     qtvc.quizIdentifier = identifier;
     [qtvc loadQuizData];
-   // [qtvc displayFirstQuestion];
 }
 
 - (IBAction)unwindToQuestion:(UIStoryboardSegue *)segue

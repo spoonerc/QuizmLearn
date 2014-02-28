@@ -60,16 +60,27 @@
 		A71F10C818BC1A2800CE4A00 /* 3bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10C718BC1A2800CE4A00 /* 3bar.png */; };
 		A71F10CA18BC1AAE00CE4A00 /* 4bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10C918BC1AAE00CE4A00 /* 4bar.png */; };
 		A71F10CC18BC1AE700CE4A00 /* 0bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10CB18BC1AE700CE4A00 /* 0bar.png */; };
+		A71F10F818BFC82F00CE4A00 /* QuizmLearnLoginLogoLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10F718BFC82F00CE4A00 /* QuizmLearnLoginLogoLandscape.png */; };
+		A71F10FA18BFC90F00CE4A00 /* QuizmLearnLoginLogoLandscape2.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10F918BFC90F00CE4A00 /* QuizmLearnLoginLogoLandscape2.png */; };
+		A71F10FE18BFD98C00CE4A00 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10FD18BFD98C00CE4A00 /* 6.png */; };
+		A71F110318BFFE3D00CE4A00 /* A.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10FF18BFFE3D00CE4A00 /* A.png */; };
+		A71F110418BFFE3D00CE4A00 /* B.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F110018BFFE3D00CE4A00 /* B.png */; };
+		A71F110518BFFE3D00CE4A00 /* C.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F110118BFFE3D00CE4A00 /* C.png */; };
+		A71F110618BFFE3D00CE4A00 /* D.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F110218BFFE3D00CE4A00 /* D.png */; };
+		A71F110B18C00AD900CE4A00 /* bigA.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F110718C00AD900CE4A00 /* bigA.png */; };
+		A71F110C18C00AD900CE4A00 /* bigB.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F110818C00AD900CE4A00 /* bigB.png */; };
+		A71F110D18C00AD900CE4A00 /* bigC.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F110918C00AD900CE4A00 /* bigC.png */; };
+		A71F110E18C00AD900CE4A00 /* bigD.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F110A18C00AD900CE4A00 /* bigD.png */; };
+		A71F111318C00C9C00CE4A00 /* bigPA.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F110F18C00C9C00CE4A00 /* bigPA.png */; };
+		A71F111418C00C9C00CE4A00 /* bigPB.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F111018C00C9C00CE4A00 /* bigPB.png */; };
+		A71F111518C00C9C00CE4A00 /* bigPC.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F111118C00C9C00CE4A00 /* bigPC.png */; };
+		A71F111618C00C9C00CE4A00 /* bigPD.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F111218C00C9C00CE4A00 /* bigPD.png */; };
 		A720766918B303A500EC4267 /* PastQuizTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A720766818B303A500EC4267 /* PastQuizTable.m */; };
 		A755332818B712D4001B9306 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755332718B712D4001B9306 /* MyLoginViewController.m */; };
 		A755332A18B71444001B9306 /* QuizmLearnLoginLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */; };
 		A755332C18B714F1001B9306 /* QuizmLearnLoginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */; };
 		A755333518B82AF6001B9306 /* QuizmLearnLoginLogo2.png in Resources */ = {isa = PBXBuildFile; fileRef = A755333418B82AF6001B9306 /* QuizmLearnLoginLogo2.png */; };
-		A755333718B96793001B9306 /* bigButtonImageReport A.png in Resources */ = {isa = PBXBuildFile; fileRef = A755333618B96793001B9306 /* bigButtonImageReport A.png */; };
 		A755333D18B97B14001B9306 /* BigButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755333C18B97B14001B9306 /* BigButtonViewController.m */; };
-		A755333F18B98611001B9306 /* bigButtonImageReport B.png in Resources */ = {isa = PBXBuildFile; fileRef = A755333E18B98611001B9306 /* bigButtonImageReport B.png */; };
-		A755334318B98627001B9306 /* bigButtonImageReport D.png in Resources */ = {isa = PBXBuildFile; fileRef = A755334218B98627001B9306 /* bigButtonImageReport D.png */; };
-		A755334518B9B47F001B9306 /* bigButtonImageReport C.png in Resources */ = {isa = PBXBuildFile; fileRef = A755334418B9B47F001B9306 /* bigButtonImageReport C.png */; };
 		A755334818B9D13B001B9306 /* Tab-Bar-Icon---Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A755334718B9D13B001B9306 /* Tab-Bar-Icon---Settings.png */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +163,21 @@
 		A71F10C718BC1A2800CE4A00 /* 3bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3bar.png; path = "../../../../Pictures/Star Icons/3bar.png"; sourceTree = "<group>"; };
 		A71F10C918BC1AAE00CE4A00 /* 4bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 4bar.png; path = "../../../../Pictures/Star Icons/4bar.png"; sourceTree = "<group>"; };
 		A71F10CB18BC1AE700CE4A00 /* 0bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 0bar.png; path = "../../../../Pictures/Star Icons/0bar.png"; sourceTree = "<group>"; };
+		A71F10F718BFC82F00CE4A00 /* QuizmLearnLoginLogoLandscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginLogoLandscape.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginLogoLandscape.png"; sourceTree = "<group>"; };
+		A71F10F918BFC90F00CE4A00 /* QuizmLearnLoginLogoLandscape2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginLogoLandscape2.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginLogoLandscape2.png"; sourceTree = "<group>"; };
+		A71F10FD18BFD98C00CE4A00 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 6.png; path = "../../../../Pictures/Star Icons/6.png"; sourceTree = "<group>"; };
+		A71F10FF18BFFE3D00CE4A00 /* A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = A.png; path = "../../../../Pictures/Star Icons/A.png"; sourceTree = "<group>"; };
+		A71F110018BFFE3D00CE4A00 /* B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = B.png; path = "../../../../Pictures/Star Icons/B.png"; sourceTree = "<group>"; };
+		A71F110118BFFE3D00CE4A00 /* C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = C.png; path = "../../../../Pictures/Star Icons/C.png"; sourceTree = "<group>"; };
+		A71F110218BFFE3D00CE4A00 /* D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = D.png; path = "../../../../Pictures/Star Icons/D.png"; sourceTree = "<group>"; };
+		A71F110718C00AD900CE4A00 /* bigA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigA.png; path = ../../../../Pictures/BigButtonImages/bigA.png; sourceTree = "<group>"; };
+		A71F110818C00AD900CE4A00 /* bigB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigB.png; path = ../../../../Pictures/BigButtonImages/bigB.png; sourceTree = "<group>"; };
+		A71F110918C00AD900CE4A00 /* bigC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigC.png; path = ../../../../Pictures/BigButtonImages/bigC.png; sourceTree = "<group>"; };
+		A71F110A18C00AD900CE4A00 /* bigD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigD.png; path = ../../../../Pictures/BigButtonImages/bigD.png; sourceTree = "<group>"; };
+		A71F110F18C00C9C00CE4A00 /* bigPA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigPA.png; path = ../../../../Pictures/BigButtonImages/bigPA.png; sourceTree = "<group>"; };
+		A71F111018C00C9C00CE4A00 /* bigPB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigPB.png; path = ../../../../Pictures/BigButtonImages/bigPB.png; sourceTree = "<group>"; };
+		A71F111118C00C9C00CE4A00 /* bigPC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigPC.png; path = ../../../../Pictures/BigButtonImages/bigPC.png; sourceTree = "<group>"; };
+		A71F111218C00C9C00CE4A00 /* bigPD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigPD.png; path = ../../../../Pictures/BigButtonImages/bigPD.png; sourceTree = "<group>"; };
 		A720766718B303A500EC4267 /* PastQuizTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastQuizTable.h; sourceTree = "<group>"; };
 		A720766818B303A500EC4267 /* PastQuizTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastQuizTable.m; sourceTree = "<group>"; };
 		A755332618B712D4001B9306 /* MyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginViewController.h; sourceTree = "<group>"; };
@@ -159,12 +185,8 @@
 		A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginLogo.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginLogo.png"; sourceTree = "<group>"; };
 		A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginBG.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginBG.png"; sourceTree = "<group>"; };
 		A755333418B82AF6001B9306 /* QuizmLearnLoginLogo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnLoginLogo2.png; path = "../../../../Pictures/App Icons/Splash Screen/QuizmLearnLoginLogo2.png"; sourceTree = "<group>"; };
-		A755333618B96793001B9306 /* bigButtonImageReport A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bigButtonImageReport A.png"; path = "../../../../Pictures/BigButtonImages/bigButtonImageReport A.png"; sourceTree = "<group>"; };
 		A755333B18B97B14001B9306 /* BigButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigButtonViewController.h; sourceTree = "<group>"; };
 		A755333C18B97B14001B9306 /* BigButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigButtonViewController.m; sourceTree = "<group>"; };
-		A755333E18B98611001B9306 /* bigButtonImageReport B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bigButtonImageReport B.png"; path = "../../../../Pictures/BigButtonImages/bigButtonImageReport B.png"; sourceTree = "<group>"; };
-		A755334218B98627001B9306 /* bigButtonImageReport D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bigButtonImageReport D.png"; path = "../../../../Pictures/BigButtonImages/bigButtonImageReport D.png"; sourceTree = "<group>"; };
-		A755334418B9B47F001B9306 /* bigButtonImageReport C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bigButtonImageReport C.png"; path = "../../../../Pictures/BigButtonImages/bigButtonImageReport C.png"; sourceTree = "<group>"; };
 		A755334718B9D13B001B9306 /* Tab-Bar-Icon---Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Bar-Icon---Settings.png"; path = "../../../../Pictures/Tab Bar Icons/Tab-Bar-Icon---Settings.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -296,18 +318,27 @@
 			isa = PBXGroup;
 			children = (
 				A755334718B9D13B001B9306 /* Tab-Bar-Icon---Settings.png */,
-				A755333618B96793001B9306 /* bigButtonImageReport A.png */,
-				A755333E18B98611001B9306 /* bigButtonImageReport B.png */,
-				A755334418B9B47F001B9306 /* bigButtonImageReport C.png */,
-				A755334218B98627001B9306 /* bigButtonImageReport D.png */,
+				A71F110F18C00C9C00CE4A00 /* bigPA.png */,
+				A71F111018C00C9C00CE4A00 /* bigPB.png */,
+				A71F111118C00C9C00CE4A00 /* bigPC.png */,
+				A71F111218C00C9C00CE4A00 /* bigPD.png */,
+				A71F110718C00AD900CE4A00 /* bigA.png */,
+				A71F110818C00AD900CE4A00 /* bigB.png */,
+				A71F110918C00AD900CE4A00 /* bigC.png */,
+				A71F110A18C00AD900CE4A00 /* bigD.png */,
 				2A85A10B18B6D3CD002722E5 /* QuizmLearn.png */,
 				2A85A10C18B6D3CD002722E5 /* QuizmLearnGQ.png */,
 				2A99664118AAF2B800192BD7 /* navBarColor.png */,
+				A71F10FF18BFFE3D00CE4A00 /* A.png */,
+				A71F110018BFFE3D00CE4A00 /* B.png */,
+				A71F110118BFFE3D00CE4A00 /* C.png */,
+				A71F110218BFFE3D00CE4A00 /* D.png */,
 				A71F10CB18BC1AE700CE4A00 /* 0bar.png */,
 				A71F10C318BC1A1600CE4A00 /* 1bar.png */,
 				A71F10C518BC1A1E00CE4A00 /* 2bar.png */,
 				A71F10C718BC1A2800CE4A00 /* 3bar.png */,
 				A71F10C918BC1AAE00CE4A00 /* 4bar.png */,
+				A71F10FD18BFD98C00CE4A00 /* 6.png */,
 				A71F10B318BBFB2C00CE4A00 /* 4.png */,
 				A71F10B518BBFB3300CE4A00 /* 3.png */,
 				A71F10B718BBFB3C00CE4A00 /* 2.png */,
@@ -320,6 +351,8 @@
 				2AFF21B3189C7ACC00FE6F38 /* iosBlueStarIcon.png */,
 				2AFF21B4189C7ACC00FE6F38 /* ok-512.png */,
 				2AFF21B5189C7ACC00FE6F38 /* redX7.png */,
+				A71F10F718BFC82F00CE4A00 /* QuizmLearnLoginLogoLandscape.png */,
+				A71F10F918BFC90F00CE4A00 /* QuizmLearnLoginLogoLandscape2.png */,
 				A755332918B71444001B9306 /* QuizmLearnLoginLogo.png */,
 				A755333418B82AF6001B9306 /* QuizmLearnLoginLogo2.png */,
 				A755332B18B714F1001B9306 /* QuizmLearnLoginBG.png */,
@@ -444,32 +477,43 @@
 				2AA8301418A590D200FCC137 /* quizappicon1-2HQ.png in Resources */,
 				2AD87A411897225B0069F479 /* Images.xcassets in Resources */,
 				A755333518B82AF6001B9306 /* QuizmLearnLoginLogo2.png in Resources */,
+				A71F110E18C00AD900CE4A00 /* bigD.png in Resources */,
 				A71F10C618BC1A1E00CE4A00 /* 2bar.png in Resources */,
+				A71F10FA18BFC90F00CE4A00 /* QuizmLearnLoginLogoLandscape2.png in Resources */,
+				A71F110B18C00AD900CE4A00 /* bigA.png in Resources */,
 				A71F10BA18BBFB4700CE4A00 /* 1.png in Resources */,
 				2AFF21B6189C7ACC00FE6F38 /* iosBlueStarIcon.png in Resources */,
 				2AA8301618A590D200FCC137 /* zerofillStar.png in Resources */,
 				A71F10B418BBFB2C00CE4A00 /* 4.png in Resources */,
+				A71F111618C00C9C00CE4A00 /* bigPD.png in Resources */,
 				2AFF21B7189C7ACC00FE6F38 /* ok-512.png in Resources */,
-				A755334518B9B47F001B9306 /* bigButtonImageReport C.png in Resources */,
-				A755333F18B98611001B9306 /* bigButtonImageReport B.png in Resources */,
+				A71F10F818BFC82F00CE4A00 /* QuizmLearnLoginLogoLandscape.png in Resources */,
 				2A85A10D18B6D3CD002722E5 /* QuizmLearn.png in Resources */,
 				2AD87A331897225B0069F479 /* InfoPlist.strings in Resources */,
 				2AD87A3C1897225B0069F479 /* Main.storyboard in Resources */,
 				A71F10C218BC028E00CE4A00 /* 1.png in Resources */,
+				A71F110C18C00AD900CE4A00 /* bigB.png in Resources */,
 				2A99664218AAF2B800192BD7 /* navBarColor.png in Resources */,
+				A71F110518BFFE3D00CE4A00 /* C.png in Resources */,
 				2AA8301318A590D200FCC137 /* quizappicon1-2.png in Resources */,
-				A755333718B96793001B9306 /* bigButtonImageReport A.png in Resources */,
+				A71F110418BFFE3D00CE4A00 /* B.png in Resources */,
+				A71F111318C00C9C00CE4A00 /* bigPA.png in Resources */,
 				A71F10C418BC1A1600CE4A00 /* 1bar.png in Resources */,
 				A755332C18B714F1001B9306 /* QuizmLearnLoginBG.png in Resources */,
 				2AA8301518A590D200FCC137 /* zeroattemptstar.png in Resources */,
 				A755332A18B71444001B9306 /* QuizmLearnLoginLogo.png in Resources */,
+				A71F111418C00C9C00CE4A00 /* bigPB.png in Resources */,
+				A71F111518C00C9C00CE4A00 /* bigPC.png in Resources */,
+				A71F110618BFFE3D00CE4A00 /* D.png in Resources */,
 				A71F10CA18BC1AAE00CE4A00 /* 4bar.png in Resources */,
-				A755334318B98627001B9306 /* bigButtonImageReport D.png in Resources */,
 				2AFF21B8189C7ACC00FE6F38 /* redX7.png in Resources */,
 				A71F10B818BBFB3C00CE4A00 /* 2.png in Resources */,
+				A71F10FE18BFD98C00CE4A00 /* 6.png in Resources */,
 				A755334818B9D13B001B9306 /* Tab-Bar-Icon---Settings.png in Resources */,
 				A71F10B618BBFB3300CE4A00 /* 3.png in Resources */,
 				A71F10C818BC1A2800CE4A00 /* 3bar.png in Resources */,
+				A71F110D18C00AD900CE4A00 /* bigC.png in Resources */,
+				A71F110318BFFE3D00CE4A00 /* A.png in Resources */,
 				A71F10BC18BBFC0400CE4A00 /* 0.png in Resources */,
 				2A85A10E18B6D3CD002722E5 /* QuizmLearnGQ.png in Resources */,
 			);

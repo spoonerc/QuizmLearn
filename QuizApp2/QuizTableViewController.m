@@ -79,7 +79,7 @@ NSNumber *attemptsUsed;
         
         PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"%@",self.quizIdentifier]];
         
-        [query selectKeys: @[@"questionNumber", @"questionContent", @"answerA", @"answerB", @"answerC", @"answerD", @"correctAnswer"]];
+        [query selectKeys: @[@"questionNumber", @"questionContent", @"answerA", @"answerB", @"answerC", @"answerD", @"correctAnswer", @"questionType"]];
         [query orderByAscending:@"questionNumber"];
         [query findObjectsInBackgroundWithBlock:^(NSArray *questions, NSError *error) {
             if (!error) {
@@ -102,7 +102,7 @@ NSNumber *attemptsUsed;
                     _question.answerC = question[@"answerC"];
                     _question.answerD = question[@"answerD"];
                     _question.correctAnswer = question[@"correctAnswer"];
-                    //_question.qType = question[@"questionType"];
+                    _question.qtype = question[@"questionType"];
                     
                     
                     
@@ -115,7 +115,9 @@ NSNumber *attemptsUsed;
                     
                     Question *tempq = [quiz objectAtIndex:[_question.questionNumber integerValue] ];
                     
-                    NSLog(@"Successfully retrieved Question %@ and placed it at index %ld", question[@"questionNumber"], (long)[tempq.questionNumber integerValue]);
+                    NSLog(@"Successfully retrieved Question %@ and placed it at index %ld", question[@"questionNumber"], (long)[_question.questionNumber integerValue]);
+                    //NSIndexPath *tempIndex = [NSIndexPath indexPathForRow:11 inSection:0];
+                    //NSLog(@"The object where question 12 should be is %@", [quiz objectAtIndex:tempIndex.row]);
                 }
                 
             } else {
@@ -124,6 +126,9 @@ NSNumber *attemptsUsed;
         }];        
         
     }
+    
+   // NSIndexPath *tempIndex = [NSIndexPath indexPathForRow:11 inSection:0];
+    //NSLog(@"The object where question 12 should be is %@", [quiz objectAtIndex:tempIndex.row]);
 
 }
 
@@ -136,7 +141,9 @@ NSNumber *attemptsUsed;
 
 
 - (NSUInteger *)giveQuizLength{
+    NSLog(@"qtvc gave quiz count %d", [quiz count]);
     return [quiz count];
+    
 }
 
 
@@ -177,18 +184,27 @@ NSNumber *attemptsUsed;
     
     if (quiz){
         Question *q = [quiz objectAtIndex:indexPath.row+1];
+        NSLog(@"CellForRowAtIndex path has question %d", [q.questionNumber integerValue]);
+        NSLog(@"Attempts are %d", [q.qAttempts integerValue]);
     
         cell.textLabel.text = [NSString stringWithFormat:@"Question %ld ", indexPath.row+1];
         cell.detailTextLabel.text = q.questionContent;
         
-       // [self updateTableImage:indexPath.row+1 withAttempts:q.qAttempts];
-        if (!q.qAttempts) {
-                cell.imageView.image = [UIImage imageNamed:@"0.png"];
-        }else{
-            cell.imageView.image =[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", q.qAttempts]];
+        //[self updateTableImage:indexPath.row+1 withAttempts:q.qAttempts];
+        if([q.qtype isEqualToString:@"Normal"]){
+            if (!q.qAttempts) {
+                    cell.imageView.image = [UIImage imageNamed:@"0.png"];
+            }else{
+                cell.imageView.image =[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", q.qAttempts]];
+            }
+        } else {
+            if (!q.qAttempts) {
+                cell.imageView.image = [UIImage imageNamed:@"6.png"];
+            }else{
+                cell.imageView.image =[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", q.reportButtonChoice]];
+            }
         }
     }
-    
     return cell;
 }
 

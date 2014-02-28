@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSString *correctAnswer;
 @property (strong, nonatomic) NSString *qtype;
 @property (strong, nonatomic) NSMutableArray *ButtonsPressed;
+@property (strong, nonatomic) NSString *reportButtonChoice; // This will only be updated in report questions, so the qtvc will know what image to display
+
 - (void)insertObjectInButtonsPressed:(id)rightOrWrong AtLetterSpot:(NSString *)index;
 
 @property (strong, nonatomic) NSString *qAttempts;

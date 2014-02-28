@@ -21,6 +21,9 @@
 
 @implementation ImportViewController
 
+BOOL isPortrait;
+BOOL isLandscape;
+BOOL isValid;
 NSArray * questions;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,6 +44,11 @@ NSArray * questions;
     
     self.groupNameWelcome.text = [NSString stringWithFormat:@"Welcome to Quizm Learn, %@", _groupName];
     
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"QuizmLearnLoginBG.png"]]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
