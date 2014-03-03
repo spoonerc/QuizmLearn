@@ -113,7 +113,7 @@ NSNumber *attemptsUsed;
                     
                     //[quiz addObject:_question];
                     
-                    Question *tempq = [quiz objectAtIndex:[_question.questionNumber integerValue] ];
+                   // Question *tempq = [quiz objectAtIndex:[_question.questionNumber integerValue] ];
                     
                     NSLog(@"Successfully retrieved Question %@ and placed it at index %ld", question[@"questionNumber"], (long)[_question.questionNumber integerValue]);
                     //NSIndexPath *tempIndex = [NSIndexPath indexPathForRow:11 inSection:0];
@@ -141,20 +141,20 @@ NSNumber *attemptsUsed;
 
 
 - (NSUInteger *)giveQuizLength{
-    NSLog(@"qtvc gave quiz count %d", [quiz count]);
+  //  NSLog(@"qtvc gave quiz count %d", [quiz count]);
     return [quiz count];
     
 }
 
 
 - (void)initializeQuizArrayWithThisNumber:(NSUInteger)count{
-    NSLog(@"The quiz array is being intialized with %d spots", count);
+    NSLog(@"The quiz array is being intialized with %lu spots", (unsigned long)count);
     for (int i = 0; i <= count; i++)
     {
         [quiz addObject:@0];
     }
     
-    NSLog(@"The quiz array has %d spots", [quiz count]);
+    NSLog(@"The quiz array has %lu spots", (unsigned long)[quiz count]);
 }
 
 - (void)didReceiveMemoryWarning
@@ -184,10 +184,8 @@ NSNumber *attemptsUsed;
     
     if (quiz){
         Question *q = [quiz objectAtIndex:indexPath.row+1];
-        NSLog(@"CellForRowAtIndex path has question %d", [q.questionNumber integerValue]);
-        NSLog(@"Attempts are %d", [q.qAttempts integerValue]);
-    
-        cell.textLabel.text = [NSString stringWithFormat:@"Question %ld ", indexPath.row+1];
+
+        cell.textLabel.text = [NSString stringWithFormat:@"Question %d ", indexPath.row+1];
         cell.detailTextLabel.text = q.questionContent;
         
         //[self updateTableImage:indexPath.row+1 withAttempts:q.qAttempts];

@@ -89,8 +89,6 @@
     
     buttonArray = [[NSArray alloc] initWithObjects:buttonA, buttonB, buttonC, buttonD,  nil];
     
-   // bigButtonArray = [[NSArray alloc] initWithObjects:bigButtonA, bigButtonB, bigButtonC, bigButtonD, nil];
-    
     imageArray = [[NSArray alloc] initWithObjects:_aImage,_bImage,_cImage,_dImage, nil];
     
    // DISABLE LOGIN
@@ -102,30 +100,25 @@
     
     if (!loggedIn) {
         [super viewWillAppear:animated];
-        //NSLog(@"Not logged in");
-        //self.welcomeLabel.text = NSLocalizedString(@"Not logged in", nil);
     }
 }
 
 +(void) shouldDisableButton:(UIButton *)sender should:(BOOL)state {
-    NSSet *buttonStrings = [NSSet setWithObjects:@"A", @"B", @"C",@"D",
+    NSSet *normalbuttonStrings = [NSSet setWithObjects:@"A", @"B", @"C",@"D",
                              nil];
     sender.enabled = !state;
     
-    if (![buttonStrings containsObject:sender.titleLabel.text] ){
+    if (![normalbuttonStrings containsObject:sender.titleLabel.text] ){
         [sender setTitle:@"" forState:UIControlStateDisabled];
+        [sender setBackgroundImage:[UIImage imageWithCGImage:(__bridge CGImageRef)([UIColor colorWithWhite:1.0 alpha:1])] forState:UIControlStateDisabled];
         [sender setTitle:@"Report Choice" forState:UIControlStateNormal];
-    } else {
-        //[sender setTitle:@"Report%@"
+        [sender setBackgroundImage:[UIImage imageNamed:@"buttonbackground"] forState:UIControlStateNormal];
+        [sender setAlpha:0.8];
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSLog(@"View Appeared");
-    
-    //[self logInAndImport];
-    
     if (!loggedIn){
         // Create the log in view controller
         MyLoginViewController *logInViewController = [[MyLoginViewController alloc] init];
@@ -151,7 +144,7 @@
         
     } else if (!firstQuestionDisplayed){
         // Because it was iffy whether the master table view finished indexing all the questions before the detail view loaded, have a small delay of 0.2 seconds before reloading the table view and displaying the first question.
-        [self performSelector:@selector(viewDidLoadDelayedLoading) withObject:self afterDelay:0.2];
+        [self performSelector:@selector(viewDidLoadDelayedLoading) withObject:self afterDelay:0.4];
     }
 }
 
@@ -165,7 +158,6 @@
             [master.tableView reloadData];
         }
     }
-
 }
 
 
@@ -245,8 +237,9 @@
     _cImage.image = nil;
     _dImage.image = nil;
     _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
+     _resultImage.alpha = 0.5;
     
-    reportButton.enabled = NO;
+    [QuestionViewController shouldDisableButton:reportButton should:YES];
     
     for(int index = 0; index < 4; index++) // enable AAAALLLL da buttons
     {
@@ -304,30 +297,21 @@
             _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@bar.png", self.detailItem.qAttempts]];
         }
         
-    #warning This is sloppy, for through for loop and check index each time?
-        
         // Set the check mark and x images
         for(int index = 0; index < 4; index++)
         {
             if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@1]){
                 flag = true;
-                if (index == 0){ _aImage.image = [UIImage imageNamed:@"redX7.png"]; }
-                else if (index == 1){ _bImage.image = [UIImage imageNamed:@"redX7.png"]; }
-                else if (index == 2){ _cImage.image = [UIImage imageNamed:@"redX7.png"]; }
-                else if (index == 3){ _dImage.image = [UIImage imageNamed:@"redX7.png"]; }
+                UIImageView *tempimage = [imageArray objectAtIndex:index];
+                tempimage.image = [UIImage imageNamed:@"redX7.png"];
             } else if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@2]){
                 // Dont change the progress bar pic
                 flag = true;
-                if (index == 0){ _aImage.image = [UIImage imageNamed:@"ok-512.png"]; }
-                else if (index == 1){ _bImage.image = [UIImage imageNamed:@"ok-512.png"]; }
-                else if (index == 2){ _cImage.image = [UIImage imageNamed:@"ok-512.png"]; }
-                else if (index == 3){ _dImage.image = [UIImage imageNamed:@"ok-512.png"]; }
+                UIImageView *tempimage = [imageArray objectAtIndex:index];
+                tempimage.image = [UIImage imageNamed:@"ok-512.png"];
             } else if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@0]){
-                if (index == 0){ _aImage.image = nil; }
-                else if (index == 1){ _bImage.image = nil; }
-                else if (index == 2){ _cImage.image = nil; }
-                else if (index == 3){ _dImage.image = nil; }
-                
+                UIImageView *tempimage = [imageArray objectAtIndex:index];
+                tempimage.image = nil;
             }
         }
         
@@ -341,7 +325,7 @@
     
     
     // stuff below here applies to both types of questions
-    if (( UIDeviceOrientationIsLandscape(self.interfaceOrientation) && flag ) || ![self qIsTypeNormal]){
+    if (( UIDeviceOrientationIsLandscape(self.interfaceOrientation) && flag ) || (( UIDeviceOrientationIsLandscape(self.interfaceOrientation)) &&![self qIsTypeNormal])){
         // Device is in landscape, so we need to update the table image as soon as the button is pressed. Only do this if a button has been pressed (flag will be yes)
         // If it is a report question, this will only be called once, so update it everytime
         id masternav = self.splitViewController.viewControllers[0];
@@ -544,6 +528,8 @@
 //    buttonTimer = nil;
 
     currentButton = sender.titleLabel.text; // This is to send to BigButtonController and to use in the message string to parse
+    
+    //[sender setBackgroundImage:[UIImage imageNamed:@"0square.png"] forState:UIControlStateSelected];
     
     
     
