@@ -46,40 +46,6 @@
     self.refreshControl = refresh;
     
     [self refresh];
-    
-    
-
-//    
-//    
-//    PFQuery *query = [PFQuery queryWithClassName:@"ImportedQuizzes"];
-//    [query selectKeys: @[@"QuizIdentifier", @"Course", @"Section", @"QuizName"]];
-//    [query orderByAscending:@"createdAt"];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *pQuiz, NSError *error) {
-//        if (!error) {
-//            
-//            self.listPastQuizzes = [[NSMutableArray alloc]init];
-//            
-//            for (PFObject *quiz in pQuiz) {
-//                Quiz *_quiz = [[Quiz alloc]init];
-//                _quiz.course = quiz[@"Course"];
-//                _quiz.section = quiz[@"Section"];
-//                _quiz.quizName = quiz[@"QuizName"];
-//                _quiz.quizIdentifier = quiz[@"QuizIdentifier"];
-//                //NSString *quizName = quiz[@"QuizName"];
-//                [self.listPastQuizzes addObject:_quiz];
-//            }
-//            [self.tableView reloadData];
-//        }
-//    }];
-    
-    
-    
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 -(void)refresh {
