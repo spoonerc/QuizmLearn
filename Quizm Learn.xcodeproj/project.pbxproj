@@ -57,7 +57,6 @@
 		A71F10C618BC1A1E00CE4A00 /* 2bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10C518BC1A1E00CE4A00 /* 2bar.png */; };
 		A71F10C818BC1A2800CE4A00 /* 3bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10C718BC1A2800CE4A00 /* 3bar.png */; };
 		A71F10CA18BC1AAE00CE4A00 /* 4bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10C918BC1AAE00CE4A00 /* 4bar.png */; };
-		A71F10CC18BC1AE700CE4A00 /* 0bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10CB18BC1AE700CE4A00 /* 0bar.png */; };
 		A71F10F818BFC82F00CE4A00 /* QuizmLearnLoginLogoLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10F718BFC82F00CE4A00 /* QuizmLearnLoginLogoLandscape.png */; };
 		A71F10FA18BFC90F00CE4A00 /* QuizmLearnLoginLogoLandscape2.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10F918BFC90F00CE4A00 /* QuizmLearnLoginLogoLandscape2.png */; };
 		A71F10FE18BFD98C00CE4A00 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = A71F10FD18BFD98C00CE4A00 /* 6.png */; };
@@ -477,7 +476,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A71F10CC18BC1AE700CE4A00 /* 0bar.png in Resources */,
 				2AA8301418A590D200FCC137 /* quizappicon1-2HQ.png in Resources */,
 				2AD87A411897225B0069F479 /* Images.xcassets in Resources */,
 				A755333518B82AF6001B9306 /* QuizmLearnLoginLogo2.png in Resources */,

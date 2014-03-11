@@ -90,9 +90,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    if (!loggedIn) {
-        [super viewWillAppear:animated];
-    }
+    [super viewWillAppear:animated];
+    
 }
 
 // This method conrols the Login, launching the welcome view (import view), and launching the first question.
@@ -382,9 +381,10 @@
         }
         
         self.attempts = [[NSMutableArray alloc] init];
-        for (int i = 0; i <= (int)quizLength; i++ ){
+        for (int i = 0; i < (int)quizLength; i++ ){
             [self.attempts insertObject:@0 atIndex:i];
         }
+        NSLog(@"The legth of attempts array: %d\nThe number of questions: %d", [self.attempts count], quizLength);
         
     // This is needed so the instructor doesnt try and pull stuff from you when you havent started the quiz
     if (!startedQuiz){
@@ -458,7 +458,8 @@
             self.attemptsLabel.text = [NSString stringWithFormat:@"No more Attempts!"];
             //#warning disabled sending attempts to parse
             // I give it a 0.1 second delay so that the button wont "stay stuck down" while the attempts are being send to parse, because with a slow internet connection that may take a long time.
-            [self performSelector:@selector(sendAttemptsToParse) withObject:self afterDelay:0.1];
+            [self performSelectorInBackground:@selector(sendAttemptsToParse) withObject:nil];
+            //[self performSelector:@selector(sendAttemptsToParse) withObject:self afterDelay:0.1];
             [self.detailItem insertObjectInButtonsPressed:@2 AtLetterSpot:sender.titleLabel.text];
             
         } else {
