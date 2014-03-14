@@ -146,6 +146,8 @@
         [master displayFirstQuestion];
         if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
             [master.tableView reloadData];
+        } else { // It's in portriat
+            [self.navigationItem.leftBarButtonItem.target performSelector:self.navigationItem.leftBarButtonItem.action withObject:self.navigationItem afterDelay:0.5];
         }
     }
 }
