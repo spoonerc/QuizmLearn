@@ -90,13 +90,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    [super viewWillAppear:animated];
-    
-}
 
-// This method conrols the Login, launching the welcome view (import view), and launching the first question.
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     
     // The first time the view loads, launch the login
     if (!loggedIn){
@@ -114,24 +109,66 @@
         [logInViewController setSignUpController:signUpViewController];
         
         
-        [self presentViewController:logInViewController animated:YES completion:NULL];
-    }
-    
-    
-    // the second time the view loads, launch the import.
-    else if (!quizImported){
-        [self performSegueWithIdentifier: @"goToWelcome" sender: self];
+        [self presentViewController:logInViewController animated:NO completion:NULL];
+    } else if (!quizImported){
+        [self performSelector:@selector(goToWelcomeMethod) withObject:nil afterDelay:0.1];
         quizImported = YES;
         
-    // The third time the view loads, display the first question!
+        // The third time the view loads, display the first question!
     } else if (!firstQuestionDisplayed){
         // Need a starting point for the image
         
-//        NSLog(@"The start point is %@", resultImageStartPoint);
+        //        NSLog(@"The start point is %@", resultImageStartPoint);
         
         // Because it was iffy whether the master table view finished indexing all the questions before the detail view loaded, have a small delay of 0.2 seconds before reloading the table view and displaying the first question.
         [self performSelector:@selector(viewDidLoadDelayedLoading) withObject:self afterDelay:0.4];
     }
+
+    
+}
+
+- (void)goToWelcomeMethod{
+    [self performSegueWithIdentifier: @"goToWelcome" sender: self];
+}
+
+// This method conrols the Login, launching the welcome view (import view), and launching the first question.
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+//    
+//    // The first time the view loads, launch the login
+//    if (!loggedIn){
+//        // Create the log in view controller
+//        MyLoginViewController *logInViewController = [[MyLoginViewController alloc] init];
+//        [logInViewController setDelegate:self]; // Set ourselves as the delegate
+//        
+//        logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsLogInButton;
+//        
+//        // Create the sign up view controller
+//        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+//        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+//        
+//        // Assign our sign up controller to be displayed from the login controller
+//        [logInViewController setSignUpController:signUpViewController];
+//        
+//        
+//        [self presentViewController:logInViewController animated:YES completion:NULL];
+//    }
+    
+    
+    // the second time the view loads, launch the import.
+//    if (!quizImported && loggedIn){
+//        [self performSegueWithIdentifier: @"goToWelcome" sender: self];
+//        quizImported = YES;
+//        
+//    // The third time the view loads, display the first question!
+//    } else if (!firstQuestionDisplayed){
+//        // Need a starting point for the image
+//        
+////        NSLog(@"The start point is %@", resultImageStartPoint);
+//        
+//        // Because it was iffy whether the master table view finished indexing all the questions before the detail view loaded, have a small delay of 0.2 seconds before reloading the table view and displaying the first question.
+//        [self performSelector:@selector(viewDidLoadDelayedLoading) withObject:self afterDelay:0.4];
+//    }
 }
 
 // Called from view did load to display first question
@@ -291,22 +328,17 @@
         
 
         // Set the lower progress bar image for the first time
-        if (!self.detailItem.qAttempts){
-//            _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
-//            _resultImage.alpha = 0.5;
-            
+        if (!self.detailItem.qAttempts)
+        {
             _resultImage.center = resultImageStartPoint;
-        } else if (self.detailItem.questionFinished){ //question is finished, display qattempts-1 as progress bar
+        }
+        else if (self.detailItem.questionFinished) //question is finished, display qattempts-1 as progress bar
+        {
            _resultImage.center = [[startpointsArray objectAtIndex:[self.detailItem.qAttempts integerValue]-1] CGPointValue];
-            
-            // int tempint = [self.detailItem.qAttempts integerValue]-1;
-           // NSString *tempstring = [NSString stringWithFormat:@"%d", tempint];
-           // _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@bar.png", tempstring]];
-        } else { // question is not finished, display attempts qattempts as progress bar
-            
+        }
+        else // question is not finished, move bar to the left 200 pixels
+        {
             [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{ _resultImage.center = CGPointMake(_resultImage.center.x-200, _resultImage.center.y); } completion:^ (BOOL fin){ }];
-            
-            //_resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@bar.png", self.detailItem.qAttempts]];
         }
         
         // Set the check mark and x images
@@ -614,7 +646,7 @@
     
     groupName = user.username;
     loggedIn = YES;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
     
 }
 
