@@ -285,7 +285,7 @@
                         <outlet property="reportButton" destination="0vo-x7-wyn" id="Vli-B2-15U"/>
                         <outlet property="resultImage" destination="Vwc-93-Ywu" id="XaK-0d-0dP"/>
                         <outlet property="swipeRightGesture" destination="Q6B-PY-aRM" id="Lrl-u8-bYu"/>
-                        <segue destination="fON-3k-Mz4" kind="modal" identifier="goToWelcome" animates="NO" id="MbF-L0-2mI"/>
+                        <segue destination="fON-3k-Mz4" kind="modal" identifier="goToWelcome" id="MbF-L0-2mI"/>
                         <segue destination="vuk-Ia-rZy" kind="modal" identifier="goToBigButton" animates="NO" id="yYw-R0-Eqh"/>
                     </connections>
                 </viewController>
@@ -458,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cbo-dm-c2k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3399" y="-2045"/>
+            <point key="canvasLocation" x="3511" y="-1877"/>
         </scene>
         <!--Quiz Table View Controller - Quiz View-->
         <scene sceneID="i7a-NZ-VRn">

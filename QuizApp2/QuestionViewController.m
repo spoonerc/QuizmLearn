@@ -132,43 +132,9 @@
 }
 
 // This method conrols the Login, launching the welcome view (import view), and launching the first question.
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
-//    
-//    // The first time the view loads, launch the login
-//    if (!loggedIn){
-//        // Create the log in view controller
-//        MyLoginViewController *logInViewController = [[MyLoginViewController alloc] init];
-//        [logInViewController setDelegate:self]; // Set ourselves as the delegate
-//        
-//        logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsLogInButton;
-//        
-//        // Create the sign up view controller
-//        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
-//        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
-//        
-//        // Assign our sign up controller to be displayed from the login controller
-//        [logInViewController setSignUpController:signUpViewController];
-//        
-//        
-//        [self presentViewController:logInViewController animated:YES completion:NULL];
-//    }
-    
-    
-    // the second time the view loads, launch the import.
-//    if (!quizImported && loggedIn){
-//        [self performSegueWithIdentifier: @"goToWelcome" sender: self];
-//        quizImported = YES;
-//        
-//    // The third time the view loads, display the first question!
-//    } else if (!firstQuestionDisplayed){
-//        // Need a starting point for the image
-//        
-////        NSLog(@"The start point is %@", resultImageStartPoint);
-//        
-//        // Because it was iffy whether the master table view finished indexing all the questions before the detail view loaded, have a small delay of 0.2 seconds before reloading the table view and displaying the first question.
-//        [self performSelector:@selector(viewDidLoadDelayedLoading) withObject:self afterDelay:0.4];
-//    }
 }
 
 // Called from view did load to display first question
