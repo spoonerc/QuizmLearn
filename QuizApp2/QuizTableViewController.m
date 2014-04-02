@@ -68,22 +68,27 @@ NSNumber *attemptsUsed;
     
     NSLog(@"Quiz Table view loaded");
     
+    //[self loadQuizData];
+    
     //[self.tableView setDelegate:self];
 
 }
 
 - (void)loadQuizData{
     
-    if (!quiz){
+    if (![quiz count]){
         NSLog(@"The quiz identifier in master is %@", self.quizIdentifier);
         
         PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"%@",self.quizIdentifier]];
         
         [query selectKeys: @[@"questionNumber", @"questionContent", @"answerA", @"answerB", @"answerC", @"answerD", @"correctAnswer", @"questionType"]];
         [query orderByAscending:@"questionNumber"];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *questions, NSError *error) {
-            if (!error) {
-                
+        NSArray *questions = [[NSArray alloc] init];
+        questions = [query findObjects];
+        
+//        [query findObjectsInBackgroundWithBlock:^(NSArray *questions, NSError *error) {
+//            if (!error) {
+        
                 NSLog(@"Successfully retrieved %lu Questions.", (unsigned long)questions.count);
                 
                 quiz = [[NSMutableArray alloc] init];
@@ -120,10 +125,12 @@ NSNumber *attemptsUsed;
                     //NSLog(@"The object where question 12 should be is %@", [quiz objectAtIndex:tempIndex.row]);
                 }
                 
-            } else {
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-        }];        
+//            } else {
+//                NSLog(@"Error: %@ %@", error, [error userInfo]);
+//            }
+//        }];        
+        
+        //[self.tableView reloadData];
         
     }
     
@@ -133,7 +140,35 @@ NSNumber *attemptsUsed;
 }
 
 
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (toInterfaceOrientation == UIDeviceOrientationPortrait) {
+        if ([self.splitViewController.viewControllers[1] conformsToProtocol:@protocol(UISplitViewControllerDelegate)]) {
+            self.splitViewController.delegate = self.splitViewController.viewControllers[1];
+        }
+        else {
+            self.splitViewController.delegate = nil;
+        }
+        
+    }
+}
+
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    if (toInterfaceOrientation == UIDeviceOrientationPortrait) {
+        if ([self.splitViewController.viewControllers[1] conformsToProtocol:@protocol(UISplitViewControllerDelegate)]) {
+            self.splitViewController.delegate = self.splitViewController.viewControllers[1];
+        }
+        else {
+            self.splitViewController.delegate = nil;
+        }
+        
+    }
+}
+
 - (void)displayFirstQuestion{
+    
+    [self loadQuizData];
+    
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
@@ -141,7 +176,7 @@ NSNumber *attemptsUsed;
 
 
 - (NSUInteger *)giveQuizLength{
-  //  NSLog(@"qtvc gave quiz count %d", [quiz count]);
+    NSLog(@"qtvc gave quiz count %d", [quiz count]);
     return [quiz count];
     
 }
@@ -182,7 +217,7 @@ NSNumber *attemptsUsed;
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    if (quiz){
+    if ([quiz count]){
         Question *q = [quiz objectAtIndex:indexPath.row+1];
 
         cell.textLabel.text = [NSString stringWithFormat:@"Question %d ", indexPath.row+1];

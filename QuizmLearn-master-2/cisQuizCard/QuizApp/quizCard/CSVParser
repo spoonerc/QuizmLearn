@@ -1,0 +1,55 @@
+//
+//  CSVParser.m
+//  cisQuizApp
+//
+//  Created by Bruce Li on 1/20/2014.
+//  Copyright (c) 2014 Bruce Li. All rights reserved.
+//
+
+#import "CSVParser.h"
+#import "Question.h"
+
+@implementation CSVParser
+
+- (NSMutableArray *) parse: (NSString *) filePath {
+    
+    NSArray *pathFragments = [filePath componentsSeparatedByString:@"."];
+    NSString *path = pathFragments[0];
+    NSString *type = pathFragments[1];
+    
+    NSArray *quizInfo = [path componentsSeparatedByString:@"_"];
+    
+    NSString *instructor = quizInfo[0];
+    NSString *quizName = quizInfo[1];
+    NSString *courseCode = quizInfo[2];
+    NSString *date = quizInfo[3];
+    
+    
+    NSString *fullPath = [[NSBundle mainBundle] pathForResource:path ofType:type];
+    
+    NSError *error;
+    NSString *csvData = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:&error];
+    NSArray *quizRawData = [csvData componentsSeparatedByString:@"\n"];
+    
+    NSArray *singleQuestion = [NSArray array];
+    NSMutableArray *allQuestions = [NSMutableArray array];
+    
+    for (int i = 0; i < quizRawData.count; i++)
+    {
+        NSString *nextQuizString = [NSString stringWithFormat:@"%@", quizRawData[i]];
+        singleQuestion = [nextQuizString componentsSeparatedByString:@","];
+        
+        Question *q = [[Question alloc] questionNumber:singleQuestion[0]
+                                  questionContent:singleQuestion[1]
+                                          answerA:singleQuestion[2]
+                                          answerB:singleQuestion[3]
+                                          answerC:singleQuestion[4]
+                                          answerD:singleQuestion[5]
+                      ];
+        [allQuestions addObject:q];
+    }
+    return allQuestions;
+}
+
+
+@end

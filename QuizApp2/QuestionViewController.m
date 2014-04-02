@@ -34,13 +34,13 @@
 @implementation QuestionViewController
 {
     CGPoint resultImageStartPoint;
-    BOOL loggedIn;
+    NSString *groupName;
     BOOL quizImported;
     BOOL logOutFlag;
     BOOL startedQuiz;
     BOOL firstQuestionDisplayed;
     NSString *messagestring;
-    NSString *groupName;
+
     NSUInteger *quizLength;
     NSArray *buttonArray;
     NSArray *imageArray;
@@ -94,28 +94,13 @@
     [super viewWillAppear:animated];
     
     // The first time the view loads, launch the login
-    if (!loggedIn){
-        // Create the log in view controller
-        MyLoginViewController *logInViewController = [[MyLoginViewController alloc] init];
-        [logInViewController setDelegate:self]; // Set ourselves as the delegate
-        
-        logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsLogInButton;
-        
-        // Create the sign up view controller
-        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
-        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
-        
-        // Assign our sign up controller to be displayed from the login controller
-        [logInViewController setSignUpController:signUpViewController];
-        
-        
-        [self presentViewController:logInViewController animated:NO completion:NULL];
-    } else if (!quizImported){
-        [self performSelector:@selector(goToWelcomeMethod) withObject:nil afterDelay:0.1];
+    //if (!quizImported){
+        //[self performSelector:@selector(goToWelcomeMethod) withObject:nil afterDelay:0.1];
         quizImported = YES;
         
         // The third time the view loads, display the first question!
-    } else if (!firstQuestionDisplayed){
+    //} else
+if (!firstQuestionDisplayed){
         // Need a starting point for the image
         
         //        NSLog(@"The start point is %@", resultImageStartPoint);
@@ -140,8 +125,10 @@
 // Called from view did load to display first question
 - (void)viewDidLoadDelayedLoading{
     firstQuestionDisplayed = YES;
+    [[self.splitViewController.viewControllers[0] topViewController] performSegueWithIdentifier:@"goToQuizTable" sender:nil];
+    [self sendQuizIDto:[self.splitViewController.viewControllers[0] topViewController] withidentifier:self.quizIdentifier];
     id masternav = self.splitViewController.viewControllers[0];
-    QuizTableViewController *master = [masternav topViewController];
+    QuizTableViewController *master = (QuizTableViewController *)[masternav topViewController];
     if ([master isKindOfClass:[QuizTableViewController class]]){
         [master displayFirstQuestion];
         if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
@@ -361,7 +348,7 @@
         // Device is in landscape, so we need to update the table image as soon as the button is pressed. Only do this if a button has been pressed (flag will be yes)
         // If it is a report question, only update it the first time.
         id masternav = self.splitViewController.viewControllers[0];
-        QuizTableViewController *master = [masternav topViewController];
+        QuizTableViewController *master = (QuizTableViewController *)[masternav topViewController];
         
         NSArray *indexPaths = [[NSArray alloc] initWithObjects:[NSIndexPath indexPathForRow:[self.detailItem.questionNumber integerValue]-1 inSection:0], nil];
 
@@ -496,6 +483,30 @@
     }
 }
 
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (toInterfaceOrientation == UIDeviceOrientationPortrait) {
+        if ([self.splitViewController.viewControllers[0] conformsToProtocol:@protocol(UISplitViewControllerDelegate)]) {
+            self.splitViewController.delegate = self.splitViewController.viewControllers[0];
+        }
+        else {
+            self.splitViewController.delegate = nil;
+        }
+        
+    }
+}
+
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    if (toInterfaceOrientation == UIDeviceOrientationPortrait) {
+        if ([self.splitViewController.viewControllers[0] conformsToProtocol:@protocol(UISplitViewControllerDelegate)]) {
+            self.splitViewController.delegate = self.splitViewController.viewControllers[0];
+        }
+        else {
+            self.splitViewController.delegate = nil;
+        }
+        
+    }
+}
+
 - (void)goToNextQuestion{
     id masternav = self.splitViewController.viewControllers[0];
     id master = [masternav topViewController];
@@ -580,94 +591,23 @@
 
 #pragma mark - Split view
 
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+
+
+- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)apopoverController
 {
     barButtonItem.title = NSLocalizedString(@"See Quiz", @"See Quiz");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.masterPopoverController = popoverController;
+    self.masterPopoverController = apopoverController;
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
+    viewController = [splitController.viewControllers[1]topViewController];
+    
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
 
-#pragma mark - PFLogInViewControllerDelegate
-
-// Sent to the delegate to determine whether the log in request should be submitted to the server.
-- (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
-    // Check if both fields are completed
-    if (username && password && username.length && password.length) {
-        
-        return YES; // Begin login process
-    }
-    
-    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
-    return NO; // Interrupt login process
-}
-
-// Sent to the delegate when a PFUser is logged in.
-- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    NSLog(@"User logged in");
-    
-    groupName = user.username;
-    loggedIn = YES;
-    [self dismissViewControllerAnimated:NO completion:nil];
-    
-}
-
-// Sent to the delegate when the log in attempt fails.
-- (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
-    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid login credentials!", nil) message:NSLocalizedString(@"Please check and re-enter your username and password", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Will do", nil) otherButtonTitles:nil] show];
-    
-    NSLog(@"Failed to log in...");
-}
-
-// Sent to the delegate when the log in screen is dismissed.
-- (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
-    NSLog(@"User dismissed the logInViewController");
-}
-
-#pragma mark - PFSignUpViewControllerDelegate
-
-// Signup isnt needed, but keep if we ever want to implement it.
-
-// Sent to the delegate to determine whether the sign up request should be submitted to the server.
-- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
-    BOOL informationComplete = YES;
-    
-    // loop through all of the submitted data
-    for (id key in info) {
-        NSString *field = [info objectForKey:key];
-        if (!field || !field.length) { // check completion
-            informationComplete = NO;
-            break;
-        }
-    }
-    
-    // Display an alert if a field wasn't completed
-    if (!informationComplete) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
-    }
-    
-    return informationComplete;
-}
-
-// Sent to the delegate when a PFUser is signed up.
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-// Sent to the delegate when the sign up attempt fails.
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
-    NSLog(@"Failed to sign up...");
-}
-
-// Sent to the delegate when the sign up screen is dismissed.
-- (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
-    NSLog(@"User dismissed the signUpViewController");
-}
 
 @end

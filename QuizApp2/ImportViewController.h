@@ -10,7 +10,7 @@
 #import "NSString+ParsingExtensions.h"
 #import <Parse/Parse.h>
 
-@interface ImportViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface ImportViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, UISplitViewControllerDelegate>
 
 - (void) handleOpenURL: (NSURL *) url;
 

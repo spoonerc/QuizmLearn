@@ -37,6 +37,9 @@
 {
     [super viewDidLoad];
     
+    
+    
+    
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing Quizzes"];
@@ -50,8 +53,16 @@
 
 -(void)refresh {
     
+    PFQuery *queryUser = [PFUser query];
+    [queryUser whereKey:@"username" equalTo:[PFUser currentUser].username];
+    
+    PFObject *user = [queryUser getFirstObject];
+    
+    NSString *courseName = user[@"StudentCourse"];
+    
+    
     PFQuery *query = [PFQuery queryWithClassName:@"ImportedQuizzes"];
-    [query selectKeys: @[@"QuizIdentifier", @"Course", @"Section", @"QuizName"]];
+    [query selectKeys: @[@"QuizIdentifier", @"Course", @"QuizName"]];
     [query orderByAscending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *pQuiz, NSError *error) {
         if (!error) {
@@ -59,13 +70,17 @@
             self.listPastQuizzes = [[NSMutableArray alloc]init];
 
             for (PFObject *quiz in pQuiz) {
+                
+                if ([quiz[@"Course"] isEqualToString:courseName]){
                 Quiz *_quiz = [[Quiz alloc]init];
                 _quiz.course = quiz[@"Course"];
-                _quiz.section = quiz[@"Section"];
+                //_quiz.section = quiz[@"Section"];
                 _quiz.quizName = quiz[@"QuizName"];
                 _quiz.quizIdentifier = quiz[@"QuizIdentifier"];
                 //NSString *quizName = quiz[@"QuizName"];
                 [self.listPastQuizzes addObject:_quiz];
+            }
+                
             }
             [self.tableView reloadData];
         }
@@ -111,7 +126,7 @@
     } else {
         
         Quiz *quiz = [self.listPastQuizzes objectAtIndex:indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@-%@ %@", quiz.course, quiz.section, quiz.quizName];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", quiz.course, quiz.quizName];
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -141,13 +156,18 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqual:@"unwindToQuestion"]){
-        NSLog(@"Entered Unwind Segue");
+    if ([segue.identifier isEqual:@"loadQuestionView"]){
+        NSLog(@"Quiz Table Segue");
+        
+        //QuizTableViewController *qtvc = [segue destinationViewController];
+        QuestionViewController *questionView = (QuestionViewController *)[[segue destinationViewController]topViewController];
         
         NSIndexPath *index = [self.tableView indexPathForCell:sender];
         
+        //[[self.splitViewController.viewControllers[1]topViewController] performSegueWithIdentifier:@"welcomeToQuestion" sender:nil];
+        
         Quiz *quiz = [self.listPastQuizzes objectAtIndex:index.row];
-        self.quizIdentifier = quiz.quizIdentifier;
+        questionView.quizIdentifier = quiz.quizIdentifier;
         
         
         

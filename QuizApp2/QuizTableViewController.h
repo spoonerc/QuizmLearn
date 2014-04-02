@@ -12,7 +12,7 @@
 #import "QuestionSelectionDelegate.h"
 
 
-@interface QuizTableViewController : UITableViewController
+@interface QuizTableViewController : UITableViewController<UISplitViewControllerDelegate, UITableViewDelegate>
 
 @property (strong, nonatomic) NSIndexPath *currentSelection;
 @property (strong, nonatomic) NSString *currentButtonSelected;
