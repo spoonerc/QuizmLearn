@@ -78,7 +78,7 @@
     [super viewDidLoad];
     
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(768, 1200)];
+    [self.scrollView setContentSize:CGSizeMake(704, 1200)];
     //self.scrollView.contentSize = CGSizeMake(768, 1024);
    
     
@@ -147,6 +147,8 @@
     
 }
 
+
+
 - (void)goToWelcomeMethod{
     [self performSegueWithIdentifier: @"goToWelcome" sender: self];
 }
@@ -174,6 +176,15 @@
     [self getColoursFromParse];
     //Get the colours
     
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    if (sender.contentOffset.x != 0) {
+        CGPoint offset = sender.contentOffset;
+        offset.x = 0;
+        sender.contentOffset = offset;
+    }
 }
 
 -(void) getColoursFromParse{
