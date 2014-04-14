@@ -18,6 +18,11 @@
 		2A85A10A18B6D392002722E5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A85A10918B6D392002722E5 /* Parse.framework */; };
 		2A85A10D18B6D3CD002722E5 /* QuizmLearn.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A85A10B18B6D3CD002722E5 /* QuizmLearn.png */; };
 		2A85A10E18B6D3CD002722E5 /* QuizmLearnGQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A85A10C18B6D3CD002722E5 /* QuizmLearnGQ.png */; };
+		2A89240A18EF1F050051B383 /* NormalQuestion.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A89240818EF1F050051B383 /* NormalQuestion.png */; };
+		2A89240B18EF1F050051B383 /* ReportQuestionSign2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A89240918EF1F050051B383 /* ReportQuestionSign2.png */; };
+		2A89240D18EF21050051B383 /* reportQuestionSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A89240C18EF21050051B383 /* reportQuestionSmall.png */; };
+		2A89241018EF23090051B383 /* NormalQuestion2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A89240E18EF23090051B383 /* NormalQuestion2.png */; };
+		2A89241118EF23090051B383 /* ReportQuestion3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A89240F18EF23090051B383 /* ReportQuestion3.png */; };
 		2A8F02BE18EA12AD0077C265 /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8F02BD18EA12AD0077C265 /* ILTranslucentView.m */; };
 		2A8F02C018EA318B0077C265 /* reportA.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A8F02BF18EA318B0077C265 /* reportA.png */; };
 		2A8F02C418EA31BE0077C265 /* reportB.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A8F02C118EA31BE0077C265 /* reportB.png */; };
@@ -30,6 +35,7 @@
 		2AA8301518A590D200FCC137 /* zeroattemptstar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AA8300C18A590D200FCC137 /* zeroattemptstar.png */; };
 		2AA8301618A590D200FCC137 /* zerofillStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AA8300D18A590D200FCC137 /* zerofillStar.png */; };
 		2AB1DCF818A3F97A00E5E08B /* PastQuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1DCF718A3F97A00E5E08B /* PastQuizViewController.m */; };
+		2AB428F218ECB6F8001B6458 /* 0bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AB428F118ECB6F8001B6458 /* 0bar.png */; };
 		2AD7CF3618E6266C002B2246 /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD7CF0818E6266C002B2246 /* 0.png */; };
 		2AD7CF3718E6266C002B2246 /* 0square.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD7CF0918E6266C002B2246 /* 0square.png */; };
 		2AD7CF3818E6266C002B2246 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD7CF0A18E6266C002B2246 /* 1.png */; };
@@ -133,6 +139,11 @@
 		2A85A10918B6D392002722E5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../../apsciOSDev/cisQuizApp2/Parse.framework; sourceTree = "<group>"; };
 		2A85A10B18B6D3CD002722E5 /* QuizmLearn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearn.png; path = Images.xcassets/QuizmLearn.png; sourceTree = "<group>"; };
 		2A85A10C18B6D3CD002722E5 /* QuizmLearnGQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuizmLearnGQ.png; path = Images.xcassets/QuizmLearnGQ.png; sourceTree = "<group>"; };
+		2A89240818EF1F050051B383 /* NormalQuestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NormalQuestion.png; sourceTree = "<group>"; };
+		2A89240918EF1F050051B383 /* ReportQuestionSign2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReportQuestionSign2.png; sourceTree = "<group>"; };
+		2A89240C18EF21050051B383 /* reportQuestionSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportQuestionSmall.png; sourceTree = "<group>"; };
+		2A89240E18EF23090051B383 /* NormalQuestion2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NormalQuestion2.png; sourceTree = "<group>"; };
+		2A89240F18EF23090051B383 /* ReportQuestion3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReportQuestion3.png; sourceTree = "<group>"; };
 		2A8F02BC18EA12AD0077C265 /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTranslucentView.h; sourceTree = "<group>"; };
 		2A8F02BD18EA12AD0077C265 /* ILTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILTranslucentView.m; sourceTree = "<group>"; };
 		2A8F02BF18EA318B0077C265 /* reportA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportA.png; sourceTree = "<group>"; };
@@ -148,6 +159,7 @@
 		2AA8300D18A590D200FCC137 /* zerofillStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zerofillStar.png; path = Images.xcassets/zerofillStar.png; sourceTree = "<group>"; };
 		2AB1DCF618A3F97A00E5E08B /* PastQuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastQuizViewController.h; sourceTree = "<group>"; };
 		2AB1DCF718A3F97A00E5E08B /* PastQuizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastQuizViewController.m; sourceTree = "<group>"; };
+		2AB428F118ECB6F8001B6458 /* 0bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0bar.png; sourceTree = "<group>"; };
 		2AD7CF0818E6266C002B2246 /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		2AD7CF0918E6266C002B2246 /* 0square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0square.png; sourceTree = "<group>"; };
 		2AD7CF0A18E6266C002B2246 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -369,7 +381,12 @@
 		2AD87AAC189866020069F479 /* UI Images */ = {
 			isa = PBXGroup;
 			children = (
+				2A89240E18EF23090051B383 /* NormalQuestion2.png */,
+				2A89240F18EF23090051B383 /* ReportQuestion3.png */,
 				2AD7CF0818E6266C002B2246 /* 0.png */,
+				2A89240C18EF21050051B383 /* reportQuestionSmall.png */,
+				2A89240818EF1F050051B383 /* NormalQuestion.png */,
+				2A89240918EF1F050051B383 /* ReportQuestionSign2.png */,
 				2AD7CF0918E6266C002B2246 /* 0square.png */,
 				2A2F6D2D18EB402A00061083 /* 0normal.png */,
 				2A2F6D2E18EB402A00061083 /* 0report.png */,
@@ -428,6 +445,7 @@
 				2AA8300A18A590D200FCC137 /* quizappicon1-2.png */,
 				2AA8300B18A590D200FCC137 /* quizappicon1-2HQ.png */,
 				2AA8300C18A590D200FCC137 /* zeroattemptstar.png */,
+				2AB428F118ECB6F8001B6458 /* 0bar.png */,
 				2AFF21B3189C7ACC00FE6F38 /* iosBlueStarIcon.png */,
 				2AFF21B4189C7ACC00FE6F38 /* ok-512.png */,
 				2AFF21B5189C7ACC00FE6F38 /* redX7.png */,
@@ -553,6 +571,7 @@
 				2A2F6D4018EB43C800061083 /* 1D.png in Resources */,
 				2AD7CF5E18E6266C002B2246 /* Tab Bar Icon Photoshop.psd in Resources */,
 				2A8F02C518EA31BE0077C265 /* reportC.png in Resources */,
+				2A89240A18EF1F050051B383 /* NormalQuestion.png in Resources */,
 				2AD7CF3D18E6266C002B2246 /* 3bar.png in Resources */,
 				2AD7CF3618E6266C002B2246 /* 0.png in Resources */,
 				2AD7CF5918E6266C002B2246 /* QuizmTeachSplashScreenHQLandscape.png in Resources */,
@@ -586,9 +605,11 @@
 				2A8F02C018EA318B0077C265 /* reportA.png in Resources */,
 				2AD7CF5C18E6266C002B2246 /* Screen Shot 2014-02-14 at 10.14.13 AM.png in Resources */,
 				2AD7CF4118E6266C002B2246 /* A.png in Resources */,
+				2AB428F218ECB6F8001B6458 /* 0bar.png in Resources */,
 				2A99664218AAF2B800192BD7 /* navBarColor.png in Resources */,
 				2AD7CF4918E6266C002B2246 /* bigPC.png in Resources */,
 				2AA8301318A590D200FCC137 /* quizappicon1-2.png in Resources */,
+				2A89241118EF23090051B383 /* ReportQuestion3.png in Resources */,
 				2AD7CF6218E6266C002B2246 /* Tab-Bar-Icon---Results.png in Resources */,
 				2AD7CF4C18E6266C002B2246 /* C.png in Resources */,
 				2AD7CF5518E6266C002B2246 /* QuizmTeachLoginLogo2Landscape.png in Resources */,
@@ -605,12 +626,15 @@
 				2AD7CF4818E6266C002B2246 /* bigPB.png in Resources */,
 				2A8F02C418EA31BE0077C265 /* reportB.png in Resources */,
 				2AD7CF6118E6266C002B2246 /* Tab-Bar-Icon---Quetsions.png in Resources */,
+				2A89240D18EF21050051B383 /* reportQuestionSmall.png in Resources */,
+				2A89240B18EF1F050051B383 /* ReportQuestionSign2.png in Resources */,
 				2AD7CF5118E6266C002B2246 /* QuizmLearnLoginLogoLandscape.png in Resources */,
 				2AD7CF5B18E6266C002B2246 /* Screen Shot 2014-02-14 at 10.06.58 AM.png in Resources */,
 				2AD7CF3A18E6266C002B2246 /* 2.png in Resources */,
 				2AD7CF4218E6266C002B2246 /* B.png in Resources */,
 				2AD7CF3C18E6266C002B2246 /* 3.png in Resources */,
 				2AD7CF3818E6266C002B2246 /* 1.png in Resources */,
+				2A89241018EF23090051B383 /* NormalQuestion2.png in Resources */,
 				2A2F6D3E18EB43C800061083 /* 1B.png in Resources */,
 				2A85A10E18B6D3CD002722E5 /* QuizmLearnGQ.png in Resources */,
 				2AD7CF3B18E6266C002B2246 /* 2bar.png in Resources */,

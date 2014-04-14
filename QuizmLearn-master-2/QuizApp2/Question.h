@@ -16,12 +16,15 @@
 @property (strong, nonatomic) NSString *answerB;
 @property (strong, nonatomic) NSString *answerC;
 @property (strong, nonatomic) NSString *answerD;
+@property (strong, nonatomic) NSString *answerE;
+@property int numberOfAnswers;
 @property (strong, nonatomic) NSString *correctAnswer;
 @property (strong, nonatomic) NSString *qtype;
 @property (strong, nonatomic) NSMutableArray *ButtonsPressed;
 @property (strong, nonatomic) NSString *reportButtonChoice; // This will only be updated in report questions, so the qtvc will know what image to display
 @property (strong, nonatomic) NSString *questionRelease;
-
+@property (nonatomic) BOOL applicationReleased;
+@property int sortedQNumber;
 
 - (void)insertObjectInButtonsPressed:(id)rightOrWrong AtLetterSpot:(NSString *)index;
 

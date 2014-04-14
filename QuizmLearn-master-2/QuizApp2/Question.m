@@ -22,7 +22,8 @@
     if ([index isEqualToString:@"A"]) { i = 0; }
     else if ([index isEqualToString:@"B"]) { i = 1; }
     else if ([index isEqualToString:@"C"]) { i = 2; }
-    else { i = 3; }
+    else if ([index isEqualToString:@"D"]) { i = 3; }
+    else { i = 4; }
     [self.ButtonsPressed replaceObjectAtIndex:i withObject:rightOrWrong];
 }
 

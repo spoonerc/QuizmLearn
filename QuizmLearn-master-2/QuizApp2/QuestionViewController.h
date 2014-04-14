@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonB;
 @property (weak, nonatomic) IBOutlet UIButton *buttonC;
 @property (weak, nonatomic) IBOutlet UIButton *buttonD;
+@property (weak, nonatomic) IBOutlet UIButton *buttonE;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
@@ -41,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *cImage;
 @property (weak, nonatomic) IBOutlet UIImageView *dImage;
 @property (weak, nonatomic) IBOutlet UIImageView *resultImage;
+@property (weak, nonatomic) IBOutlet UIImageView *eImage;
 
 - (void)switchQuestion;
 

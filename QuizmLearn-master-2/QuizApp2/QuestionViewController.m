@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *answerBLabel;
 @property (weak, nonatomic) IBOutlet UITextView *answerCLabel;
 @property (weak, nonatomic) IBOutlet UITextView *answerDLabel;
-
+@property (weak, nonatomic) IBOutlet UITextView *answerELabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *reportButton;
 @property BOOL *questionFinished;
@@ -61,6 +61,7 @@
 @synthesize buttonB;
 @synthesize buttonC;
 @synthesize buttonD;
+@synthesize buttonE;
 @synthesize reportButton;
 @synthesize popoverController;
 
@@ -78,9 +79,9 @@
     [super viewDidLoad];
     
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(704, 1200)];
+    [self.scrollView setContentSize:CGSizeMake(704, 1400)];
     //self.scrollView.contentSize = CGSizeMake(768, 1024);
-   
+   self.navigationItem.title = ( [self.detailItem.qtype isEqualToString:@"0"] ? [NSString stringWithFormat:@"Question %d", self.detailItem.sortedQNumber] :[NSString stringWithFormat:@"Application %d", self.detailItem.sortedQNumber ]);
     
 //    [self.qContentLabel sizeToFit];
 //    [self.answerALabel sizeToFit];
@@ -88,9 +89,9 @@
 //    [self.answerCLabel sizeToFit];
 //    [self.answerDLabel sizeToFit];
     
-    buttonArray = [[NSArray alloc] initWithObjects:buttonA, buttonB, buttonC, buttonD,  nil];
+    buttonArray = [[NSArray alloc] initWithObjects:buttonA, buttonB, buttonC, buttonD, buttonE, nil];
     
-    imageArray = [[NSArray alloc] initWithObjects:_aImage,_bImage,_cImage,_dImage, nil];
+    imageArray = [[NSArray alloc] initWithObjects:_aImage,_bImage,_cImage,_dImage, _eImage, nil];
     
     _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
     _resultImage.alpha = 0.5;
@@ -212,7 +213,7 @@
 // This method is called often, whenever a button has to be enabled or disabled. It has the benefit that it does different things for regular buttons and the report button.
 +(void) shouldDisableButton:(UIButton *)sender should:(BOOL)state {
     
-    NSSet *normalbuttonStrings = [NSSet setWithObjects:@"A", @"B", @"C",@"D", nil];
+    NSSet *normalbuttonStrings = [NSSet setWithObjects:@"A", @"B", @"C",@"D", @"E", nil];
     sender.enabled = !state;
     
     // If it's a report button set the appropriate label text and background image
@@ -274,6 +275,9 @@
 // Called from the master when a new question is pushed, also called for nextbutton. It manages updating all the labels, and calls the neccesarry methods to update the images and buttons
 - (void)switchQuestion{
     
+    
+    
+    
     NSLog(@"%@  %@", self.detailItem.questionNumber, self.detailItem.questionContent);
     
     [UIView transitionWithView:self.view duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -285,31 +289,122 @@
         self.qContentLabel.textAlignment = NSTextAlignmentCenter;
         
         
+        
+        
+        
         self.answerALabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerA];
         self.answerALabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         [self.answerALabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
         
-        
+        if (self.detailItem.numberOfAnswers == 2) {
         
         self.answerBLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerB];
         self.answerBLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         [self.answerBLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+            
+            //NO C, D, E
+            self.answerCLabel.hidden = YES;
+            self.buttonC.alpha = 0;
+            
+            self.answerDLabel.hidden = YES;
+            self.buttonD.alpha = 0;
+            
+            self.answerELabel.hidden = YES;
+            self.buttonE.alpha = 0;
+        
+        }
+        
+        
+        
+        if (self.detailItem.numberOfAnswers == 3){
+            
+            
+            self.answerBLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerB];
+            self.answerBLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+            [self.answerBLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+            
+            self.answerCLabel.hidden = NO;
+            self.buttonC.alpha = 1;
         
         self.answerCLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerC];
         self.answerCLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         [self.answerCLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+            
+            
+            self.answerDLabel.hidden = YES;
+            self.buttonD.alpha = 0;
+            
+            self.answerELabel.hidden = YES;
+            self.buttonE.alpha = 0;
         
-        self.answerDLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerD];
-        self.answerDLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
-        [self.answerDLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+        }
         
+        
+        if (self.detailItem.numberOfAnswers == 4){
+            
+            self.answerBLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerB];
+            self.answerBLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+            [self.answerBLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+            
+            self.answerCLabel.hidden = NO;
+            self.buttonC.alpha = 1;
+            
+            self.answerDLabel.hidden = NO;
+            self.buttonD.alpha = 1;
+            
+            self.answerELabel.hidden = YES;
+            self.buttonE.alpha = 0;
+            
+            
+            self.answerCLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerC];
+            self.answerCLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+            [self.answerCLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+            
+            self.answerDLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerD];
+            self.answerDLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+            [self.answerDLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+            
+            
+        }
+        
+        if (self.detailItem.numberOfAnswers == 5){
+            
+            self.answerBLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerB];
+            self.answerBLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+            [self.answerBLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+            
+            self.answerCLabel.hidden = NO;
+            self.buttonC.alpha = 1;
+            
+            self.answerDLabel.hidden = NO;
+            self.buttonD.alpha = 1;
+            
+            self.answerELabel.hidden = NO;
+            self.buttonE.alpha = 1;
+            
+            self.answerCLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerC];
+            self.answerCLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+            [self.answerCLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+            
+            self.answerDLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerD];
+            self.answerDLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+            [self.answerDLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+
+    
+        self.answerELabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerE];
+        self.answerELabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+        [self.answerELabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+                    
+        }
+     
 
     }completion:nil];
     
     if ([self qIsTypeNormal]){
         [QuestionViewController shouldDisableButton:reportButton should:YES];
         if (!self.detailItem.qAttempts) { //If buttons pressed is still Null, create it.
-            self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, nil];
+            self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, @0, nil];
+            
             self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: 4"];
         } else { //Question has been attempted
             self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 4 - [self.detailItem.qAttempts integerValue]];
@@ -317,7 +412,7 @@
         nextButton.enabled = NO;
     } else { // else, it is a report question!
         if (!self.detailItem.qAttempts) { //If buttons pressed is still Null
-            self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, nil];
+            self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, @0, nil];
         }
         self.attemptsLabel.text = [NSString stringWithFormat:@"(Report Question)"];
     }
@@ -331,7 +426,7 @@
     
     if(self.detailItem.questionFinished ){
         // If the question is done, both types of questions need all the buttons disabled, and need a restriction on the next button
-        for(int index = 0; index < 4; index++)
+        for(int index = 0; index < 5; index++)
         {
             [QuestionViewController shouldDisableButton:[buttonArray objectAtIndex:index] should:YES];
         }
@@ -349,7 +444,7 @@
     } else {
         // Question isnt finished, disable buttons if theyve been pressed, dont if they havent been
         [QuestionViewController shouldDisableButton:reportButton should:YES];
-        for(int index = 0; index < 4; index++)
+        for(int index = 0; index < 5; index++)
         {
             if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@0]){
                 [QuestionViewController shouldDisableButton:[buttonArray objectAtIndex:index] should:NO];
@@ -372,6 +467,7 @@
         [buttonB setBackgroundImage:nil forState:UIControlStateNormal];
         [buttonC setBackgroundImage:nil forState:UIControlStateNormal];
         [buttonD setBackgroundImage:nil forState:UIControlStateNormal];
+        [buttonE setBackgroundImage:nil forState:UIControlStateNormal];
         
 
         // Set the lower progress bar image for the first time
@@ -389,7 +485,7 @@
         }
         
         // Set the check mark and x images
-        for(int index = 0; index < 4; index++)
+        for(int index = 0; index < 5; index++)
         {
             if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@1]){
                 flag = true;
@@ -418,15 +514,17 @@
         _bImage.image = nil;
         _cImage.image = nil;
         _dImage.image = nil;
+        _eImage.image = nil;
         [buttonA setBackgroundImage:nil forState:UIControlStateNormal];
         [buttonB setBackgroundImage:nil forState:UIControlStateNormal];
         [buttonC setBackgroundImage:nil forState:UIControlStateNormal];
         [buttonD setBackgroundImage:nil forState:UIControlStateNormal];
+        [buttonE setBackgroundImage:nil forState:UIControlStateNormal];
         
         _resultImage.center = resultImageStartPoint;
         
         // The @3 in the index of buttonspressed means it was chosen as a report question answer
-        for(int index = 0; index < 4; index++)
+        for(int index = 0; index < 5; index++)
         {
             if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@3]){
                 UIButton *tempButton = [buttonArray objectAtIndex:index];
@@ -442,7 +540,14 @@
         id masternav = self.splitViewController.viewControllers[0];
         QuizTableViewController *master = [masternav topViewController];
         
-        NSArray *indexPaths = [[NSArray alloc] initWithObjects:[NSIndexPath indexPathForRow:[self.detailItem.questionNumber integerValue]-1 inSection:0], nil];
+        
+        NSArray *indexPaths;
+        if ([self.detailItem.qtype isEqualToString:@"0"]){
+        
+        indexPaths = [[NSArray alloc] initWithObjects:[NSIndexPath indexPathForRow:self.detailItem.sortedQNumber-1 inSection:0], nil];
+        }else if ([self.detailItem.qtype isEqualToString:@"1"]){
+            indexPaths = [[NSArray alloc] initWithObjects:[NSIndexPath indexPathForRow:self.detailItem.sortedQNumber-1 inSection:1], nil];
+        }
 
        [master.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -509,15 +614,6 @@
 
 - (IBAction)clicked:(UIButton *)sender {
     
-    // The commented code is for the hold down feature
-    
-    //    if ( ![buttonTimer isValid] ){
-    //        NSLog(@"Long click, dont execute normal button press tasks");
-    //    } else {
-    //
-    //    [buttonTimer invalidate];
-    //    buttonTimer = nil;
-    
     currentButton = sender.titleLabel.text; // This is to send to BigButtonController and to use in the message string to parse
     
     if (!self.detailItem.qAttempts) // if its null
@@ -545,13 +641,13 @@
             
         } else {
             [self.detailItem insertObjectInButtonsPressed:@1 AtLetterSpot:sender.titleLabel.text];
-            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 4 - [self.detailItem.qAttempts integerValue]];
+            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 5 - [self.detailItem.qAttempts integerValue]];
         }
         
     } else { // It is a report question
-        
-        [self sendAttemptsToParse]; // This will send the button selected to parse
         self.detailItem.questionFinished = YES; // This will turn off all the buttons when calling EnableButtonsAccordingToButtonsPressed
+        [self sendAttemptsToParse]; // This will send the button selected to parse
+
         [self.detailItem insertObjectInButtonsPressed:@3 AtLetterSpot:sender.titleLabel.text];
         self.detailItem.reportButtonChoice = currentButton;
     }
@@ -560,10 +656,8 @@
 }
 
 - (IBAction)reportButtonSelected:(UIButton *)sender {
-
-    
+   
     [self performSegueWithIdentifier: @"goToBigButton" sender: self];
-    
     
 }
 
