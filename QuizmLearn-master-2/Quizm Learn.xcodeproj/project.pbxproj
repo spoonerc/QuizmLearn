@@ -14,6 +14,13 @@
 		2A2F6D3E18EB43C800061083 /* 1B.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A2F6D3A18EB43C800061083 /* 1B.png */; };
 		2A2F6D3F18EB43C800061083 /* 1C.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A2F6D3B18EB43C800061083 /* 1C.png */; };
 		2A2F6D4018EB43C800061083 /* 1D.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A2F6D3C18EB43C800061083 /* 1D.png */; };
+		2A3725DF18FC8D3B003D7E15 /* AFKPageFlipper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3725DE18FC8D3B003D7E15 /* AFKPageFlipper.m */; };
+		2A3725E818FC9B71003D7E15 /* AnimationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3725E118FC9B71003D7E15 /* AnimationDelegate.m */; };
+		2A3725E918FC9B71003D7E15 /* AnimationFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3725E318FC9B71003D7E15 /* AnimationFrame.m */; };
+		2A3725EA18FC9B71003D7E15 /* FlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3725E518FC9B71003D7E15 /* FlipView.m */; };
+		2A3725EB18FC9B71003D7E15 /* GenericAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3725E718FC9B71003D7E15 /* GenericAnimationView.m */; };
+		2A80B01518FEECAB008850F2 /* downArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A80B01418FEECAB008850F2 /* downArrow.png */; };
+		2A80B01718FEED88008850F2 /* downSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A80B01618FEED88008850F2 /* downSimple.png */; };
 		2A85A10818B6D331002722E5 /* Quiz.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A85A10718B6D331002722E5 /* Quiz.m */; };
 		2A85A10A18B6D392002722E5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A85A10918B6D392002722E5 /* Parse.framework */; };
 		2A85A10D18B6D3CD002722E5 /* QuizmLearn.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A85A10B18B6D3CD002722E5 /* QuizmLearn.png */; };
@@ -134,6 +141,18 @@
 		2A2F6D3A18EB43C800061083 /* 1B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1B.png; sourceTree = "<group>"; };
 		2A2F6D3B18EB43C800061083 /* 1C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1C.png; sourceTree = "<group>"; };
 		2A2F6D3C18EB43C800061083 /* 1D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1D.png; sourceTree = "<group>"; };
+		2A3725DD18FC8D3B003D7E15 /* AFKPageFlipper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFKPageFlipper.h; sourceTree = "<group>"; };
+		2A3725DE18FC8D3B003D7E15 /* AFKPageFlipper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFKPageFlipper.m; sourceTree = "<group>"; };
+		2A3725E018FC9B71003D7E15 /* AnimationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimationDelegate.h; path = "flip view classes/AnimationDelegate.h"; sourceTree = "<group>"; };
+		2A3725E118FC9B71003D7E15 /* AnimationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnimationDelegate.m; path = "flip view classes/AnimationDelegate.m"; sourceTree = "<group>"; };
+		2A3725E218FC9B71003D7E15 /* AnimationFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimationFrame.h; path = "flip view classes/AnimationFrame.h"; sourceTree = "<group>"; };
+		2A3725E318FC9B71003D7E15 /* AnimationFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnimationFrame.m; path = "flip view classes/AnimationFrame.m"; sourceTree = "<group>"; };
+		2A3725E418FC9B71003D7E15 /* FlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipView.h; path = "flip view classes/FlipView.h"; sourceTree = "<group>"; };
+		2A3725E518FC9B71003D7E15 /* FlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipView.m; path = "flip view classes/FlipView.m"; sourceTree = "<group>"; };
+		2A3725E618FC9B71003D7E15 /* GenericAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericAnimationView.h; path = "flip view classes/GenericAnimationView.h"; sourceTree = "<group>"; };
+		2A3725E718FC9B71003D7E15 /* GenericAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericAnimationView.m; path = "flip view classes/GenericAnimationView.m"; sourceTree = "<group>"; };
+		2A80B01418FEECAB008850F2 /* downArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = downArrow.png; path = ../../QuizApp2Images/downArrow.png; sourceTree = "<group>"; };
+		2A80B01618FEED88008850F2 /* downSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = downSimple.png; path = ../../QuizApp2Images/downSimple.png; sourceTree = "<group>"; };
 		2A85A10618B6D331002722E5 /* Quiz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quiz.h; sourceTree = "<group>"; };
 		2A85A10718B6D331002722E5 /* Quiz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quiz.m; sourceTree = "<group>"; };
 		2A85A10918B6D392002722E5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../../apsciOSDev/cisQuizApp2/Parse.framework; sourceTree = "<group>"; };
@@ -449,6 +468,8 @@
 				2AFF21B3189C7ACC00FE6F38 /* iosBlueStarIcon.png */,
 				2AFF21B4189C7ACC00FE6F38 /* ok-512.png */,
 				2AFF21B5189C7ACC00FE6F38 /* redX7.png */,
+				2A80B01618FEED88008850F2 /* downSimple.png */,
+				2A80B01418FEECAB008850F2 /* downArrow.png */,
 			);
 			name = "UI Images";
 			sourceTree = "<group>";
@@ -483,8 +504,18 @@
 				2AD87A67189726E90069F479 /* NSString+ParsingExtensions.m */,
 				A720766718B303A500EC4267 /* PastQuizTable.h */,
 				A720766818B303A500EC4267 /* PastQuizTable.m */,
+				2A3725DD18FC8D3B003D7E15 /* AFKPageFlipper.h */,
+				2A3725DE18FC8D3B003D7E15 /* AFKPageFlipper.m */,
 				2A8F02BC18EA12AD0077C265 /* ILTranslucentView.h */,
 				2A8F02BD18EA12AD0077C265 /* ILTranslucentView.m */,
+				2A3725E018FC9B71003D7E15 /* AnimationDelegate.h */,
+				2A3725E118FC9B71003D7E15 /* AnimationDelegate.m */,
+				2A3725E218FC9B71003D7E15 /* AnimationFrame.h */,
+				2A3725E318FC9B71003D7E15 /* AnimationFrame.m */,
+				2A3725E418FC9B71003D7E15 /* FlipView.h */,
+				2A3725E518FC9B71003D7E15 /* FlipView.m */,
+				2A3725E618FC9B71003D7E15 /* GenericAnimationView.h */,
+				2A3725E718FC9B71003D7E15 /* GenericAnimationView.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -571,6 +602,7 @@
 				2A2F6D4018EB43C800061083 /* 1D.png in Resources */,
 				2AD7CF5E18E6266C002B2246 /* Tab Bar Icon Photoshop.psd in Resources */,
 				2A8F02C518EA31BE0077C265 /* reportC.png in Resources */,
+				2A80B01518FEECAB008850F2 /* downArrow.png in Resources */,
 				2A89240A18EF1F050051B383 /* NormalQuestion.png in Resources */,
 				2AD7CF3D18E6266C002B2246 /* 3bar.png in Resources */,
 				2AD7CF3618E6266C002B2246 /* 0.png in Resources */,
@@ -612,6 +644,7 @@
 				2A89241118EF23090051B383 /* ReportQuestion3.png in Resources */,
 				2AD7CF6218E6266C002B2246 /* Tab-Bar-Icon---Results.png in Resources */,
 				2AD7CF4C18E6266C002B2246 /* C.png in Resources */,
+				2A80B01718FEED88008850F2 /* downSimple.png in Resources */,
 				2AD7CF5518E6266C002B2246 /* QuizmTeachLoginLogo2Landscape.png in Resources */,
 				2AD7CF4018E6266C002B2246 /* 6.png in Resources */,
 				2AD7CF6018E6266C002B2246 /* Tab-Bar-Icon---Questions30.png in Resources */,
@@ -662,6 +695,10 @@
 				2AD87A68189726E90069F479 /* NSString+ParsingExtensions.m in Sources */,
 				2AA82FE818A5879600FCC137 /* groupResultViewController.m in Sources */,
 				2AD87AB21898801D0069F479 /* QuestionViewController.m in Sources */,
+				2A3725E818FC9B71003D7E15 /* AnimationDelegate.m in Sources */,
+				2A3725E918FC9B71003D7E15 /* AnimationFrame.m in Sources */,
+				2A3725EB18FC9B71003D7E15 /* GenericAnimationView.m in Sources */,
+				2A3725EA18FC9B71003D7E15 /* FlipView.m in Sources */,
 				A755332818B712D4001B9306 /* MyLoginViewController.m in Sources */,
 				2AD87AAF189867750069F479 /* QuizViewController.m in Sources */,
 				A755333D18B97B14001B9306 /* BigButtonViewController.m in Sources */,
@@ -669,6 +706,7 @@
 				2AD87A6B1897271A0069F479 /* Question.m in Sources */,
 				2A0DACDC18A2F6DC00FF995D /* QuizTableViewController.m in Sources */,
 				2AB1DCF818A3F97A00E5E08B /* PastQuizViewController.m in Sources */,
+				2A3725DF18FC8D3B003D7E15 /* AFKPageFlipper.m in Sources */,
 				2AF37676189AF53C004423BA /* ImportViewController.m in Sources */,
 				2AD87A391897225B0069F479 /* AppDelegate.m in Sources */,
 				2AD87A351897225B0069F479 /* main.m in Sources */,

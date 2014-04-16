@@ -13,6 +13,13 @@
 #import "Question.h"
 #import "MyLoginViewController.h"
 #import "BigButtonViewController.h"
+#import "AFKPageFlipper.h"
+#import "AnimationDelegate.h"
+#import "FlipView.h"
+#import "AnimationFrame.h"
+#import "GenericAnimationView.h"
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface QuestionViewController ()
 
@@ -25,13 +32,17 @@
 @property (weak, nonatomic) IBOutlet UITextView *answerCLabel;
 @property (weak, nonatomic) IBOutlet UITextView *answerDLabel;
 @property (weak, nonatomic) IBOutlet UITextView *answerELabel;
+@property (weak, nonatomic) IBOutlet UIView *viewInScrollView;
 
 @property (weak, nonatomic) IBOutlet UIButton *reportButton;
 @property BOOL *questionFinished;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (strong, nonatomic) NSArray * questions;
 @property (strong, nonatomic) NSMutableArray *attempts;
+@property (strong, nonatomic) IBOutlet AFKPageFlipper *pageFlipper;
 
+
+@property (weak, nonatomic) IBOutlet UIImageView *scrollIndicator;
 
 @end
 
@@ -53,6 +64,12 @@
     NSTimer *buttonTimer;
     NSString *currentButton;
     NSMutableArray *colours;
+    NSArray *tapGestureArray;
+    UITapGestureRecognizer *tapGestureRecognizerA;
+    UITapGestureRecognizer *tapGestureRecognizerB;
+    UITapGestureRecognizer *tapGestureRecognizerC;
+    UITapGestureRecognizer *tapGestureRecognizerD;
+    UITapGestureRecognizer *tapGestureRecognizerE;
 }
 
 @synthesize nextButton;
@@ -64,6 +81,7 @@
 @synthesize buttonE;
 @synthesize reportButton;
 @synthesize popoverController;
+@synthesize resultImage;
 
 # pragma mark - initial startup stuff
 
@@ -78,10 +96,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    self.answerALabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
+    self.answerBLabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
+    self.answerCLabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
+    self.answerDLabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
+    self.answerELabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
+    
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(704, 1400)];
+    //[self.scrollView setContentSize:CGSizeMake(704, 1400)];
     //self.scrollView.contentSize = CGSizeMake(768, 1024);
+    
+    //self.viewInScrollView.frame = CGRectMake(0, 0, 768, 900);
    self.navigationItem.title = ( [self.detailItem.qtype isEqualToString:@"0"] ? [NSString stringWithFormat:@"Question %d", self.detailItem.sortedQNumber] :[NSString stringWithFormat:@"Application %d", self.detailItem.sortedQNumber ]);
+    
+    
+
+    
+    tapGestureRecognizerA = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFromA:)];
+    tapGestureRecognizerB = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFromB:)];
+    tapGestureRecognizerC = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFromC:)];
+    tapGestureRecognizerD = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFromD:)];
+    tapGestureRecognizerE = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFromE:)];
+    
+    [self.answerALabel addGestureRecognizer:tapGestureRecognizerA];
+    [self.answerBLabel addGestureRecognizer:tapGestureRecognizerB];
+    [self.answerCLabel addGestureRecognizer:tapGestureRecognizerC];
+    [self.answerDLabel addGestureRecognizer:tapGestureRecognizerD];
+    [self.answerELabel addGestureRecognizer:tapGestureRecognizerE];
+    
+    tapGestureArray = [[NSArray alloc]initWithObjects:tapGestureRecognizerA, tapGestureRecognizerB, tapGestureRecognizerC, tapGestureRecognizerD, tapGestureRecognizerE, nil];
+    
+    tapGestureRecognizerA.delegate = self;
+    tapGestureRecognizerB.delegate = self;
+    tapGestureRecognizerC.delegate = self;
+    tapGestureRecognizerD.delegate = self;
+    tapGestureRecognizerE.delegate = self;
+    
+    
     
 //    [self.qContentLabel sizeToFit];
 //    [self.answerALabel sizeToFit];
@@ -91,21 +143,52 @@
     
     buttonArray = [[NSArray alloc] initWithObjects:buttonA, buttonB, buttonC, buttonD, buttonE, nil];
     
+    for (UIButton* button in buttonArray) {
+        [button setTitleColor:UIColorFromRGB(0x007AFF) forState:UIControlStateNormal];
+        //[button setBackgroundImage:[UIImage imageNamed:@"0square.png"] forState:UIControlStateNormal];
+        
+    }
+    
+
+    
     imageArray = [[NSArray alloc] initWithObjects:_aImage,_bImage,_cImage,_dImage, _eImage, nil];
     
-    _resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
-    _resultImage.alpha = 0.5;
-    resultImageStartPoint = _resultImage.center;
+    //resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
+    resultImage.alpha = 0.6;
+    resultImageStartPoint = resultImage.center;
     
     // Also create an array of startpoints so the controller knows where the bar should be upon returning to a question
     // Make it an array of values corresponding to the CGPoints, and when you access it, get CGPoint value
-    startpointsArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:resultImageStartPoint], [NSValue valueWithCGPoint:CGPointMake(resultImageStartPoint.x - 200, resultImageStartPoint.y)], [NSValue valueWithCGPoint:CGPointMake(resultImageStartPoint.x - 400, resultImageStartPoint.y)], [NSValue valueWithCGPoint:CGPointMake(resultImageStartPoint.x - 600, resultImageStartPoint.y)], nil] ;
+    
+    float movePercentage = 0.0;
+    
+    if (self.detailItem.numberOfAnswers == 2){
+        movePercentage = 1;
+    }else if (self.detailItem.numberOfAnswers == 3){
+        movePercentage = 0.5;
+    }else if (self.detailItem.numberOfAnswers == 4){
+        movePercentage = 0.33;
+    }else if (self.detailItem.numberOfAnswers == 5){
+        movePercentage = 0.25;
+    }
+    
+    NSLog(@"move percentage: %f", movePercentage);
+    
+    int pixelMove = resultImage.frame.size.width*movePercentage;
+    
+    NSLog(@"pixelMove: %i", pixelMove);
+    
+    
+    startpointsArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:resultImageStartPoint], [NSValue valueWithCGPoint:CGPointMake(resultImageStartPoint.x - pixelMove*1, resultImageStartPoint.y)], [NSValue valueWithCGPoint:CGPointMake(resultImageStartPoint.x - pixelMove*2, resultImageStartPoint.y)], [NSValue valueWithCGPoint:CGPointMake(resultImageStartPoint.x - pixelMove*3, resultImageStartPoint.y)],[NSValue valueWithCGPoint:CGPointMake(resultImageStartPoint.x - pixelMove*4, resultImageStartPoint.y)] , nil] ;
     
     [self.qContentLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
     
    // DISABLE LOGIN
    //loggedIn = YES;
 }
+
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     
@@ -130,12 +213,22 @@
         
         [self presentViewController:logInViewController animated:NO completion:NULL];
     } else if (!quizImported){
-        [self performSelector:@selector(goToWelcomeMethod) withObject:nil afterDelay:0.001];
+        
+      
+        
+        [self performSelector:@selector(goToWelcomeMethod) withObject:nil afterDelay:0];
 
         quizImported = YES;
         
         // The third time the view loads, display the first question!
     } else if (!firstQuestionDisplayed){
+        
+
+        //resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
+        //resultImage.alpha = 0.5;
+        //resultImageStartPoint = resultImage.center;
+        
+        
         // Need a starting point for the image
         
         //        NSLog(@"The start point is %@", resultImageStartPoint);
@@ -144,7 +237,7 @@
         [self performSelector:@selector(viewDidLoadDelayedLoading) withObject:self afterDelay:0.4];
     }
 
-    
+   
     
 }
 
@@ -165,8 +258,13 @@
     firstQuestionDisplayed = YES;
     id masternav = self.splitViewController.viewControllers[0];
     QuizTableViewController *master = [masternav topViewController];
+    
+    
     if ([master isKindOfClass:[QuizTableViewController class]]){
         [master displayFirstQuestion];
+        [master.navigationItem.rightBarButtonItem setTintColor:UIColorFromRGB(0x007AFE)];
+        [self assignQuizLengthFromMaster:master];
+        
         if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
             [master.tableView reloadData];
         } else { // It's in portriat
@@ -185,6 +283,27 @@
         CGPoint offset = sender.contentOffset;
         offset.x = 0;
         sender.contentOffset = offset;
+    }
+    
+    if (self.detailItem.numberOfAnswers>3){
+    
+    
+    if (self.detailItem.numberOfAnswers == 4){
+        if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerDLabel.frame),
+                              self.answerDLabel.frame)){
+            [self hideTheTabBarWithAnimation:YES];
+            NSLog(@"last answer is on screen, dismiss scroll indicator");
+        }
+    }else if (self.detailItem.numberOfAnswers == 5){
+        if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerELabel.frame),
+                              self.answerELabel.frame)){
+     [self hideTheTabBarWithAnimation:YES];
+                  NSLog(@"last answer is on screen, dismiss scroll indicator");
+    }
+    }else{
+        [self unhideTheTabBarWithAnimation:YES];
+    }
+        
     }
 }
 
@@ -214,6 +333,9 @@
 +(void) shouldDisableButton:(UIButton *)sender should:(BOOL)state {
     
     NSSet *normalbuttonStrings = [NSSet setWithObjects:@"A", @"B", @"C",@"D", @"E", nil];
+    
+    
+    
     sender.enabled = !state;
     
     // If it's a report button set the appropriate label text and background image
@@ -243,6 +365,8 @@
 // Called from sendAttempts to parse, needed to create the attempts array
 - (void)assignQuizLengthFromMaster:(QuizTableViewController *)qtvc{
     quizLength = [qtvc giveQuizLength];
+    
+    
     NSLog(@"QuestionViewControlle thinks there are %d questions", (int)quizLength);
 }
 
@@ -272,35 +396,117 @@
     tv.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
 }
 
+- (void) handleTapFromA: (UITapGestureRecognizer *)recognizer
+{
+    [self clicked:self.buttonA];
+    NSLog(@"label A tapped by %@", recognizer);
+    
+    recognizer.enabled = NO;
+    //Code to handle the gesture
+}
+
+- (void) handleTapFromB: (UITapGestureRecognizer *)recognizer
+{
+    [self clicked:self.buttonB];
+    NSLog(@"label B tapped by %@", recognizer);
+    
+    recognizer.enabled = NO;
+    //Code to handle the gesture
+}
+
+- (void) handleTapFromC: (UITapGestureRecognizer *)recognizer
+{
+    [self clicked:self.buttonC];
+    NSLog(@"label C tapped by %@", recognizer);
+    
+    recognizer.enabled = NO;
+    //Code to handle the gesture
+}
+
+- (void) handleTapFromD: (UITapGestureRecognizer *)recognizer
+{
+    [self clicked:self.buttonD];
+    NSLog(@"label D tapped by %@", recognizer);
+    
+    recognizer.enabled = NO;
+    //Code to handle the gesture
+}
+
+- (void) handleTapFromE: (UITapGestureRecognizer *)recognizer
+{
+    [self clicked:self.buttonE];
+    NSLog(@"label E tapped by %@", recognizer);
+    
+    recognizer.enabled = NO;
+    //Code to handle the gesture
+}
+
 // Called from the master when a new question is pushed, also called for nextbutton. It manages updating all the labels, and calls the neccesarry methods to update the images and buttons
 - (void)switchQuestion{
     
-    
-    
+//    if (!self.detailItem.questionFinished){
+//        tapGestureRecognizerA.enabled = YES;
+//         tapGestureRecognizerB.enabled = YES;
+//         tapGestureRecognizerC.enabled = YES;
+//         tapGestureRecognizerD.enabled = YES;
+//         tapGestureRecognizerE.enabled = YES;
+//    }
     
     NSLog(@"%@  %@", self.detailItem.questionNumber, self.detailItem.questionContent);
     
-    [UIView transitionWithView:self.view duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    NSLog(@"Position of the bar: x:%f y:%f", resultImage.center.x, resultImage.center.y);
+    
+    //[self.pageFlipper setCurrentPage:[self.detailItem.questionNumber integerValue] animated:YES];
+    
+//    if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
+//        resultImage.center = CGPointMake(384, 86);
+//    }else{
+//        resultImage.center = CGPointMake(384, 1002.5);
+//    }
+ 
+    if (self.detailItem.numberOfAnswers>3) {
+        
+        [self unhideTheTabBarWithAnimation:YES];
+    }else{
+        [self hideTheTabBarWithAnimation:YES];
+    }
+    
+    [UIView transitionWithView:self.view duration:0.6 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{\
+        
+        
+        
+//        AnimationDelegate *animationDelegate = [[AnimationDelegate alloc] initWithSequenceType:kSequenceTriggered  directionType:kDirectionForward];
+//        
+//        FlipView *flipView = [[FlipView alloc] initWithAnimationType:kAnimationFlipHorizontal frame:self.view.frame];
+//        
+//        animationDelegate.transformView = flipView;
+//        
+//        [animationDelegate startAnimation:kDirectionForward];
+//        
         self.qContentLabel.text = [NSString stringWithFormat:@"%@. %@", self.detailItem.questionNumber, self.detailItem.questionContent];
         self.qContentLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         
         
         [self.qContentLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
         self.qContentLabel.textAlignment = NSTextAlignmentCenter;
-        
-        
-        
-        
+  
+ 
+
+
+
+
         
         self.answerALabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerA];
         self.answerALabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         [self.answerALabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+               self.answerALabel.textAlignment = NSTextAlignmentCenter;
         
         if (self.detailItem.numberOfAnswers == 2) {
         
         self.answerBLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerB];
         self.answerBLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         [self.answerBLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+                    self.answerBLabel.textAlignment = NSTextAlignmentCenter;
             
             //NO C, D, E
             self.answerCLabel.hidden = YES;
@@ -311,6 +517,8 @@
             
             self.answerELabel.hidden = YES;
             self.buttonE.alpha = 0;
+            
+            
         
         }
         
@@ -322,6 +530,8 @@
             self.answerBLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerB];
             self.answerBLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
             [self.answerBLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+               self.answerBLabel.textAlignment = NSTextAlignmentCenter;
+            
             
             self.answerCLabel.hidden = NO;
             self.buttonC.alpha = 1;
@@ -329,6 +539,7 @@
         self.answerCLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerC];
         self.answerCLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         [self.answerCLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+                    self.answerCLabel.textAlignment = NSTextAlignmentCenter;
             
             
             self.answerDLabel.hidden = YES;
@@ -345,6 +556,7 @@
             self.answerBLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerB];
             self.answerBLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
             [self.answerBLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+               self.answerBLabel.textAlignment = NSTextAlignmentCenter;
             
             self.answerCLabel.hidden = NO;
             self.buttonC.alpha = 1;
@@ -360,10 +572,13 @@
             self.answerCLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
             [self.answerCLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
             
+                self.answerCLabel.textAlignment = NSTextAlignmentCenter;
+            
             self.answerDLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerD];
             self.answerDLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
             [self.answerDLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
             
+                self.answerDLabel.textAlignment = NSTextAlignmentCenter;
             
         }
         
@@ -372,6 +587,7 @@
             self.answerBLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerB];
             self.answerBLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
             [self.answerBLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+               self.answerBLabel.textAlignment = NSTextAlignmentCenter;
             
             self.answerCLabel.hidden = NO;
             self.buttonC.alpha = 1;
@@ -385,16 +601,17 @@
             self.answerCLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerC];
             self.answerCLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
             [self.answerCLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
+                self.answerCLabel.textAlignment = NSTextAlignmentCenter;
             
             self.answerDLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerD];
             self.answerDLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
             [self.answerDLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
-
+ self.answerDLabel.textAlignment = NSTextAlignmentCenter;
     
         self.answerELabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerE];
         self.answerELabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         [self.answerELabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
-                    
+                 self.answerELabel.textAlignment = NSTextAlignmentCenter;
         }
      
 
@@ -402,23 +619,40 @@
     
     if ([self qIsTypeNormal]){
         [QuestionViewController shouldDisableButton:reportButton should:YES];
+        
+        resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
+        resultImage.alpha = 0.6;
+        resultImageStartPoint = resultImage.center;
         if (!self.detailItem.qAttempts) { //If buttons pressed is still Null, create it.
             self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, @0, nil];
             
-            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: 4"];
+            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", self.detailItem.numberOfAnswers];
         } else { //Question has been attempted
-            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 4 - [self.detailItem.qAttempts integerValue]];
+            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %ld", self.detailItem.numberOfAnswers - [self.detailItem.qAttempts integerValue]];
         }
         nextButton.enabled = NO;
     } else { // else, it is a report question!
+        
+        resultImage.image = nil;
+        
         if (!self.detailItem.qAttempts) { //If buttons pressed is still Null
             self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, @0, nil];
         }
-        self.attemptsLabel.text = [NSString stringWithFormat:@"(Report Question)"];
+        
+        
+        self.attemptsLabel.text = @"";
+        
+//        if (!self.questionFinished){
+//        self.attemptsLabel.text = @"Application Question";
+//        }else{
+//            self.attemptsLabel.text = @"";
+//        }
     }
     // These handle all the logistics for enabling buttons and setting images.
     [self EnableButtonsAccordingToButtonsPressed];
     [self SetImagesAccordingToButtonsPressed];
+    
+   
 }
 
 // Handles all the logistics for enabling buttons, for both kinds of questions
@@ -429,11 +663,15 @@
         for(int index = 0; index < 5; index++)
         {
             [QuestionViewController shouldDisableButton:[buttonArray objectAtIndex:index] should:YES];
+            UITapGestureRecognizer  *tapGesture = [tapGestureArray objectAtIndex:index];
+            tapGesture.enabled = NO;
+            
         }
         
         // Prevents enabled next button on the last question
         if ([self.detailItem.questionNumber integerValue] != (int)quizLength-1 ){
             nextButton.enabled = YES;
+            
         }
         
         // if it is a report question, AND the question is finished, you need to enable the report choice button and make sure that the current reportChoicebutton is correct.
@@ -448,8 +686,12 @@
         {
             if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@0]){
                 [QuestionViewController shouldDisableButton:[buttonArray objectAtIndex:index] should:NO];
+                UITapGestureRecognizer  *tapGesture = [tapGestureArray objectAtIndex:index];
+                tapGesture.enabled = YES;
             } else {
                 [QuestionViewController shouldDisableButton:[buttonArray objectAtIndex:index] should:YES];
+                UITapGestureRecognizer  *tapGesture = [tapGestureArray objectAtIndex:index];
+                tapGesture.enabled = NO;
             }
         }
     }
@@ -463,25 +705,47 @@
     
     if ([self qIsTypeNormal]){
         
-        [buttonA setBackgroundImage:nil forState:UIControlStateNormal];
-        [buttonB setBackgroundImage:nil forState:UIControlStateNormal];
-        [buttonC setBackgroundImage:nil forState:UIControlStateNormal];
-        [buttonD setBackgroundImage:nil forState:UIControlStateNormal];
-        [buttonE setBackgroundImage:nil forState:UIControlStateNormal];
+//        [buttonA setBackgroundImage:nil forState:UIControlStateNormal];
+//        [buttonB setBackgroundImage:nil forState:UIControlStateNormal];
+//        [buttonC setBackgroundImage:nil forState:UIControlStateNormal];
+//        [buttonD setBackgroundImage:nil forState:UIControlStateNormal];
+//        [buttonE setBackgroundImage:nil forState:UIControlStateNormal];
+        
+        
         
 
         // Set the lower progress bar image for the first time
         if (!self.detailItem.qAttempts)
         {
-            _resultImage.center = resultImageStartPoint;
+            resultImage.center = CGPointMake(resultImageStartPoint.x, resultImage.center.y);
         }
         else if (self.detailItem.questionFinished) //question is finished, display qattempts-1 as progress bar
         {
-           _resultImage.center = [[startpointsArray objectAtIndex:[self.detailItem.qAttempts integerValue]-1] CGPointValue];
+           resultImage.center = CGPointMake([[startpointsArray objectAtIndex:[self.detailItem.qAttempts integerValue]-1] CGPointValue].x, resultImage.center.y);
         }
         else // question is not finished, move bar to the left 200 pixels
         {
-            [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{ _resultImage.center = CGPointMake(_resultImage.center.x-200, _resultImage.center.y); } completion:^ (BOOL fin){ }];
+            
+            float movePercentage = 0.0;
+            
+            if (self.detailItem.numberOfAnswers == 2){
+                movePercentage = 1;
+            }else if (self.detailItem.numberOfAnswers == 3){
+                movePercentage = 0.5;
+            }else if (self.detailItem.numberOfAnswers == 4){
+                movePercentage = 0.33;
+            }else if (self.detailItem.numberOfAnswers == 5){
+                movePercentage = 0.25;
+            }
+            
+            NSLog(@"move percentage: %f", movePercentage);
+            
+            int pixelMove = resultImage.frame.size.width*movePercentage;
+            
+            NSLog(@"pixelMove: %i", pixelMove);
+            
+            
+            [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{ resultImage.center = CGPointMake(resultImage.center.x-pixelMove, resultImage.center.y); } completion:^ (BOOL fin){ }];
         }
         
         // Set the check mark and x images
@@ -507,6 +771,12 @@
                 UIImageView *tempimage = [imageArray objectAtIndex:index];
                 tempimage.image = nil;
             }
+            
+            
+            
+            NSLog(@"set images, bar x: %f, bary: %f", resultImage.center.x, resultImage.center.y);
+            
+            
         }
 
     } else { // it's a report question, need to set the background image to show its been selected, and make sure all other images are nil
@@ -515,20 +785,20 @@
         _cImage.image = nil;
         _dImage.image = nil;
         _eImage.image = nil;
-        [buttonA setBackgroundImage:nil forState:UIControlStateNormal];
-        [buttonB setBackgroundImage:nil forState:UIControlStateNormal];
-        [buttonC setBackgroundImage:nil forState:UIControlStateNormal];
-        [buttonD setBackgroundImage:nil forState:UIControlStateNormal];
-        [buttonE setBackgroundImage:nil forState:UIControlStateNormal];
+//        [buttonA setBackgroundImage:nil forState:UIControlStateNormal];
+//        [buttonB setBackgroundImage:nil forState:UIControlStateNormal];
+//        [buttonC setBackgroundImage:nil forState:UIControlStateNormal];
+//        [buttonD setBackgroundImage:nil forState:UIControlStateNormal];
+//        [buttonE setBackgroundImage:nil forState:UIControlStateNormal];
         
-        _resultImage.center = resultImageStartPoint;
+        resultImage.center = resultImageStartPoint;
         
         // The @3 in the index of buttonspressed means it was chosen as a report question answer
         for(int index = 0; index < 5; index++)
         {
             if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@3]){
-                UIButton *tempButton = [buttonArray objectAtIndex:index];
-                [tempButton setBackgroundImage:[UIImage imageNamed:@"0square.png"] forState:UIControlStateNormal];
+                UIImageView *tempimage = [imageArray objectAtIndex:index];
+                tempimage.image = [UIImage imageNamed:@"ok-512.png"];
             }
         }
     }
@@ -538,7 +808,7 @@
         // Device is in landscape, so we need to update the table image as soon as the button is pressed. Only do this if a button has been pressed (flag will be yes)
         // If it is a report question, only update it the first time.
         id masternav = self.splitViewController.viewControllers[0];
-        QuizTableViewController *master = [masternav topViewController];
+        QuizTableViewController *master = (QuizTableViewController *)[masternav topViewController];
         
         
         NSArray *indexPaths;
@@ -551,6 +821,9 @@
 
        [master.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
     }
+    
+    
+    NSLog(@"set images exiting method, bar x: %f, bary: %f", resultImage.center.x, resultImage.center.y);
 }
 
 // Called when a correct answer is pressed or anytime a report answer is chosen
@@ -568,7 +841,7 @@
         for (int i = 0; i < (int)quizLength; i++ ){
             [self.attempts insertObject:@0 atIndex:i];
         }
-        NSLog(@"The legth of attempts array: %d\nThe number of questions: %d", [self.attempts count], quizLength);
+        NSLog(@"The legth of attempts array: %lu\nThe number of questions: %d", (unsigned long)[self.attempts count], quizLength);
         
     // This is needed so the instructor doesnt try and pull stuff from you when you havent started the quiz
     if (!startedQuiz){
@@ -612,6 +885,7 @@
 
 
 
+
 - (IBAction)clicked:(UIButton *)sender {
     
     currentButton = sender.titleLabel.text; // This is to send to BigButtonController and to use in the message string to parse
@@ -641,7 +915,7 @@
             
         } else {
             [self.detailItem insertObjectInButtonsPressed:@1 AtLetterSpot:sender.titleLabel.text];
-            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %d", 5 - [self.detailItem.qAttempts integerValue]];
+            self.attemptsLabel.text = [NSString stringWithFormat:@"Attempts Left: %ld", self.detailItem.numberOfAnswers - [self.detailItem.qAttempts integerValue]];
         }
         
     } else { // It is a report question
@@ -650,9 +924,15 @@
 
         [self.detailItem insertObjectInButtonsPressed:@3 AtLetterSpot:sender.titleLabel.text];
         self.detailItem.reportButtonChoice = currentButton;
+        self.attemptsLabel.text = @"";
     }
     [self EnableButtonsAccordingToButtonsPressed]; // Both types of questions use EnableButtons and SetImages  Method
+    
+    NSLog(@"before set images, bar x: %f, bary: %f", resultImage.center.x, resultImage.center.y);
+    
     [self SetImagesAccordingToButtonsPressed];
+    
+    NSLog(@"clicked: bar x: %f, bary: %f", resultImage.center.x, resultImage.center.y);
 }
 
 - (IBAction)reportButtonSelected:(UIButton *)sender {
@@ -664,7 +944,7 @@
 // Next questions redirects to GoToNextQuestions because the swipeleft gesture also needs the same code
 - (IBAction)nextQuestion:(id)sender {
     
-    if ([self.detailItem.questionNumber integerValue] != (int)quizLength-1){
+    if ([self.detailItem.questionNumber integerValue] != (int)quizLength){
         NSLog(@"The question number is %ld", (long)[self.detailItem.questionNumber integerValue]);
         [self goToNextQuestion];
     }
@@ -675,7 +955,7 @@
 - (IBAction)swipedRight:(id)sender {
     
     // Make sure you cant swipe on the last question
-    if ([self.detailItem.questionNumber integerValue] != (int)quizLength-1){
+    if ([self.detailItem.questionNumber integerValue] != (int)quizLength){
         NSLog(@"The question number is %ld", (long)[self.detailItem.questionNumber integerValue]);
         [self goToNextQuestion];
     }
@@ -727,6 +1007,7 @@
 - (IBAction)unwindFromBigButton:(UIStoryboardSegue *)segue {
     
     [self switchQuestion];
+    self.attemptsLabel.text = @"";
     
 }
 #pragma mark - alertivew stuff
@@ -744,6 +1025,9 @@
         loggedIn = NO;
         quizImported = NO;
         firstQuestionDisplayed = NO;
+        
+        self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0x007AFF);
+      
         
         MyLoginViewController *logInViewController = [[MyLoginViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
@@ -791,6 +1075,138 @@
     //    //NSLog(@"Timer worked");
     //    [self performSegueWithIdentifier: @"goToBigButton" sender: self];
     //}
+}
+
+#pragma mark - page flipper protocols
+
+- (NSInteger) numberOfPagesForPageFlipper:(AFKPageFlipper *) pageFlipper{
+    
+    return *quizLength;
+    
+}
+- (UIView *) viewForPage:(NSInteger) page inFlipper:(AFKPageFlipper *) pageFlipper{
+    UIView *view = [[UIView alloc] initWithFrame:pageFlipper.frame];
+    
+    return view;
+    
+}
+
+
+#pragma mark - Scroll view delegates
+
+
+-(void) scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if (self.detailItem.numberOfAnswers>3){
+    
+    if (self.detailItem.numberOfAnswers == 4){
+        if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerDLabel.frame),
+                              self.answerDLabel.frame)){
+            [self hideTheTabBarWithAnimation:YES];
+            NSLog(@"last answer is on screen, dismiss scroll indicator");
+        }else{
+            [self unhideTheTabBarWithAnimation:YES];
+        }
+    }
+    
+    
+    if (self.detailItem.numberOfAnswers == 5){
+        if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerELabel.frame),
+                              self.answerELabel.frame)){
+            [self hideTheTabBarWithAnimation:YES];
+            NSLog(@"last answer is on screen, dismiss scroll indicator");
+        }else{
+            [self unhideTheTabBarWithAnimation:YES];
+        }
+    }
+    }
+}
+
+-(void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
+    if (self.detailItem.numberOfAnswers>3){
+    
+    if (self.detailItem.numberOfAnswers == 4){
+        if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerDLabel.frame),
+                              self.answerDLabel.frame)){
+            [self hideTheTabBarWithAnimation:YES];
+            NSLog(@"last answer is on screen, dismiss scroll indicator");
+        }else{
+            [self unhideTheTabBarWithAnimation:YES];
+        }
+    }else if (self.detailItem.numberOfAnswers == 5){
+        if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerELabel.frame),
+                              self.answerELabel.frame)){
+            [self hideTheTabBarWithAnimation:YES];
+            NSLog(@"last answer is on screen, dismiss scroll indicator");
+        }else{
+            [self unhideTheTabBarWithAnimation:YES];
+        }
+    }
+    
+    }
+}
+
+
+
+-(void) scrollViewDidScrollToTop:(UIScrollView *)scrollView{
+    [self unhideTheTabBarWithAnimation:YES];
+}
+
+-(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    if (self.detailItem.numberOfAnswers>3){
+    
+    if (self.detailItem.numberOfAnswers == 4){
+        if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerDLabel.frame),
+                              self.answerDLabel.frame)){
+            [self hideTheTabBarWithAnimation:YES];
+            NSLog(@"last answer is on screen, dismiss scroll indicator");
+        }else{
+            [self unhideTheTabBarWithAnimation:YES];
+        }
+    }else if (self.detailItem.numberOfAnswers == 5){
+        if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerELabel.frame),
+                              self.answerELabel.frame)){
+            [self hideTheTabBarWithAnimation:YES];
+            NSLog(@"last answer is on screen, dismiss scroll indicator");
+        }else{
+            [self unhideTheTabBarWithAnimation:YES];
+        }
+    }
+        
+    }
+}
+
+
+
+
+- (void) hideTheTabBarWithAnimation:(BOOL) withAnimation {
+    if (NO == withAnimation) {
+        self.scrollIndicator.image = nil;
+    } else {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:nil];
+        [UIView setAnimationDuration:0.75];
+        
+        self.scrollIndicator.alpha = 0;
+        
+        [UIView commitAnimations];
+    }
+}
+
+
+- (void) unhideTheTabBarWithAnimation:(BOOL) withAnimation {
+    if (NO == withAnimation) {
+        self.scrollIndicator.image = [UIImage imageNamed:@"downSimple.png"];
+    } else {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:nil];
+        [UIView setAnimationDuration:0.75];
+        
+        self.scrollIndicator.alpha = 1;
+        
+        [UIView commitAnimations];
+    }
 }
 
 #pragma mark - Split view

@@ -10,8 +10,9 @@
 #import "QuestionSelectionDelegate.h"
 #import <Parse/Parse.h>
 #import "RKiOS7Loading.h"
+#import "AFKPageFlipper.h"
 
-@interface QuestionViewController : UIViewController <UISplitViewControllerDelegate,PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface QuestionViewController : UIViewController <UISplitViewControllerDelegate,PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, UIGestureRecognizerDelegate, AFKPageFlipperDataSource, UIScrollViewDelegate>
 {
     UIPopoverController *popoverController;
 }

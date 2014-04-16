@@ -15,6 +15,11 @@
 @interface QuizTableViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *otherQuizzesButton;
 @property (strong, nonatomic) UIPopoverController *popoverController;
+//@property (weak, nonatomic) IBOutlet UILabel *questionNumberCellLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *questionContentCellLabel;
+//@property (weak, nonatomic) IBOutlet UIImageView *applicationResultCellImage;
+
+
 
 @property (strong,nonatomic) NSMutableArray *questionIDs;
 @property (strong, nonatomic) NSMutableArray *quiz;
@@ -36,6 +41,7 @@ NSNumber *indexNum;
 NSNumber *attemptsUsed;
 //NSIndexPath *currentSelection;
 NSMutableArray *colours;
+NSInteger fastQuizLength;
 
 - (void)awakeFromNib
 {
@@ -77,6 +83,7 @@ NSMutableArray *colours;
     qvc.quizIdentifier = source.quizIdentifier;
     
     [self loadQuizData];
+    [self displayFirstQuestion];
     
     
     
@@ -100,6 +107,8 @@ NSMutableArray *colours;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+     
     
     NSLog(@"Quiz Table view loaded");
     
@@ -160,7 +169,9 @@ NSMutableArray *colours;
                 NSLog(@"TabBar: Successfully retrieved %lu Questions.", (unsigned long)questions.count);
                 
                 [self initializeQuizArrayWithThisNumber:[questions count]];
-                
+    fastQuizLength = [questions count];
+    
+    
                 //retrieving questions from Parse
                 for (PFObject *question in questions) {
                     
@@ -301,6 +312,10 @@ NSMutableArray *colours;
 
 
 - (void)displayFirstQuestion{
+    
+    
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
@@ -309,7 +324,7 @@ NSMutableArray *colours;
 
 - (NSUInteger *)giveQuizLength{
   //  NSLog(@"qtvc gave quiz count %d", [quiz count]);
-    return [quiz count];
+    return fastQuizLength;
     
 }
 
@@ -379,27 +394,60 @@ NSMutableArray *colours;
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    UILabel *questionNumberCellLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel *questionContentCellLabel = (UILabel *)[cell viewWithTag:2];
+    UIImageView *applicationResultCellImage = (UIImageView *)[cell viewWithTag:3];
+    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:4];
+    
+     progressView.tintColor = UIColorFromRGB(0x4CD964);
+    
     if (indexPath.section == 0){
         
         Question *q = [quiz objectAtIndex:indexPath.row+1];
         
         if (!q.qAttempts){
-        cell.imageView.image = [UIImage imageNamed:@"NormalQuestion2.png" ];
+       // cell.imageView.image = [UIImage imageNamed:@"NormalQuestion2.png" ];
+            
+            progressView.progress = 0;
+            
+            applicationResultCellImage.image =[UIImage imageNamed:@"NormalQuestion2.png" ];
+            
+            applicationResultCellImage.alpha = 1;
+            
         }else{
-            cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", q.qAttempts]];
+            
+            applicationResultCellImage.image =[UIImage imageNamed:@"1.png" ];
+            
+            //progressView.tintColor = UIColorFromRGB(0x7CFC00);
+            float percentageCorrect = (q.numberOfAnswers-[q.qAttempts floatValue]+1)/q.numberOfAnswers;
+            
+            progressView.progress = percentageCorrect;
+            
+            applicationResultCellImage.alpha = 1;
+            
+              //applicationResultCellImage.image =[UIImage imageNamed:@"NormalQuestion2.png" ];
+            
+            //applicationResultCellImage.image =[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", q.qAttempts]];
+            //cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", q.qAttempts]];
         }
         
         if (q.sortedQNumber == indexPath.row+1 ) {
             //NSLog(@"Question %@", q.questionNumber);
             if ([q.qtype integerValue] == 0){ // Rap question
                 
-                cell.textLabel.text = [NSString stringWithFormat:@"Question %d ", indexPath.row+1];
-                cell.imageView.alpha = 1;
+                
+                questionContentCellLabel.text = q.questionContent;
+                questionNumberCellLabel.text = [NSString stringWithFormat:@"Question %@",q.questionNumber];
+                
+                //cell.textLabel.text = [NSString stringWithFormat:@"Question %d ", indexPath.row+1];
+                //cell.imageView.alpha = 1;
                 NSLog(@"Question %@ is RAP", q.questionNumber);
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", q.questionContent];
+                //cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", q.questionContent];
                 
             }
         }
+        
+        
     }else if (indexPath.section == 1){
         
         int count = 0;
@@ -414,27 +462,58 @@ NSMutableArray *colours;
         Question *q = [quiz objectAtIndex:count+indexPath.row+1];
         
         if (!q.qAttempts){
-            cell.imageView.image = [UIImage imageNamed:@"ReportQuestion3.png" ];
+            
+            applicationResultCellImage.image = [UIImage imageNamed:@"ReportQuestion3.png"];
+            
+            progressView.progress = 0;
+            
+            //cell.imageView.image = [UIImage imageNamed:@"ReportQuestion3.png" ];
         }else{
-            cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"1%@.png", q.reportButtonChoice]];
+            
+            applicationResultCellImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"1%@.png", q.reportButtonChoice]];
+            
+            progressView.progress = 1;
+            
+            //cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"1%@.png", q.reportButtonChoice]];
         }
         
         
         if (q.sortedQNumber == indexPath.row+1){
             
             if ([q.qtype integerValue] ==1 && !q.applicationReleased){
-                cell.textLabel.text = [NSString stringWithFormat:@"Application %d ", indexPath.row+1];
+                
+                questionNumberCellLabel.text = [NSString stringWithFormat:@"Application %d ", indexPath.row+1];
+                
+                
+                //cell.textLabel.text = [NSString stringWithFormat:@"Application %d ", indexPath.row+1];
 
                 NSLog(@"Question %@ is Application", q.questionNumber);
-                cell.detailTextLabel.text = @"Question not released";
-                cell.imageView.alpha = 0.2;
+               
+                questionContentCellLabel.text = @"Question not released";
+                
+                
+                applicationResultCellImage.alpha = 0.2;
+                
+                //cell.detailTextLabel.text = @"Question not released";
+                //cell.imageView.alpha = 0.2;
 
                 //cell.releaseQButton.enabled = YES;
             } else if (([q.qtype integerValue] ==1) && q.applicationReleased){
                 NSLog(@"Question %@ is Application and has been released", q.questionNumber);
-                cell.textLabel.text = [NSString stringWithFormat:@"Application %d ", indexPath.row+1];
-                cell.imageView.alpha = 1;
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", q.questionContent];
+                
+                
+                questionNumberCellLabel.text = [NSString stringWithFormat:@"Application %d ", indexPath.row+1];
+                
+                //cell.textLabel.text = [NSString stringWithFormat:@"Application %d ", indexPath.row+1];
+                
+                applicationResultCellImage.alpha = 1;
+                
+                //cell.imageView.alpha = 1;
+                
+                
+                questionContentCellLabel.text =[NSString stringWithFormat:@"%@", q.questionContent];
+                
+                //cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", q.questionContent];
             }
         }
     }
@@ -489,7 +568,7 @@ NSMutableArray *colours;
  }
  */
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 50;
+    return 40;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -507,9 +586,18 @@ NSMutableArray *colours;
     Question *q = [quiz objectAtIndex:row];
 
     qvc.detailItem = q;
-    qvc.navigationItem.title = [NSString stringWithFormat:@"Question %@", q.questionNumber];
+    //qvc.navigationItem.title = [NSString stringWithFormat:@"Question %@", q.questionNumber];
     
+     qvc.navigationItem.title = ( [q.qtype isEqualToString:@"0"] ? [NSString stringWithFormat:@"Question %d", q.sortedQNumber] :[NSString stringWithFormat:@"Application %d", q.sortedQNumber ]);
     
+      // qvc.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0x007AFF);
+    
+    [qvc.navigationItem.rightBarButtonItem setTintColor:UIColorFromRGB(0x007AFE)];
+    
+    //[qvc.navigationItem.rightBarButtonItem setTintColor:[UIColor blueColor]];
+  
+    
+    [qvc.scrollView setContentOffset:CGPointZero animated:NO];
     
     displayQuestion = [q.questionNumber integerValue];
     
@@ -525,6 +613,7 @@ NSMutableArray *colours;
     if ([q.qtype isEqualToString:@"1"] && !q.applicationReleased){
 
     
+        
     // If the last subview isnt a translucent view, make it one!
     
     if (![mostRecentSubview isKindOfClass:[ILTranslucentView class]]){
@@ -593,6 +682,8 @@ NSMutableArray *colours;
         }
         
         [self prepareQuestionViewController:detail toDisplayQuestionAtRow:count+indexPath.row+1];
+        
+        
         [detail switchQuestion];
     } else {
         NSLog(@"Didnt enter didselectrow");
