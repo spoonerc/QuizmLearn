@@ -23,7 +23,7 @@
 //@property (nonatomic) NSUInteger * quizLength;
 @property (strong, nonatomic) QuestionViewController *questionViewController;
 
-
+@property (strong, nonatomic) NSArray *listPastQuizzes;
 @property (strong, nonatomic) NSMutableArray *listOfQuestions;
 - (NSUInteger *)giveQuizLength;
 //@property (nonatomic, assign) id<QuestionSelectionDelegate> delegate;

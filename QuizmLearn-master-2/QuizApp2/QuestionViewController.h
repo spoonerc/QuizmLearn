@@ -29,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonE;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-
+@property (strong, nonatomic) NSArray *listPastQuizzes;
 @property (strong, nonatomic) NSMutableArray *colours;
 
 @property (strong, nonatomic) Question *detailItem;

@@ -164,6 +164,8 @@
         Quiz *quiz = [self.listPastQuizzes objectAtIndex:index.row];
         self.quizIdentifier = quiz.quizIdentifier;
         
+        QuestionViewController *destVC = (QuestionViewController *)[segue destinationViewController];
+        destVC.listPastQuizzes = self.listPastQuizzes;
         
         
         // Get the new view controller using [segue destinationViewController].

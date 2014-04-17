@@ -64,6 +64,10 @@ NSInteger fastQuizLength;
     
     OtherQuizzesTableViewController *otherQuizPopover = [[OtherQuizzesTableViewController alloc] init];
     
+    otherQuizPopover.listPastQuizzes = self.listPastQuizzes;
+    NSLog(@"list past quizzes from quiz table: %@, list past quizzes from popover: %@", self.listPastQuizzes, otherQuizPopover.listPastQuizzes);
+    
+    
     self.popoverController = [[UIPopoverController alloc] initWithContentViewController:otherQuizPopover];
     
     [self.popoverController setPopoverContentSize:CGSizeMake(310, 170)];
@@ -382,7 +386,7 @@ NSInteger fastQuizLength;
     UILabel *v = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
     [v setTextAlignment:NSTextAlignmentCenter];
     v.backgroundColor = UIColorFromRGB(0x70b4f3);
-    
+    v.alpha = 1;
     
     v.text = ( section == 0 ? ([quiz count] ? @"RAP Questions" : @"LOADING") : ([quiz count] ? @"Application Questions" : @"" ));
     v.tintColor = [UIColor whiteColor];
@@ -399,6 +403,8 @@ NSInteger fastQuizLength;
     UIImageView *applicationResultCellImage = (UIImageView *)[cell viewWithTag:3];
     UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:4];
     
+    UILabel *attemptsUsedFraction = (UILabel *)[cell viewWithTag:5];
+    
      progressView.tintColor = UIColorFromRGB(0x4CD964);
     
     if (indexPath.section == 0){
@@ -414,6 +420,8 @@ NSInteger fastQuizLength;
             
             applicationResultCellImage.alpha = 1;
             
+            attemptsUsedFraction.text = [NSString stringWithFormat:@"0/%d", q.numberOfAnswers];
+            
         }else{
             
             applicationResultCellImage.image =[UIImage imageNamed:@"1.png" ];
@@ -424,6 +432,8 @@ NSInteger fastQuizLength;
             progressView.progress = percentageCorrect;
             
             applicationResultCellImage.alpha = 1;
+            
+            attemptsUsedFraction.text = [NSString stringWithFormat:@"%@/%d",q.qAttempts, q.numberOfAnswers];
             
               //applicationResultCellImage.image =[UIImage imageNamed:@"NormalQuestion2.png" ];
             
@@ -449,6 +459,9 @@ NSInteger fastQuizLength;
         
         
     }else if (indexPath.section == 1){
+        
+        
+        attemptsUsedFraction.text = @"";
         
         int count = 0;
         for (int i = 1; i< [quiz count]; i++) {
@@ -689,6 +702,15 @@ NSInteger fastQuizLength;
         NSLog(@"Didnt enter didselectrow");
     }
    
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier isEqualToString:@"goToOtherQuizzes"]){
+        OtherQuizzesTableViewController *destVC = (OtherQuizzesTableViewController *) [segue destinationViewController];
+        destVC.listPastQuizzes = self.listPastQuizzes;
+    }
 }
 
 //The below code was unnecesarry bc questions in quiz are being manipulated directly from question view controller

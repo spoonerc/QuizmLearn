@@ -50,7 +50,7 @@
     
     self.refreshControl = refresh;
     
-    [self refresh];
+    //[self refresh];
 }
 
 -(void)refresh {

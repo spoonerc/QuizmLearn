@@ -21,6 +21,7 @@
 		2A3725EB18FC9B71003D7E15 /* GenericAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3725E718FC9B71003D7E15 /* GenericAnimationView.m */; };
 		2A80B01518FEECAB008850F2 /* downArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A80B01418FEECAB008850F2 /* downArrow.png */; };
 		2A80B01718FEED88008850F2 /* downSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A80B01618FEED88008850F2 /* downSimple.png */; };
+		2A80B01918FF2AF7008850F2 /* 1-ext.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A80B01818FF2AF7008850F2 /* 1-ext.png */; };
 		2A85A10818B6D331002722E5 /* Quiz.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A85A10718B6D331002722E5 /* Quiz.m */; };
 		2A85A10A18B6D392002722E5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A85A10918B6D392002722E5 /* Parse.framework */; };
 		2A85A10D18B6D3CD002722E5 /* QuizmLearn.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A85A10B18B6D3CD002722E5 /* QuizmLearn.png */; };
@@ -153,6 +154,7 @@
 		2A3725E718FC9B71003D7E15 /* GenericAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericAnimationView.m; path = "flip view classes/GenericAnimationView.m"; sourceTree = "<group>"; };
 		2A80B01418FEECAB008850F2 /* downArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = downArrow.png; path = ../../QuizApp2Images/downArrow.png; sourceTree = "<group>"; };
 		2A80B01618FEED88008850F2 /* downSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = downSimple.png; path = ../../QuizApp2Images/downSimple.png; sourceTree = "<group>"; };
+		2A80B01818FF2AF7008850F2 /* 1-ext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-ext.png"; path = "QuizApp2Images/1-ext.png"; sourceTree = SOURCE_ROOT; };
 		2A85A10618B6D331002722E5 /* Quiz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quiz.h; sourceTree = "<group>"; };
 		2A85A10718B6D331002722E5 /* Quiz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quiz.m; sourceTree = "<group>"; };
 		2A85A10918B6D392002722E5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../../apsciOSDev/cisQuizApp2/Parse.framework; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				2A2F6D2D18EB402A00061083 /* 0normal.png */,
 				2A2F6D2E18EB402A00061083 /* 0report.png */,
 				2AD7CF0A18E6266C002B2246 /* 1.png */,
+				2A80B01818FF2AF7008850F2 /* 1-ext.png */,
 				2A2F6D3918EB43C800061083 /* 1A.png */,
 				2A2F6D3A18EB43C800061083 /* 1B.png */,
 				2A2F6D3B18EB43C800061083 /* 1C.png */,
@@ -624,6 +627,7 @@
 				2AFF21B7189C7ACC00FE6F38 /* ok-512.png in Resources */,
 				2AD7CF5318E6266C002B2246 /* QuizmLearnSplashScreenHQ.png in Resources */,
 				2AD7CF3E18E6266C002B2246 /* 4.png in Resources */,
+				2A80B01918FF2AF7008850F2 /* 1-ext.png in Resources */,
 				2A85A10D18B6D3CD002722E5 /* QuizmLearn.png in Resources */,
 				2AD7CF4B18E6266C002B2246 /* buttonbackground.png in Resources */,
 				2AD87A331897225B0069F479 /* InfoPlist.strings in Resources */,

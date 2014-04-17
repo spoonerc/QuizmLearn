@@ -27,6 +27,8 @@
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRightGesture;
 @property (weak, nonatomic) IBOutlet UITextView *qContentLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *progressBarBorder;
+
 @property (weak, nonatomic) IBOutlet UITextView *answerALabel;
 @property (weak, nonatomic) IBOutlet UITextView *answerBLabel;
 @property (weak, nonatomic) IBOutlet UITextView *answerCLabel;
@@ -43,6 +45,11 @@
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *scrollIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *Ebackground;
+@property (weak, nonatomic) IBOutlet UILabel *Dbackground;
+@property (weak, nonatomic) IBOutlet UILabel *Cbackground;
+@property (weak, nonatomic) IBOutlet UILabel *Abackground;
+@property (weak, nonatomic) IBOutlet UILabel *bBackground;
 
 @end
 
@@ -97,11 +104,16 @@
     [super viewDidLoad];
     
     
-    self.answerALabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
-    self.answerBLabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
-    self.answerCLabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
-    self.answerDLabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
-    self.answerELabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
+    nextButton.enabled = NO;
+    [nextButton setBackgroundImage:[UIImage imageNamed:@"buttonbackground"] forState:UIControlStateNormal];
+    nextButton.titleLabel.tintColor = [UIColor whiteColor];
+    [nextButton setAlpha:0.8];
+    
+    //self.answerALabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
+    //self.answerBLabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
+    //self.answerCLabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
+    //self.answerDLabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
+    //self.answerELabel.backgroundColor = UIColorFromRGB(0xD1EEFC);
     
     [self.scrollView setScrollEnabled:YES];
     //[self.scrollView setContentSize:CGSizeMake(704, 1400)];
@@ -124,6 +136,21 @@
     [self.answerCLabel addGestureRecognizer:tapGestureRecognizerC];
     [self.answerDLabel addGestureRecognizer:tapGestureRecognizerD];
     [self.answerELabel addGestureRecognizer:tapGestureRecognizerE];
+    
+    
+//    [self.Abackground addGestureRecognizer:tapGestureRecognizerA];
+//     [self.bBackground addGestureRecognizer:tapGestureRecognizerB];
+//     [self.Cbackground addGestureRecognizer:tapGestureRecognizerC];
+//     [self.Dbackground addGestureRecognizer:tapGestureRecognizerD];
+//     [self.Ebackground addGestureRecognizer:tapGestureRecognizerE];
+    
+    
+//    [self.aImage addGestureRecognizer:tapGestureRecognizerA];
+//    [self.bImage addGestureRecognizer:tapGestureRecognizerB];
+//    [self.cImage addGestureRecognizer:tapGestureRecognizerC];
+//    [self.dImage addGestureRecognizer:tapGestureRecognizerD];
+//    [self.eImage addGestureRecognizer:tapGestureRecognizerE];
+    
     
     tapGestureArray = [[NSArray alloc]initWithObjects:tapGestureRecognizerA, tapGestureRecognizerB, tapGestureRecognizerC, tapGestureRecognizerD, tapGestureRecognizerE, nil];
     
@@ -156,6 +183,8 @@
     //resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
     resultImage.alpha = 0.6;
     resultImageStartPoint = resultImage.center;
+    
+    self.progressBarBorder.alpha = 0.6;
     
     // Also create an array of startpoints so the controller knows where the bar should be upon returning to a question
     // Make it an array of values corresponding to the CGPoints, and when you access it, get CGPoint value
@@ -222,7 +251,6 @@
         
         // The third time the view loads, display the first question!
     } else if (!firstQuestionDisplayed){
-        
 
         //resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
         //resultImage.alpha = 0.5;
@@ -263,6 +291,8 @@
     if ([master isKindOfClass:[QuizTableViewController class]]){
         [master displayFirstQuestion];
         [master.navigationItem.rightBarButtonItem setTintColor:UIColorFromRGB(0x007AFE)];
+        
+        master.listPastQuizzes = self.listPastQuizzes;
         [self assignQuizLengthFromMaster:master];
         
         if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
@@ -292,13 +322,13 @@
         if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerDLabel.frame),
                               self.answerDLabel.frame)){
             [self hideTheTabBarWithAnimation:YES];
-            NSLog(@"last answer is on screen, dismiss scroll indicator");
+           // NSLog(@"last answer is on screen, dismiss scroll indicator");
         }
     }else if (self.detailItem.numberOfAnswers == 5){
         if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerELabel.frame),
                               self.answerELabel.frame)){
      [self hideTheTabBarWithAnimation:YES];
-                  NSLog(@"last answer is on screen, dismiss scroll indicator");
+                 // NSLog(@"last answer is on screen, dismiss scroll indicator");
     }
     }else{
         [self unhideTheTabBarWithAnimation:YES];
@@ -339,7 +369,12 @@
     sender.enabled = !state;
     
     // If it's a report button set the appropriate label text and background image
-    if (![normalbuttonStrings containsObject:sender.titleLabel.text] ){
+    
+    if ([sender.titleLabel.text isEqualToString:@"Next Question"]){
+        [sender setBackgroundImage:[UIImage imageNamed:@"buttonbackground"] forState:UIControlStateNormal];
+        sender.titleLabel.tintColor = [UIColor whiteColor];
+        [sender setAlpha:0.8];
+    }else if (![normalbuttonStrings containsObject:sender.titleLabel.text] ){
         [sender setTitle:@"" forState:UIControlStateDisabled];
         [sender setBackgroundImage:[UIImage imageWithCGImage:(__bridge CGImageRef)([UIColor colorWithWhite:1.0 alpha:1])] forState:UIControlStateDisabled];
         [sender setTitle:@"Report Choice" forState:UIControlStateNormal];
@@ -518,6 +553,9 @@
             self.answerELabel.hidden = YES;
             self.buttonE.alpha = 0;
             
+            self.Cbackground.backgroundColor = [UIColor clearColor];
+            self.Dbackground.backgroundColor = [UIColor clearColor];
+            self.Ebackground.backgroundColor = [UIColor clearColor];
             
         
         }
@@ -541,6 +579,11 @@
         [self.answerCLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
                     self.answerCLabel.textAlignment = NSTextAlignmentCenter;
             
+            
+            self.Cbackground.backgroundColor = UIColorFromRGB(0x007AFF);
+            self.Cbackground.alpha = 0.3;
+            self.Dbackground.backgroundColor = [UIColor clearColor];
+            self.Ebackground.backgroundColor = [UIColor clearColor];
             
             self.answerDLabel.hidden = YES;
             self.buttonD.alpha = 0;
@@ -567,6 +610,12 @@
             self.answerELabel.hidden = YES;
             self.buttonE.alpha = 0;
             
+            self.Cbackground.backgroundColor = UIColorFromRGB(0x007AFF);
+            self.Cbackground.alpha = 0.3;
+            self.Dbackground.backgroundColor = UIColorFromRGB(0x007AFF);
+            self.Dbackground.alpha = 0.3;
+            
+              self.Ebackground.backgroundColor = [UIColor clearColor];
             
             self.answerCLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerC];
             self.answerCLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
@@ -598,6 +647,13 @@
             self.answerELabel.hidden = NO;
             self.buttonE.alpha = 1;
             
+            self.Cbackground.backgroundColor = UIColorFromRGB(0x007AFF);
+            self.Cbackground.alpha = 0.3;
+            self.Dbackground.backgroundColor = UIColorFromRGB(0x007AFF);
+            self.Dbackground.alpha = 0.3;
+            self.Ebackground.backgroundColor = UIColorFromRGB(0x007AFF);
+            self.Ebackground.alpha = 0.3;
+            
             self.answerCLabel.text = [NSString stringWithFormat: @"%@", self.detailItem.answerC];
             self.answerCLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
             [self.answerCLabel addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
@@ -620,6 +676,8 @@
     if ([self qIsTypeNormal]){
         [QuestionViewController shouldDisableButton:reportButton should:YES];
         
+        self.progressBarBorder.image = [UIImage imageNamed:@"4bar.png"];
+        self.progressBarBorder.alpha = 0.6;
         resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
         resultImage.alpha = 0.6;
         resultImageStartPoint = resultImage.center;
@@ -634,7 +692,7 @@
     } else { // else, it is a report question!
         
         resultImage.image = nil;
-        
+        self.progressBarBorder.image = nil;
         if (!self.detailItem.qAttempts) { //If buttons pressed is still Null
             self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, @0, nil];
         }
@@ -670,7 +728,10 @@
         
         // Prevents enabled next button on the last question
         if ([self.detailItem.questionNumber integerValue] != (int)quizLength-1 ){
-            nextButton.enabled = YES;
+            
+            [QuestionViewController shouldDisableButton:nextButton should:NO];
+            
+            //nextButton.enabled = YES;
             
         }
         
@@ -780,11 +841,20 @@
         }
 
     } else { // it's a report question, need to set the background image to show its been selected, and make sure all other images are nil
+        
+        
+        
         _aImage.image = nil;
         _bImage.image = nil;
         _cImage.image = nil;
         _dImage.image = nil;
         _eImage.image = nil;
+        
+//        _aImage.alpha = 0;
+//         _bImage.alpha = 0;
+//         _cImage.alpha = 0;
+//         _dImage.alpha = 0;
+//         _eImage.alpha = 0;
 //        [buttonA setBackgroundImage:nil forState:UIControlStateNormal];
 //        [buttonB setBackgroundImage:nil forState:UIControlStateNormal];
 //        [buttonC setBackgroundImage:nil forState:UIControlStateNormal];
@@ -798,7 +868,7 @@
         {
             if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@3]){
                 UIImageView *tempimage = [imageArray objectAtIndex:index];
-                tempimage.image = [UIImage imageNamed:@"ok-512.png"];
+                tempimage.image = [UIImage imageNamed:@"1-ext.png"];
             }
         }
     }
@@ -827,8 +897,7 @@
 }
 
 // Called when a correct answer is pressed or anytime a report answer is chosen
-- (void)sendAttemptsToParse
-{
+- (void)sendAttemptsToParse{
     if (!self.attempts){  //if the attempts array hasnt been made
         
         id masternav = self.splitViewController.viewControllers[0];
@@ -838,7 +907,7 @@
         }
         
         self.attempts = [[NSMutableArray alloc] init];
-        for (int i = 0; i < (int)quizLength; i++ ){
+        for (int i = 0; i < (int)quizLength+1; i++ ){
             [self.attempts insertObject:@0 atIndex:i];
         }
         NSLog(@"The legth of attempts array: %lu\nThe number of questions: %d", (unsigned long)[self.attempts count], quizLength);
@@ -1102,7 +1171,7 @@
         if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerDLabel.frame),
                               self.answerDLabel.frame)){
             [self hideTheTabBarWithAnimation:YES];
-            NSLog(@"last answer is on screen, dismiss scroll indicator");
+           // NSLog(@"last answer is on screen, dismiss scroll indicator");
         }else{
             [self unhideTheTabBarWithAnimation:YES];
         }
@@ -1113,7 +1182,7 @@
         if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerELabel.frame),
                               self.answerELabel.frame)){
             [self hideTheTabBarWithAnimation:YES];
-            NSLog(@"last answer is on screen, dismiss scroll indicator");
+          //  NSLog(@"last answer is on screen, dismiss scroll indicator");
         }else{
             [self unhideTheTabBarWithAnimation:YES];
         }
@@ -1129,7 +1198,7 @@
         if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerDLabel.frame),
                               self.answerDLabel.frame)){
             [self hideTheTabBarWithAnimation:YES];
-            NSLog(@"last answer is on screen, dismiss scroll indicator");
+           // NSLog(@"last answer is on screen, dismiss scroll indicator");
         }else{
             [self unhideTheTabBarWithAnimation:YES];
         }
@@ -1137,7 +1206,7 @@
         if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerELabel.frame),
                               self.answerELabel.frame)){
             [self hideTheTabBarWithAnimation:YES];
-            NSLog(@"last answer is on screen, dismiss scroll indicator");
+          //  NSLog(@"last answer is on screen, dismiss scroll indicator");
         }else{
             [self unhideTheTabBarWithAnimation:YES];
         }
@@ -1160,7 +1229,7 @@
         if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerDLabel.frame),
                               self.answerDLabel.frame)){
             [self hideTheTabBarWithAnimation:YES];
-            NSLog(@"last answer is on screen, dismiss scroll indicator");
+           // NSLog(@"last answer is on screen, dismiss scroll indicator");
         }else{
             [self unhideTheTabBarWithAnimation:YES];
         }
@@ -1168,7 +1237,7 @@
         if (CGRectEqualToRect(CGRectIntersection(self.scrollView.bounds, self.answerELabel.frame),
                               self.answerELabel.frame)){
             [self hideTheTabBarWithAnimation:YES];
-            NSLog(@"last answer is on screen, dismiss scroll indicator");
+          //  NSLog(@"last answer is on screen, dismiss scroll indicator");
         }else{
             [self unhideTheTabBarWithAnimation:YES];
         }
