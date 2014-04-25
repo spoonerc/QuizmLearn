@@ -591,10 +591,30 @@ NSInteger fastQuizLength;
 #pragma mark - Navigation
 
 
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
 
 -(void)prepareQuestionViewController:(QuestionViewController *)qvc toDisplayQuestionAtRow:(NSInteger)row
 {
-    NSLog(@"row is: %li", (long)row);
+    int numRowsInSec0 = [self.tableView numberOfRowsInSection:0];
+    BOOL isSec0 = ( row > numRowsInSec0 ? NO : YES);
+    
+    int rowToSelect = row;
+
+    if (!isSec0) {
+        rowToSelect = row-numRowsInSec0;
+    }
+    
+    if ([self.tableView indexPathForSelectedRow].row != row){
+        if (UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:rowToSelect-1 inSection:(isSec0 ? 0 : 1)] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        }
+    }
+    
+    
+    NSLog(@"Number of Rows in Section 0: %d, isSec0: %hhd, rowToSelect: %d, row: %d", numRowsInSec0, isSec0, rowToSelect, row);
 
     Question *q = [quiz objectAtIndex:row];
 
@@ -684,22 +704,21 @@ NSInteger fastQuizLength;
         int count = 0;
         
         if (indexPath.section == 1){
-        
-        for (int i = 1; i< [quiz count]; i++) {
             
-            Question *qCount = [quiz objectAtIndex:i];
-            if ([qCount.qtype isEqualToString:@"0"]){
-                count++; //number of RAP questions
-            }
-        }
+            count = [self.tableView numberOfRowsInSection:0];
+        
+//        for (int i = 1; i< [quiz count]; i++) {
+//            
+//            Question *qCount = [quiz objectAtIndex:i];
+//            if ([qCount.qtype isEqualToString:@"0"]){
+//                count++; //number of RAP questions
+//            }
+//        }
         }
         
         [self prepareQuestionViewController:detail toDisplayQuestionAtRow:count+indexPath.row+1];
         
-        
         [detail switchQuestion];
-    } else {
-        NSLog(@"Didnt enter didselectrow");
     }
    
 }

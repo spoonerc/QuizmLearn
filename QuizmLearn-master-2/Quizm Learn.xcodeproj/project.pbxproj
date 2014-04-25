@@ -118,6 +118,7 @@
 		2AFF21B7189C7ACC00FE6F38 /* ok-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF21B4189C7ACC00FE6F38 /* ok-512.png */; };
 		2AFF21B8189C7ACC00FE6F38 /* redX7.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF21B5189C7ACC00FE6F38 /* redX7.png */; };
 		A720766918B303A500EC4267 /* PastQuizTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A720766818B303A500EC4267 /* PastQuizTable.m */; };
+		A74F712319085B4400868346 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A74F712119085B4400868346 /* Reachability.m */; };
 		A755332818B712D4001B9306 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755332718B712D4001B9306 /* MyLoginViewController.m */; };
 		A755333D18B97B14001B9306 /* BigButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755333C18B97B14001B9306 /* BigButtonViewController.m */; };
 /* End PBXBuildFile section */
@@ -267,6 +268,8 @@
 		2AFF21B5189C7ACC00FE6F38 /* redX7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redX7.png; path = Images.xcassets/redX7.png; sourceTree = "<group>"; };
 		A720766718B303A500EC4267 /* PastQuizTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastQuizTable.h; sourceTree = "<group>"; };
 		A720766818B303A500EC4267 /* PastQuizTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastQuizTable.m; sourceTree = "<group>"; };
+		A74F712119085B4400868346 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../Reachability/Reachability.m; sourceTree = "<group>"; };
+		A74F712219085B4400868346 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../Reachability/Reachability.h; sourceTree = "<group>"; };
 		A755332618B712D4001B9306 /* MyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginViewController.h; sourceTree = "<group>"; };
 		A755332718B712D4001B9306 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginViewController.m; sourceTree = "<group>"; };
 		A755333B18B97B14001B9306 /* BigButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigButtonViewController.h; sourceTree = "<group>"; };
@@ -351,6 +354,8 @@
 		2AD87A2E1897225B0069F479 /* QuizApp2 */ = {
 			isa = PBXGroup;
 			children = (
+				A74F712119085B4400868346 /* Reachability.m */,
+				A74F712219085B4400868346 /* Reachability.h */,
 				2AD87A371897225B0069F479 /* AppDelegate.h */,
 				2AD87A381897225B0069F479 /* AppDelegate.m */,
 				2AD87A3A1897225B0069F479 /* Main.storyboard */,
@@ -708,6 +713,7 @@
 				A755333D18B97B14001B9306 /* BigButtonViewController.m in Sources */,
 				2AD7CF6618E62E1A002B2246 /* OtherQuizzesTableViewController.m in Sources */,
 				2AD87A6B1897271A0069F479 /* Question.m in Sources */,
+				A74F712319085B4400868346 /* Reachability.m in Sources */,
 				2A0DACDC18A2F6DC00FF995D /* QuizTableViewController.m in Sources */,
 				2AB1DCF818A3F97A00E5E08B /* PastQuizViewController.m in Sources */,
 				2A3725DF18FC8D3B003D7E15 /* AFKPageFlipper.m in Sources */,

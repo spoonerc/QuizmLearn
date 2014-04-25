@@ -18,6 +18,7 @@
 #import "FlipView.h"
 #import "AnimationFrame.h"
 #import "GenericAnimationView.h"
+#import "Reachability.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -55,6 +56,7 @@
 
 @implementation QuestionViewController
 {
+    Reachability *internetReachableFoo;
     CGPoint resultImageStartPoint;
     BOOL loggedIn;
     BOOL quizImported;
@@ -102,7 +104,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self testInternetConnection];
     
     nextButton.enabled = NO;
     [nextButton setBackgroundImage:[UIImage imageNamed:@"buttonbackground"] forState:UIControlStateNormal];
@@ -216,6 +218,37 @@
    //loggedIn = YES;
 }
 
+- (void)testInternetConnection
+{
+    internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the interwebs!");
+        });
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            //[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Mayday Mayday Wifi down!", nil) message:NSLocalizedString(@"SEND BACKUP", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Okay", nil) otherButtonTitles:NSLocalizedString(@"Go Back",nil), nil] show];
+            
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Internet Connection!", nil) message:NSLocalizedString(@"Quizm can't work without the internet.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Okay", nil) otherButtonTitles:nil] show];
+            
+            
+            NSLog(@"Someone broke the internet :(");
+        });
+    };
+    
+    [internetReachableFoo startNotifier];
+}
 
 
 
@@ -409,8 +442,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     NSLog(@"Entered prepareForSegue");
+    
+    
+    
     if ([[segue destinationViewController] isKindOfClass:[ImportViewController class]])
     {
+        
         if (groupName){ // Send the groupname to importview controller to display in the welcome label
             ImportViewController *destView = [segue destinationViewController];
             destView.groupName = groupName;
@@ -506,7 +543,7 @@
         [self hideTheTabBarWithAnimation:YES];
     }
     
-    [UIView transitionWithView:self.view duration:0.6 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{\
+    [UIView transitionWithView:self.view duration:0.6 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
         
         
         
