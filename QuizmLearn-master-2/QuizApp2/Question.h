@@ -29,7 +29,9 @@
 - (void)insertObjectInButtonsPressed:(id)rightOrWrong AtLetterSpot:(NSString *)index;
 
 @property (strong, nonatomic) NSString *qAttempts;
-@property (nonatomic) BOOL *questionFinished;
+@property (nonatomic) BOOL questionFinished;
+@property (nonatomic) BOOL questionStarted;
+@property (nonatomic) BOOL justEntered;
 //-(NSString *) description;
 
 @end
