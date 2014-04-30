@@ -44,6 +44,7 @@
 		2AA8301618A590D200FCC137 /* zerofillStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AA8300D18A590D200FCC137 /* zerofillStar.png */; };
 		2AB1DCF818A3F97A00E5E08B /* PastQuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1DCF718A3F97A00E5E08B /* PastQuizViewController.m */; };
 		2AB428F218ECB6F8001B6458 /* 0bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AB428F118ECB6F8001B6458 /* 0bar.png */; };
+		2AD48D7D190B0802006904B7 /* moreButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD48D7C190B0802006904B7 /* moreButton.png */; };
 		2AD7CF3618E6266C002B2246 /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD7CF0818E6266C002B2246 /* 0.png */; };
 		2AD7CF3718E6266C002B2246 /* 0square.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD7CF0918E6266C002B2246 /* 0square.png */; };
 		2AD7CF3818E6266C002B2246 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD7CF0A18E6266C002B2246 /* 1.png */; };
@@ -182,6 +183,7 @@
 		2AB1DCF618A3F97A00E5E08B /* PastQuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastQuizViewController.h; sourceTree = "<group>"; };
 		2AB1DCF718A3F97A00E5E08B /* PastQuizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastQuizViewController.m; sourceTree = "<group>"; };
 		2AB428F118ECB6F8001B6458 /* 0bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0bar.png; sourceTree = "<group>"; };
+		2AD48D7C190B0802006904B7 /* moreButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moreButton.png; path = QuizApp2Images/moreButton.png; sourceTree = SOURCE_ROOT; };
 		2AD7CF0818E6266C002B2246 /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		2AD7CF0918E6266C002B2246 /* 0square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0square.png; sourceTree = "<group>"; };
 		2AD7CF0A18E6266C002B2246 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				2A89240E18EF23090051B383 /* NormalQuestion2.png */,
+				2AD48D7C190B0802006904B7 /* moreButton.png */,
 				2A89240F18EF23090051B383 /* ReportQuestion3.png */,
 				2AD7CF0818E6266C002B2246 /* 0.png */,
 				2A89240C18EF21050051B383 /* reportQuestionSmall.png */,
@@ -636,6 +639,7 @@
 				2A85A10D18B6D3CD002722E5 /* QuizmLearn.png in Resources */,
 				2AD7CF4B18E6266C002B2246 /* buttonbackground.png in Resources */,
 				2AD87A331897225B0069F479 /* InfoPlist.strings in Resources */,
+				2AD48D7D190B0802006904B7 /* moreButton.png in Resources */,
 				2A2F6D3D18EB43C800061083 /* 1A.png in Resources */,
 				2AD7CF5F18E6266C002B2246 /* Tab-Bar-Icon---Pie-Chart.png in Resources */,
 				2AD7CF4718E6266C002B2246 /* bigPA.png in Resources */,

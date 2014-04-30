@@ -65,6 +65,7 @@
     BOOL startedQuiz;
     BOOL firstQuestionDisplayed;
     BOOL alertVisible;
+    BOOL finishedQuestion;
     NSString *messagestring;
     NSString *groupName;
     NSUInteger *quizLength;
@@ -741,11 +742,46 @@
     if ([self qIsTypeNormal]){
         [QuestionViewController shouldDisableButton:reportButton should:YES];
         
+       
+        
         self.progressBarBorder.image = [UIImage imageNamed:@"4bar.png"];
         self.progressBarBorder.alpha = 0.6;
         resultImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"0bar.png"]];
         resultImage.alpha = 0.6;
-        resultImageStartPoint = resultImage.center;
+        
+        if (!self.detailItem.questionStarted){
+            resultImageStartPoint = CGPointMake(384, 84);
+            self.detailItem.questionStarted = YES;
+        }else{
+            
+            self.detailItem.justEntered = YES;
+            
+            float movePercentage = 0.0;
+            
+            if (self.detailItem.numberOfAnswers == 2){
+                movePercentage = 1;
+            }else if (self.detailItem.numberOfAnswers == 3){
+                movePercentage = 0.5;
+            }else if (self.detailItem.numberOfAnswers == 4){
+                movePercentage = 0.33;
+            }else if (self.detailItem.numberOfAnswers == 5){
+                movePercentage = 0.25;
+            }
+            
+            NSLog(@"move percentage: %f", movePercentage);
+            
+            int pixelMove = resultImage.frame.size.width*movePercentage;
+            
+            resultImage.center = CGPointMake(384-([self.detailItem.qAttempts intValue]*pixelMove), 84);
+            
+            
+//            [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{ resultImage.center = CGPointMake(resultImage.center.x-pixelMove, resultImage.center.y); } completion:^ (BOOL fin){ }];
+//            
+            
+            
+            
+            resultImageStartPoint = resultImage.center;
+        }
         if (!self.detailItem.qAttempts) { //If buttons pressed is still Null, create it.
             self.detailItem.ButtonsPressed = [[NSMutableArray alloc] initWithObjects:@0,@0, @0, @0, @0, nil];
             
@@ -777,6 +813,29 @@
     
    
 }
+
+- (UIImage *)colorImageWithColor:(UIColor *)color withImage:(UIImage *)image
+{
+    // Make a rectangle the size of your image
+    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+    // Create a new bitmap context based on the current image's size and scale, that has opacity
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
+    // Get a reference to the current context (which you just created)
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    // Draw your image into the context we created
+    [image drawInRect:rect];
+    // Set the fill color of the context
+    CGContextSetFillColorWithColor(c, [color CGColor]);
+    // This sets the blend mode, which is not super helpful. Basically it uses the your fill color with the alpha of the image and vice versa. I'll include a link with more info.
+    CGContextSetBlendMode(c, kCGBlendModeSourceAtop);
+    // Now you apply the color and blend mode onto your context.
+    CGContextFillRect(c, rect);
+    // You grab the result of all this drawing from the context.
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    // And you return it.
+    return result;
+}
+
 
 // Handles all the logistics for enabling buttons, for both kinds of questions
 - (void)EnableButtonsAccordingToButtonsPressed{
@@ -852,6 +911,12 @@
         else // question is not finished, move bar to the left 200 pixels
         {
             
+            if (!self.detailItem.justEntered){
+               
+               
+            
+            
+            
             float movePercentage = 0.0;
             
             if (self.detailItem.numberOfAnswers == 2){
@@ -872,7 +937,13 @@
             
             
             [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{ resultImage.center = CGPointMake(resultImage.center.x-pixelMove, resultImage.center.y); } completion:^ (BOOL fin){ }];
+                
+            
+            }else{
+                self.detailItem.justEntered = NO;
+            }
         }
+        
         
         // Set the check mark and x images
         for(int index = 0; index < 5; index++)
@@ -884,6 +955,10 @@
             } else if ([[self.detailItem.ButtonsPressed objectAtIndex:index] isEqualToValue:@2]){
                 flag = true;
                 UIImageView *tempimage = [imageArray objectAtIndex:index];
+                
+                //tempimage.image = [self colorImageWithColor: UIColorFromRGB(0x4CD964) withImage:[UIImage imageNamed:@"ok-512.png"]];
+
+                
                 tempimage.image = [UIImage imageNamed:@"ok-512.png"];
                 
                 

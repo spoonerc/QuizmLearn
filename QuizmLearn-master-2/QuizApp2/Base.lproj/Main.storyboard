@@ -675,7 +675,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Quiz View" id="FVP-cy-o4e">
-                        <barButtonItem key="rightBarButtonItem" title="Other Quizzes" id="uO3-Lz-SXM">
+                        <barButtonItem key="rightBarButtonItem" title="More" id="uO3-Lz-SXM">
                             <connections>
                                 <action selector="otherQuizzesClicked:" destination="H8R-Kd-o4Z" id="e40-WL-vfk"/>
                                 <segue destination="blA-d2-RdA" kind="popover" identifier="goToOtherQuizzes" popoverAnchorBarButtonItem="uO3-Lz-SXM" id="rbE-XN-IlC">
