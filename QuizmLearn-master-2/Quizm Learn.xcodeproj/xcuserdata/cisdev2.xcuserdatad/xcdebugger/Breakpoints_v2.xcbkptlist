@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "419978246.575101"
+            timestampString = "420569462.547458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
             landmarkName = "-viewDidLoadDelayedLoading"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "419978246.575101"
+            timestampString = "420569462.547458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
             landmarkName = "-viewDidLoadDelayedLoading"
             landmarkType = "5">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuizApp2/QuestionViewController.m"
-            timestampString = "419978246.575101"
+            timestampString = "420569280.009965"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "resultImage"
             landmarkType = "19">
          </BreakpointContent>

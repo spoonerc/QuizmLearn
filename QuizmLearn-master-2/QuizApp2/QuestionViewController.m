@@ -57,12 +57,14 @@
 @implementation QuestionViewController
 {
     Reachability *internetReachableFoo;
+    UIAlertView *alert;
     CGPoint resultImageStartPoint;
     BOOL loggedIn;
     BOOL quizImported;
     BOOL logOutFlag;
     BOOL startedQuiz;
     BOOL firstQuestionDisplayed;
+    BOOL alertVisible;
     NSString *messagestring;
     NSString *groupName;
     NSUInteger *quizLength;
@@ -227,6 +229,23 @@
     {
         // Update the UI on the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (alertVisible){ // can probably just check the alert.visible property instead
+                
+                UIImageView *checkMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ios7-checkmark"]];
+            
+            
+                [alert dismissWithClickedButtonIndex:0 animated:NO];
+                UIAlertView *successAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Connection found!", nil) message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+                
+                
+                [successAlert setValue:checkMark forKey:@"accessoryView"];
+                [successAlert show];
+                [self performSelector:@selector(hideAlert:) withObject:successAlert afterDelay:2.0];
+            }
+            
+            
+            
             NSLog(@"Yayyy, we have the interwebs!");
         });
     };
@@ -237,10 +256,16 @@
         // Update the UI on the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            spinner.frame = CGRectMake(0.0, 0.0, 20.0, 20.0);
+            [spinner startAnimating];
             
-            //[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Mayday Mayday Wifi down!", nil) message:NSLocalizedString(@"SEND BACKUP", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Okay", nil) otherButtonTitles:NSLocalizedString(@"Go Back",nil), nil] show];
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Lost Internet!", nil) message:NSLocalizedString(@"Waiting for connection...", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:nil, nil];
             
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Internet Connection!", nil) message:NSLocalizedString(@"Quizm can't work without the internet.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Okay", nil) otherButtonTitles:nil] show];
+            
+            [alert setValue:spinner forKey:@"accessoryView"];
+            [alert show];
+            alertVisible = YES;
             
             
             NSLog(@"Someone broke the internet :(");
@@ -250,7 +275,10 @@
     [internetReachableFoo startNotifier];
 }
 
-
+- (void)hideAlert:(UIAlertView *)successAlert{
+    [successAlert dismissWithClickedButtonIndex:0 animated:YES];
+    
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     
@@ -1369,44 +1397,44 @@
     NSLog(@"User dismissed the logInViewController");
 }
 
-#pragma mark - PFSignUpViewControllerDelegate
-
-// Signup isnt needed, but keep if we ever want to implement it.
-
-// Sent to the delegate to determine whether the sign up request should be submitted to the server.
-- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
-    BOOL informationComplete = YES;
-    
-    // loop through all of the submitted data
-    for (id key in info) {
-        NSString *field = [info objectForKey:key];
-        if (!field || !field.length) { // check completion
-            informationComplete = NO;
-            break;
-        }
-    }
-    
-    // Display an alert if a field wasn't completed
-    if (!informationComplete) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
-    }
-    
-    return informationComplete;
-}
-
-// Sent to the delegate when a PFUser is signed up.
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-// Sent to the delegate when the sign up attempt fails.
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
-    NSLog(@"Failed to sign up...");
-}
-
-// Sent to the delegate when the sign up screen is dismissed.
-- (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
-    NSLog(@"User dismissed the signUpViewController");
-}
-
+//#pragma mark - PFSignUpViewControllerDelegate
+//
+//// Signup isnt needed, but keep if we ever want to implement it.
+//
+//// Sent to the delegate to determine whether the sign up request should be submitted to the server.
+//- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
+//    BOOL informationComplete = YES;
+//    
+//    // loop through all of the submitted data
+//    for (id key in info) {
+//        NSString *field = [info objectForKey:key];
+//        if (!field || !field.length) { // check completion
+//            informationComplete = NO;
+//            break;
+//        }
+//    }
+//    
+//    // Display an alert if a field wasn't completed
+//    if (!informationComplete) {
+//        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+//    }
+//    
+//    return informationComplete;
+//}
+//
+//// Sent to the delegate when a PFUser is signed up.
+//- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+//    [self dismissViewControllerAnimated:YES completion:NULL];
+//}
+//
+//// Sent to the delegate when the sign up attempt fails.
+//- (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
+//    NSLog(@"Failed to sign up...");
+//}
+//
+//// Sent to the delegate when the sign up screen is dismissed.
+//- (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
+//    NSLog(@"User dismissed the signUpViewController");
+//}
+//
 @end
