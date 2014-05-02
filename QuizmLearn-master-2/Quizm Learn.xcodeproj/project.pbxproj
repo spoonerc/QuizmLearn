@@ -44,6 +44,7 @@
 		2AA8301618A590D200FCC137 /* zerofillStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AA8300D18A590D200FCC137 /* zerofillStar.png */; };
 		2AB1DCF818A3F97A00E5E08B /* PastQuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1DCF718A3F97A00E5E08B /* PastQuizViewController.m */; };
 		2AB428F218ECB6F8001B6458 /* 0bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AB428F118ECB6F8001B6458 /* 0bar.png */; };
+		2AD36D5B1912C4E400D71555 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD36D5A1912C4E400D71555 /* Reachability.m */; };
 		2AD48D7D190B0802006904B7 /* moreButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD48D7C190B0802006904B7 /* moreButton.png */; };
 		2AD7CF3618E6266C002B2246 /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD7CF0818E6266C002B2246 /* 0.png */; };
 		2AD7CF3718E6266C002B2246 /* 0square.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AD7CF0918E6266C002B2246 /* 0square.png */; };
@@ -119,7 +120,6 @@
 		2AFF21B7189C7ACC00FE6F38 /* ok-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF21B4189C7ACC00FE6F38 /* ok-512.png */; };
 		2AFF21B8189C7ACC00FE6F38 /* redX7.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF21B5189C7ACC00FE6F38 /* redX7.png */; };
 		A720766918B303A500EC4267 /* PastQuizTable.m in Sources */ = {isa = PBXBuildFile; fileRef = A720766818B303A500EC4267 /* PastQuizTable.m */; };
-		A74F712319085B4400868346 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A74F712119085B4400868346 /* Reachability.m */; };
 		A755332818B712D4001B9306 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755332718B712D4001B9306 /* MyLoginViewController.m */; };
 		A755333D18B97B14001B9306 /* BigButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A755333C18B97B14001B9306 /* BigButtonViewController.m */; };
 /* End PBXBuildFile section */
@@ -183,6 +183,8 @@
 		2AB1DCF618A3F97A00E5E08B /* PastQuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastQuizViewController.h; sourceTree = "<group>"; };
 		2AB1DCF718A3F97A00E5E08B /* PastQuizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastQuizViewController.m; sourceTree = "<group>"; };
 		2AB428F118ECB6F8001B6458 /* 0bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0bar.png; sourceTree = "<group>"; };
+		2AD36D591912C4E400D71555 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		2AD36D5A1912C4E400D71555 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2AD48D7C190B0802006904B7 /* moreButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moreButton.png; path = QuizApp2Images/moreButton.png; sourceTree = SOURCE_ROOT; };
 		2AD7CF0818E6266C002B2246 /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		2AD7CF0918E6266C002B2246 /* 0square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0square.png; sourceTree = "<group>"; };
@@ -270,8 +272,6 @@
 		2AFF21B5189C7ACC00FE6F38 /* redX7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redX7.png; path = Images.xcassets/redX7.png; sourceTree = "<group>"; };
 		A720766718B303A500EC4267 /* PastQuizTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastQuizTable.h; sourceTree = "<group>"; };
 		A720766818B303A500EC4267 /* PastQuizTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastQuizTable.m; sourceTree = "<group>"; };
-		A74F712119085B4400868346 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../Reachability/Reachability.m; sourceTree = "<group>"; };
-		A74F712219085B4400868346 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../Reachability/Reachability.h; sourceTree = "<group>"; };
 		A755332618B712D4001B9306 /* MyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginViewController.h; sourceTree = "<group>"; };
 		A755332718B712D4001B9306 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginViewController.m; sourceTree = "<group>"; };
 		A755333B18B97B14001B9306 /* BigButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigButtonViewController.h; sourceTree = "<group>"; };
@@ -356,10 +356,10 @@
 		2AD87A2E1897225B0069F479 /* QuizApp2 */ = {
 			isa = PBXGroup;
 			children = (
-				A74F712119085B4400868346 /* Reachability.m */,
-				A74F712219085B4400868346 /* Reachability.h */,
 				2AD87A371897225B0069F479 /* AppDelegate.h */,
 				2AD87A381897225B0069F479 /* AppDelegate.m */,
+				2AD36D591912C4E400D71555 /* Reachability.h */,
+				2AD36D5A1912C4E400D71555 /* Reachability.m */,
 				2AD87A3A1897225B0069F479 /* Main.storyboard */,
 				2AD7CF6418E62E1A002B2246 /* OtherQuizzesTableViewController.h */,
 				2AD7CF6518E62E1A002B2246 /* OtherQuizzesTableViewController.m */,
@@ -717,7 +717,7 @@
 				A755333D18B97B14001B9306 /* BigButtonViewController.m in Sources */,
 				2AD7CF6618E62E1A002B2246 /* OtherQuizzesTableViewController.m in Sources */,
 				2AD87A6B1897271A0069F479 /* Question.m in Sources */,
-				A74F712319085B4400868346 /* Reachability.m in Sources */,
+				2AD36D5B1912C4E400D71555 /* Reachability.m in Sources */,
 				2A0DACDC18A2F6DC00FF995D /* QuizTableViewController.m in Sources */,
 				2AB1DCF818A3F97A00E5E08B /* PastQuizViewController.m in Sources */,
 				2A3725DF18FC8D3B003D7E15 /* AFKPageFlipper.m in Sources */,
